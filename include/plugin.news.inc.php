@@ -1,6 +1,6 @@
 <?php
 	$new = $db->get_results("SELECT * FROM plugin_".$plugin->plugin_identify." ORDER BY plugin_news_id DESC LIMIT 5;");
-
+	$count = count($new);
 	foreach($new as $news)
 	{
 		$output .= '<h3>'.$news->plugin_news_title.'</h3>';
@@ -11,5 +11,7 @@
 		
 		
 	}
-	$plugins[plugin_news]=$tpl->display('login.tpl');;
+	$output .= '<br />'.$count.' News gefunden';
+	//$plugins[plugin_news]=$tpl->display('login.tpl');
+	$plugins[plugin_news]=$output;
 ?>
