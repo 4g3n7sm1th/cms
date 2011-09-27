@@ -1,7 +1,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
-<title>{$title} - {$pagetitle}</title>
+<title>{$app_title} - {$pagetitle}</title>
 <style type="text/css">
 
 body {

@@ -1,6 +1,6 @@
 <div id="mantel">
 <div id="header">
-Head-Bereich
+{$app_title}
 </div>
 <div id="menu">
 {menue id=1}

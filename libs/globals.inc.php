@@ -20,7 +20,7 @@ $tpl = new Smarty;
 $tpl->debugging = false;
 $tpl->caching = false;
 $tpl->cache_lifetime = 120;
-$tpl->assign('title', $app_pagename);
+$tpl->assign('app_title', $app_pagename);
 
 include('functions.inc.php');
 

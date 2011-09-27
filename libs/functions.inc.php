@@ -100,4 +100,13 @@ function menu($menu_id)
 	return $menu_data;
 	}
 }
+
+function date_mysql($date, $format)
+{
+ $d = explode("-", $date);
+ $time = explode(" ", $d[2]);
+ $t = explode(":", $time[1]);
+ $datetime_converted = date($format, mktime ($t[0],$t[1],$t[2],$d[1],$d[2],$d[0]));
+ return $datetime_converted;
+}
 ?>

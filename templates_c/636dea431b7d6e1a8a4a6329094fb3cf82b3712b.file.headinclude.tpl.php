@@ -1,53 +1,33 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty 3.1-RC1, created on 2011-09-27 01:09:37
+<?php /* Smarty version Smarty 3.1-RC1, created on 2011-09-27 11:24:48
          compiled from "./templates/headinclude.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:16671090984e8106319011f0-09449385%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty 3.1-RC1, created on 2011-09-21 19:37:38
-         compiled from "./templates/headinclude.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:11715532694e7a20e211e1e3-76451228%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> 0
+<?php /*%%SmartyHeaderCode:7973692324e819660c54a66-65920224%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '636dea431b7d6e1a8a4a6329094fb3cf82b3712b' => 
     array (
       0 => './templates/headinclude.tpl',
-<<<<<<< HEAD
-      1 => 1316556478,
+      1 => 1317109487,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '16671090984e8106319011f0-09449385',
-=======
-      1 => 1316555649,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '11715532694e7a20e211e1e3-76451228',
->>>>>>> 0
+  'nocache_hash' => '7973692324e819660c54a66-65920224',
   'function' => 
   array (
   ),
   'variables' => 
   array (
-    'title' => 0,
+    'app_title' => 0,
     'pagetitle' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty 3.1-RC1',
-<<<<<<< HEAD
-  'unifunc' => 'content_4e8106319a563',
+  'unifunc' => 'content_4e819660d3bdd',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4e8106319a563')) {function content_4e8106319a563($_smarty_tpl) {?><html>
-=======
-  'unifunc' => 'content_4e7a20e21ddc2',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_4e7a20e21ddc2')) {function content_4e7a20e21ddc2($_smarty_tpl) {?><html>
->>>>>>> 0
+<?php if ($_valid && !is_callable('content_4e819660d3bdd')) {function content_4e819660d3bdd($_smarty_tpl) {?><html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
-<title><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
+<title><?php echo $_smarty_tpl->tpl_vars['app_title']->value;?>
  - <?php echo $_smarty_tpl->tpl_vars['pagetitle']->value;?>
 </title>
 <style type="text/css">
