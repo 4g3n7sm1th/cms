@@ -308,5 +308,32 @@ class flexibleAccess{
  	 	return false;
  	 }
   }
+  
+  function right($right)
+  {
+  	if(!$_SESSION['user_id']) return false;
+  	$user_id = $_SESSION['user_id'];
+  	$user_level = $this->db->get_var('SELECT user_level
+  																			FROM users
+  											 							 WHERE user_id = '.$user_id.';');
+  
+  	if(!$user_level) { return false; }
+  
+  	$user_right = $this->db->get_var("SELECT user_right_value
+  																			FROM user_rights
+  											 							 WHERE user_level = '".$user_level."'
+  											 							 	 AND user_right_name = '".$right."';");
+  											 							 	 
+  	if($user_right == '1')
+  	{ return true; }
+  	elseif($user_right == '0')
+  	{ return false; }
+  	elseif(!$user_right)
+  	{ return false; }
+  	else
+  	{ return $user_right; }
+  	
+  
+  }
 }
 ?>

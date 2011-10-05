@@ -8,9 +8,7 @@
 		
 		$output .= '<h3>'.$news->plugin_news_title.'</h3>';
 		$output .= $news->plugin_news_content.'<br />';
-		$output .= 'Autor: '.$author.' | geschrieben am '.date_mysql($news->plugin_news_create_ts, "d. F Y").' um '.date_mysql($news->plugin_news_create_ts, "H:i").' Uhr <br />';
-		
-		
+		$output .= 'Autor: '.$author.' | geschrieben am '.date_mysql($news->plugin_news_create_ts, "d. F Y").' um '.date_mysql($news->plugin_news_create_ts, "H:i").' Uhr <br />';	
 	}
 	$output .= '<br />'.$count.' News gefunden';
 	//$plugins[plugin_news]=$tpl->display('login.tpl');

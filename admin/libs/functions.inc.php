@@ -80,6 +80,7 @@ function menu($menu_id)
 {
 	global $db;
 	global $tpl;
+	global $user;
 	$menu_data = array();
 	$menus = $db->get_results("SELECT * 
 							 FROM menu_items
@@ -87,15 +88,54 @@ function menu($menu_id)
 							  AND menu_item_visible = '1'
 							  AND menu_item_ts_delete IS NULL
 						 ORDER BY menu_item_order_id");
-	if(!$menus) { message('Menü nicht verfügbar.', 'error'); } else {
+	if(!$menus) { message('Menü nicht verfügbar.', 'error');  return false;} else {
 		for($i=0; $i<count($menus); $i++)
 		{
-		$menu_data[$i]['title'] = $menus[$i]->menu_item_title;
-		if(!$menus->menu_item_link)
-		{ $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page; }
-		else { $menu_data[$i]['link'] = $menus[$i]->menu_item_link; }
-		$menu_data[$i]['target'] = $menus[$i]->menu_item_target;
+			if($menus[$i]->menu_item_right && !$user->right($menus[$i]->menu_item_right))
+			{
+				continue;
+			}
+			$menu_data[$i]['title'] = $menus[$i]->menu_item_title;
+			if(!$menus[$i]->menu_item_link)
+			{ $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page; }
+			else { $menu_data[$i]['link'] = $menus[$i]->menu_item_link; }
+			$menu_data[$i]['target'] = $menus[$i]->menu_item_target;
 		}
+	$tpl->assign('pos_menu',$menu_id);
+	return $menu_data;
+	}
+}
+
+function admin_menu($notmain = '')
+{
+	global $db;
+	global $tpl;
+	global $user;
+	if(isset($_GET['page'])) { $admin_page = $_GET['page']; }else{ $admin_page = "home"; } ;
+	$menu_data = array();
+	$sql = "SELECT * 
+	  				FROM admin_menu_items
+					 WHERE menu_item_visible = '1' ";
+	if(isset($notmain))				 
+	{ $sql.=	"AND menu_page = '".$admin_page."' "; }
+	$sql.=    "AND menu_item_ts_delete IS NULL
+				ORDER BY menu_item_order_id";
+					 
+	$menus = $db->get_results($sql);
+	if(!$menus) { message('Menü nicht verfügbar.', 'error');  return false;} else {
+		for($i=0; $i<count($menus); $i++)
+		{
+			if($menus[$i]->menu_item_right && !$user->right($menus[$i]->menu_item_right))
+			{
+				continue;
+			}
+			$menu_data[$i]['title'] = $menus[$i]->menu_item_title;
+			if(!$menus[$i]->menu_item_link)
+			{ $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page; }
+			else { $menu_data[$i]['link'] = $menus[$i]->menu_item_link; }
+			$menu_data[$i]['target'] = $menus[$i]->menu_item_target;
+		}
+	if(isset($notmain)) { $menu_id = '1'; }else{ $menu_id = '2'; }
 	$tpl->assign('pos_menu',$menu_id);
 	return $menu_data;
 	}
@@ -109,4 +149,6 @@ function date_mysql($date, $format)
  $datetime_converted = date($format, mktime ($t[0],$t[1],$t[2],$d[1],$d[2],$d[0]));
  return $datetime_converted;
 }
+
+
 ?>
