@@ -111,7 +111,7 @@ function admin_menu($menu_id = '')
 	global $db;
 	global $tpl;
 	global $user;
-	if(isset($_GET['page'])) { $admin_page = $_GET['page']; }else{ $admin_page = "home"; } ;
+	if(isset($_GET['action'])) { $admin_page = $_GET['action']; }else{ $admin_page = "home"; } ;
 	$menu_data = array();
 	$sql = "SELECT * 
 	  				FROM admin_menu_items
@@ -132,7 +132,7 @@ function admin_menu($menu_id = '')
 			{
 				continue;
 			}
-			$menu_data[$i]['title'] = $menus[$i]->menu_item_title;
+			$menu_data[$i]['title'] = htmlentities($menus[$i]->menu_item_title);
 			if(!$menus[$i]->menu_item_link)
 			{ $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page; }
 			else { $menu_data[$i]['link'] = $menus[$i]->menu_item_link; }
