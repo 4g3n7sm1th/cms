@@ -1,5 +1,11 @@
-cache/
-templates_c/
+cache/*
+
+templates_c/*
+
+admin/cache/*
+
+admin/templates_c/*
+
 templates_c/f5f63cf8bf5077cbe9e40e023158dd20352e878a.file.login.tpl.php
 
 templates_c/f5f63cf8bf5077cbe9e40e023158dd20352e878a.file.login.tpl.php
