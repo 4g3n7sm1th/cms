@@ -159,6 +159,25 @@ margin-bottom:10px !important;
 color:#B39B00;
 }
 
+.tooltip {
+	display:none;
+	font-size:12px;
+	height:70px;
+	width:160px;
+	padding:25px;
+	color:#fff;	
+}
+
 </style>
+		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+		<link type="text/css" href="css/jquery.tooltip.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.tooltip.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function (){
+		$("[title]").tooltip({ showURL: false });
+		});
+		</script>
 </head>
 <body>

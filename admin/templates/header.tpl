@@ -3,7 +3,7 @@
 {$app_title}
 </div>
 <div id="menu">
-{menue id=3}
+{adminmenue id=1}
 </div>
 <div id="content">
 <div id="sidebar">

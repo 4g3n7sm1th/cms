@@ -106,7 +106,7 @@ function menu($menu_id)
 	}
 }
 
-function admin_menu($notmain = '')
+function admin_menu($menu_id = '')
 {
 	global $db;
 	global $tpl;
@@ -116,10 +116,13 @@ function admin_menu($notmain = '')
 	$sql = "SELECT * 
 	  				FROM admin_menu_items
 					 WHERE menu_item_visible = '1' ";
-	if(isset($notmain))				 
+	if($menu_id == '')				 
 	{ $sql.=	"AND menu_page = '".$admin_page."' "; }
+	else
+	{ $sql.=	"AND menu_id = '".$menu_id."' "; }
 	$sql.=    "AND menu_item_ts_delete IS NULL
 				ORDER BY menu_item_order_id";
+					 
 					 
 	$menus = $db->get_results($sql);
 	if(!$menus) { message('Menü nicht verfügbar.', 'error');  return false;} else {
