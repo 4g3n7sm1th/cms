@@ -26,6 +26,11 @@ if($_POST['loginsubmit'])
 	if(!$login) message($error, 'error');
 	}
 }
+elseif($_GET['action'] == 'logout')
+{
+	$logout = $user->logout();
+	message("Sie wurden erfolgreich ausgeloggt.", 'success', '2', 'index.php?p='.$pages);
+}
 else
 {
 	$tpl->display('login.tpl');
