@@ -9,4 +9,5 @@
 <div id="sidebar">
 {include file="sidebar.tpl"}
 </div>
+<h1>{$pagetitle}</h1>
 {include file="message.tpl" position_actual=1}
