@@ -164,6 +164,10 @@ color:#B39B00;
 
 #pages {
 font-size:26px;
+width:605px;
+}
+
+#pages textarea {
 width:600px;
 }
 
@@ -179,10 +183,59 @@ width:200px;
 height:100px;
 background-color:#eeeeee;
 text-align:center;
+padding:10px;
+}
+
+#submitbox span {
+margin-left:0px;
+float:left;
 }
 
 #submitbox input[type="submit"] {
-width:90%;
+width:100%;
 border:1px solid lightgray;
 background-color:#ddd;
+margin-top:10px;
+}
+
+table#pages {
+border:1px solid black;
+font-size:12px;
+border-collapse:collapse;
+}
+
+table#pages td {
+border:1px solid black;
+padding:5px;
+}
+
+table#pages tr>td:first-child {
+width:60px;
+text-align:center;
+}
+
+table#pages tr>td:last-child {
+width:40px;
+text-align:center;
+}
+
+table#users {
+border:1px solid black;
+font-size:12px;
+border-collapse:collapse;
+}
+
+table#users td {
+border:1px solid black;
+padding:5px;
+}
+
+table#users tr>td:first-child {
+width:40px;
+text-align:center;
+}
+
+table#users tr>td:last-child {
+width:20px;
+text-align:center;
 }

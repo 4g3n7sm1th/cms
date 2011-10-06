@@ -1,9 +1,9 @@
 <?php
 
-$page['pages']['title'] = "Seiten";
+$page['users']['title'] = "Benutzer";
 
 $content = "";
-$content.= '<script type="text/javascript" src="js/pages.js"></script>';
+$content.= '<script type="text/javascript" src="js/users.js"></script>';
 
 if(isset($_GET['new']))
 {
@@ -90,27 +90,25 @@ elseif(isset($_GET['edit']))
 }
 else
 {
-	$pages = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL;');
-	$content.= "<table id='pages'><tr style='font-weight:bold'><td>&nbsp;</td><td>ID</td><td>Name</td><td title='Der Inhalt der Seite wird durch das eingestellte Plugin &uuml;berschrieben'>Plugin</td><td>Autor</td><td>Erstellt</td><td>letzte Änderung</td><td>&nbsp;</td></tr>";
+	$pages = $db->get_results('SELECT * FROM users WHERE user_ts_delete IS NULL;');
+	$content.= "<table id='users'><tr style='font-weight:bold'><td>&nbsp;</td><td>ID</td><td>Name</td><td>Erstellt</td><td>letzte Änderung</td><td>&nbsp;</td></tr>";
 	foreach($pages as $pagess)
 	{
-		$creator = $db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_author.";");
+		$creator = $db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->user_id_create.";");
 		if($pagess->page_ts_update != '') { 
-			$change = date_mysql($pagess->page_ts_update, "d.m.y, H:i").' Uhr'; 
-			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_id_update.";");
+			$change = date_mysql($pagess->user_ts_update, "d.m.y, H:i").' Uhr'; 
+			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->user_id_update.";");
 		} else { 
 			$change = ''; 
 			$changer = '';
 		}
-		$content.= "<tr><td><a href='index.php?action=pages&edit=".$pagess->page_id."'><img src='ico/color/reply.png' title='Seite \"".$pagess->page_title."\" bearbeiten'></a>&nbsp;<a href='".$app_mainpath.$app_mainpage."?p=".$pagess->page_id."' target='_blank'><img src='ico/color/application.png' title='Live-Vorschau'></a>&nbsp;<a onclick='deletePage(".$pagess->page_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a></td>";
-		$content.= "<td>".$pagess->page_id."</td><td>".$pagess->page_title."</td><td>".$pagess->page_function."</td><td>".$creator."</td><td>".date_mysql($pagess->page_ts_create, "d.m.y, H:i")." Uhr</td><td>".$change.$changer."</td><td>";
-		if($pagess->page_loginrequired == '1') { $content.= "<img src='ico/color/login.png' title='Seite ist nur eingeloggten Nutzern zug&auml;nglich'>"; } else { $content.= "<img src='ico/gray/login.png' title='Seite ist jedem zug&auml;nglich'>"; }
-		$content.= "&nbsp;";
-		if($pagess->page_comments == '1') { $content.= "<img src='ico/color/comments.png' title='Kommentare erlaubt'>"; } else { $content.= "<img src='ico/gray/comments.png' title='Kommentare nicht erlaubt'>"; }
+		$content.= "<tr><td><a href='index.php?action=pages&edit=".$pagess->page_id."'><img src='ico/color/reply.png' title='Seite \"".$pagess->page_title."\" bearbeiten'></a>&nbsp;<a onclick='deletePage(".$pagess->page_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a></td>";
+		$content.= "<td>".$pagess->user_id."</td><td>".$pagess->user_name."</td><td>".date_mysql($pagess->user_ts_create, "d.m.y, H:i")." Uhr von ".$creator."</td><td>".$change.$changer."</td><td>";
+		if($pagess->user_active == '1') { $content.= "<img src='ico/color/login.png' title='Benutzer ist aktiviert'>"; } else { $content.= "<img src='ico/gray/login.png' title='Benutzer ist nicht aktiviert'>"; }		
 		$content.= "</td></tr>";
 	}
 	$content.= "</table>";
 }
 
-$page['pages']['content'] = $content;
+$page['users']['content'] = $content;
 ?>
