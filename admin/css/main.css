@@ -202,6 +202,8 @@ table#pages {
 border:1px solid black;
 font-size:12px;
 border-collapse:collapse;
+width:82%;
+margin-left:10px;
 }
 
 table#pages td {
@@ -215,7 +217,7 @@ text-align:center;
 }
 
 table#pages tr>td:last-child {
-width:40px;
+width:60px;
 text-align:center;
 }
 
@@ -223,6 +225,8 @@ table#users {
 border:1px solid black;
 font-size:12px;
 border-collapse:collapse;
+width:82%;
+margin-left:10px;
 }
 
 table#users td {
@@ -236,6 +240,17 @@ text-align:center;
 }
 
 table#users tr>td:last-child {
-width:20px;
+width:40px;
 text-align:center;
+}
+
+table#user_info {
+font-size:12px;
+border:none;
+margin:0;
+padding:0
+}
+
+table#user_info tr>td:first-child {
+text-align:right;
 }

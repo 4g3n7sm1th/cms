@@ -29,7 +29,16 @@
 	});
 
 		$(document).ready(function() {
-			$("[title]").tooltip({ showURL: false });
+			$("[title]").qtip({ 
+								position: {
+											my: 'left center',
+											at: 'right center'
+								}, 
+								
+								style: {
+      										classes: 'ui-tooltip-tipped ui-tooltip-shadow '
+   								}
+							  });
 			
 			var textvalue = $('#titletext').val();
 				$('#titletext').focus(function() {

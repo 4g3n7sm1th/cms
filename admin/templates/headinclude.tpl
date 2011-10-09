@@ -5,10 +5,11 @@
 		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
 		<link type="text/css" href="css/jquery.tooltip.css" rel="stylesheet" />	
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery.tooltip.js"></script>
+		<script type="text/javascript" src="js/jquery.qtip.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 		<script type="text/javascript" src="js/tiny_mce/jquery.tinymce.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
-		<link type="text/css" href="css/main.css" rel="stylesheet" />	
+		<link type="text/css" href="css/main.css" rel="stylesheet" />
+		<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />	
 </head>
 <body>

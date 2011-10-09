@@ -91,23 +91,57 @@ elseif(isset($_GET['edit']))
 else
 {
 	$pages = $db->get_results('SELECT * FROM users WHERE user_ts_delete IS NULL;');
-	$content.= "<table id='users'><tr style='font-weight:bold'><td>&nbsp;</td><td>ID</td><td>Name</td><td>Erstellt</td><td>letzte Änderung</td><td>&nbsp;</td></tr>";
+	$content.= "
+	<table id='users'>
+		<tr style='font-weight:bold'>
+			<td>&nbsp;</td>
+			<td style='width:25px'>ID</td>
+			<td>Name</td>
+			<td>&nbsp;</td>
+		</tr>";
 	foreach($pages as $pagess)
 	{
-		$creator = $db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->user_id_create.";");
-		if($pagess->page_ts_update != '') { 
-			$change = date_mysql($pagess->user_ts_update, "d.m.y, H:i").' Uhr'; 
+		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->user_id_create.";");
+		$created = '<b>Erstellt:</b> <br />'.date_mysql($pagess->user_ts_create, "d.m.y, H:i").' Uhr';
+		if($pagess->user_ts_update != '') { 
+			$change = '<br /><br /><b>Letzte Änderung: </b><br />'.date_mysql($pagess->user_ts_update, "d.m.y, H:i").' Uhr'; 
 			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->user_id_update.";");
 		} else { 
 			$change = ''; 
 			$changer = '';
 		}
-		$content.= "<tr><td><a href='index.php?action=pages&edit=".$pagess->page_id."'><img src='ico/color/reply.png' title='Seite \"".$pagess->page_title."\" bearbeiten'></a>&nbsp;<a onclick='deletePage(".$pagess->page_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a></td>";
-		$content.= "<td>".$pagess->user_id."</td><td>".$pagess->user_name."</td><td>".date_mysql($pagess->user_ts_create, "d.m.y, H:i")." Uhr von ".$creator."</td><td>".$change.$changer."</td><td>";
-		if($pagess->user_active == '1') { $content.= "<img src='ico/color/login.png' title='Benutzer ist aktiviert'>"; } else { $content.= "<img src='ico/gray/login.png' title='Benutzer ist nicht aktiviert'>"; }		
-		$content.= "</td></tr>";
+		$user_info = '
+		Benutzer: <b>'.$pagess->user_name.'</b><br />
+		<br />
+		<table border="0" id="user_info">
+		<tr><td><b>Vorname:</b></td><td>'.$pagess->user_firstname.'</td></tr>
+		<tr><td><b>Nachname:</b></td><td>'.$pagess->user_lastname.'</td></tr>
+		<tr><td><b>E-Mail:</b></td><td>'.$pagess->user_mail.'</td></tr>
+		<tr><td><b>User-Level:</b></td><td>'.$pagess->user_level.'</td></tr>
+		</table>';
+		
+		$content.= "
+		<tr>
+			<td>
+				<a href='index.php?action=pages&edit=".$pagess->page_id."'><img src='ico/color/reply.png' title='Benutzer \"".$pagess->user_name."\" bearbeiten'></a>
+				&nbsp;<a onclick='deletePage(".$pagess->page_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a>
+			</td>";
+		$content.= "
+			<td>".$pagess->user_id."</td>
+			<td><span title='".$user_info."'>".$pagess->user_name."</span></td>
+			<td>";
+		if($pagess->user_active == '1') { $content.= "
+				<img src='ico/color/login.png' title='Benutzer ist aktiviert'>
+		"; } else { $content.= "
+				<img src='ico/gray/login.png' title='Benutzer ist nicht aktiviert'>
+		"; }		
+		$content.= "
+				<img src='ico/ico_help.png' title='".$created.$creator." ".$change.$changer."'>
+			</td>
+		</tr>";
 	}
-	$content.= "</table>";
+	$content.= "
+	</table>";
 }
 
 $page['users']['content'] = $content;
