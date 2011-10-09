@@ -113,12 +113,17 @@ else
 		$user_info = '
 		Benutzer: <b>'.$pagess->user_name.'</b><br />
 		<br />
-		<table border="0" id="user_info">
-		<tr><td><b>Vorname:</b></td><td>'.$pagess->user_firstname.'</td></tr>
-		<tr><td><b>Nachname:</b></td><td>'.$pagess->user_lastname.'</td></tr>
-		<tr><td><b>E-Mail:</b></td><td>'.$pagess->user_mail.'</td></tr>
-		<tr><td><b>User-Level:</b></td><td>'.$pagess->user_level.'</td></tr>
-		</table>';
+		<table border="0" id="user_info">';
+		if(isset($pagess->user_firstname)) $user_info.= '<tr><td><b>Vorname:</b></td><td>'.$pagess->user_firstname.'</td></tr>';
+		if(isset($pagess->user_lastname)) $user_info.= '<tr><td><b>Nachname:</b></td><td>'.$pagess->user_lastname.'</td></tr>';
+		if(isset($pagess->user_street)) $user_info.= '<tr><td><b>Stra&szlig;e:</b></td><td>'.$pagess->user_street.' '.$pagess->user_housenumber.'</td></tr>';
+		if(isset($pagess->user_city)) $user_info.= '<tr><td><b>Stadt:</b></td><td>'.$pagess->user_zipcode.' '.$pagess->user_city.'</td></tr>';
+		if(isset($pagess->user_phone)) $user_info.= '<tr><td><b>Telefon:</b></td><td>'.$pagess->user_phone.'</td></tr>';
+		if(isset($pagess->user_mobile)) $user_info.= '<tr><td><b>Handy:</b></td><td>'.$pagess->user_mobile.'</td></tr>';
+		if(isset($pagess->user_web)) $user_info.= '<tr><td><b>Web:</b></td><td>'.$pagess->user_web.'</td></tr>';
+		if(isset($pagess->user_mail)) $user_info.= '<tr><td><b>E-Mail:</b></td><td>'.$pagess->user_mail.'</td></tr>';
+		if(isset($pagess->user_level)) $user_info.= '<tr><td><b>User-Level:</b></td><td>'.$pagess->user_level.'</td></tr>';
+		$user_info.= '</table>';
 		
 		$content.= "
 		<tr>
@@ -128,7 +133,7 @@ else
 			</td>";
 		$content.= "
 			<td>".$pagess->user_id."</td>
-			<td><span title='".$user_info."'>".$pagess->user_name."</span></td>
+			<td><span title='".$user_info."' class='miniprofile'>".$pagess->user_name."</span></td>
 			<td>";
 		if($pagess->user_active == '1') { $content.= "
 				<img src='ico/color/login.png' title='Benutzer ist aktiviert'>

@@ -29,6 +29,17 @@
 	});
 
 		$(document).ready(function() {
+			$(".miniprofile[title]").qtip({ 
+								position: {
+											my: 'bottom center',
+											at: 'top center'
+								}, 
+								
+								style: {
+      										classes: 'ui-tooltip-tipped ui-tooltip-shadow '
+   								}
+							  });
+							  
 			$("[title]").qtip({ 
 								position: {
 											my: 'left center',
@@ -39,6 +50,7 @@
       										classes: 'ui-tooltip-tipped ui-tooltip-shadow '
    								}
 							  });
+			
 			
 			var textvalue = $('#titletext').val();
 				$('#titletext').focus(function() {
