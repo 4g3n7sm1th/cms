@@ -173,4 +173,13 @@ function genUserLevelDropdown($selected = '')
 	return $return;
 }
 
+function escape($str)
+{
+	$str = utf8_decode($str);
+	$str = mysql_real_escape_string($str);
+	$str = htmlentities($str);
+	
+	return $str;
+}
+
 ?>

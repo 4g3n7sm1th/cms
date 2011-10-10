@@ -26,5 +26,19 @@ switch($_POST['req']) {
 		else
 		{ echo '1'; }
 	break;
+	
+	case 'saveMenuName':
+		
+		$menu_name = $_POST['menu_name'];
+		$menu_id = $_POST['menu_id'];
+		
+		
+		$save = $db->query('UPDATE menus SET menu_name = "'.escape($menu_name).'" WHERE menu_id = '.$menu_id.';');
+		
+		if(!$save)
+		{ echo '0'; }
+		else
+		{ echo '1'; }
+	break;
 }
 ?>

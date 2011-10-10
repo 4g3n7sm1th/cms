@@ -1,4 +1,6 @@
 	$().ready(function() {
+	
+	
 		$('textarea.tinymce').tinymce({
 			// Location of TinyMCE script
 			script_url : 'js/tiny_mce/tiny_mce.js',
@@ -71,4 +73,16 @@
 		
 		});
 		
-		
+		function loadTitle()
+		{
+		$("[title]").filter(':not(.error)').qtip({ 
+								position: {
+											my: 'left center',
+											at: 'right center'
+								}, 
+								
+								style: {
+      										classes: 'ui-tooltip-tipped ui-tooltip-shadow '
+   								}
+							  });
+		}

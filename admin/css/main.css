@@ -263,3 +263,7 @@ text-align:right;
 div#users input[type="text"], div#users input[type="password"] {
 width:200px;
 }
+
+td img.ico {
+margin-bottom:-3px;
+}
