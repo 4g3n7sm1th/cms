@@ -29,6 +29,7 @@
 	});
 
 		$(document).ready(function() {
+							  
 			$(".miniprofile[title]").qtip({ 
 								position: {
 											my: 'bottom center',
@@ -40,7 +41,7 @@
    								}
 							  });
 							  
-			$("[title]").qtip({ 
+			$("[title]").filter(':not(.error)').qtip({ 
 								position: {
 											my: 'left center',
 											at: 'right center'

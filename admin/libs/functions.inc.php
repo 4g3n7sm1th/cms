@@ -154,4 +154,23 @@ function date_mysql($date, $format)
 }
 
 
+function genUserLevelDropdown($selected = '')
+{
+	global $db;
+	$levels  = $db->get_results('SELECT * FROM user_level');
+	
+	$return = '<select name="user_level" id="user_level"><option value="">User Level w&auml;hlen</option>';
+	
+	$select = '';
+	
+	foreach($levels as $level)
+	{
+		if($selected != '' && $selected == $level->user_level) $select = ' selected';
+		$return.= '<option value="'.$level->user_level.'"'.$select.'>'.$level->user_level_name.'</option>';
+	}
+	
+	$return.= '</select>';
+	return $return;
+}
+
 ?>

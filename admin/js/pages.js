@@ -10,7 +10,7 @@ if(conf) {
     data: 'req=deletePage&page_id='+encodeURIComponent(page_id),
     success: function(result) {
       
-      if(result.ERROR==null) 
+      if(result=='1') 
       {
       	msg = "Seite wurde erfolgreich gelöscht";
       }

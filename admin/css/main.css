@@ -2,7 +2,11 @@ body {
 color: #757575;
 font-family: Helvetica, Verdana, Arial;
 margin:0;
-font-size:0.75em
+font-size:12px;
+}
+
+table {
+font-size:12px;
 }
 
 #mantel {
@@ -44,6 +48,7 @@ padding:10px;
 margin:0px 0;
 margin-top:10px;
 margin-bottom:10px;
+font-size:12px;
 }
 
 #sidebar {
@@ -253,4 +258,8 @@ padding:0
 
 table#user_info tr>td:first-child {
 text-align:right;
+}
+
+div#users input[type="text"], div#users input[type="password"] {
+width:200px;
 }
