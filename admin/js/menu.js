@@ -1,3 +1,50 @@
+$(document).ready(function() {
+    $("#users tbody.content").sortable({ opacity: 0.6, cursor: 'move', update: function() {
+      var order = $(this).sortable("serialize");
+			$('#order_array').val(order);
+			}, handle: '.handle'
+		});
+    $("#users tbody.content").disableSelection();
+});
+
+
+function changeMenuType(i)
+{
+  var change_type = $('#change_type_'+i).val();
+  
+  if(change_type == 'page')
+  { 
+  $('#page_link_'+i).show();
+  $('#extern_link_'+i).hide(); 
+  }
+  
+  if(change_type == 'extern')
+  { 
+  $('#page_link_'+i).hide();
+  $('#extern_link_'+i).show(); 
+  }
+  
+  if(change_type == '0')
+  { 
+  $('#page_link_'+i).hide();
+  $('#extern_link_'+i).hide(); 
+  }
+}
+
+function extendMenuOptions(i)
+{
+  $('#extend_option_'+i).animate({height:'75px'});
+  $('#maximize'+i).hide();
+  $('#minimize'+i).show();
+}
+
+function hideMenuOptions(i)
+{
+  $('#extend_option_'+i).animate({height:'20px'});
+  $('#maximize'+i).show();
+  $('#minimize'+i).hide();
+}
+
 function editMenuName(menu_id) 
 {
 	$('#menu_name'+menu_id+' span').fadeOut('fast');

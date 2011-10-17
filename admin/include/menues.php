@@ -4,6 +4,7 @@ $page['menues']['title'] = "Men&uuml;s";
 
 $content = "";
 $content.= '<script type="text/javascript" src="js/menu.js"></script>';
+$content.= '';
 
 if(isset($_GET['edit']))
 {
@@ -37,8 +38,9 @@ if(isset($_GET['edit']))
 			<td style='width:25px'>ID</td>
 			<td>Name</td>
 			<td>&nbsp;</td>
-		</tr>";
+		</tr><tbody class='content'>";
 		
+	$i=1;	
 	foreach($menu_items as $menu_item)
 	{
 		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_create."");
@@ -52,20 +54,42 @@ if(isset($_GET['edit']))
 		}
 		
 		$content.= "
-		<tr>
-			<td>
-				<a href='index.php?action=menues&edit=".$menu_item->menu_item_id."'><img src='ico/ico_settings.png' title='Men&uuml; \"".$menu_item->menu_item_title."\" bearbeiten'></a>
+		<tr id='id_".$i."'>
+			<td style='width:70px'>
+			  <img src='ico/color/arrow_updown.png' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>
+				&nbsp;<a href='index.php?action=menues&edit=".$menu_item->menu_item_id."'><img src='ico/ico_settings.png' title='Men&uuml; \"".$menu_item->menu_item_title."\" bearbeiten'></a>
 				&nbsp;<a onclick='deleteMenu(".$menu->menu_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a>
 			</td>";
 		$content.= "
 			<td>".$menu_item->menu_item_id."</td>
-			<td id='menu_name".$menu_item->menu_item_id."'><span><img src='ico/color/reply.png' title='Namen &auml;ndern' onclick='editMenuName(".$menu->menu_id.")'>&nbsp;".$menu_item->menu_item_title."</span></td>
-			<td><img src='ico/ico_help.png' title='".$created.$creator." ".$change.$changer."'>
+			<td id='menu_name".$menu_item->menu_item_id."'>
+			  <div id='extend_option_".$menu_item->menu_item_id."' style='height:20px;overflow:hidden;float:left'>
+			    <span><img src='ico/color/reply.png' title='Namen &auml;ndern' onclick='editMenuName(".$menu->menu_id.")'>&nbsp;".$menu_item->menu_item_title."</span>
+			    <br /><br />
+			    <select id='change_type_".$menu_item->menu_item_id."' name='change_type_".$menu_item->menu_item_id."' onchange='changeMenuType(".$menu_item->menu_item_id.")'>
+			            <option value='0'>Link-Typ w&auml;hlen...</option>
+			            <option value='page'>Seiten-Verlinkung</option>
+			            <option value='extern'>Externer Link</option>
+			          </select>
+			          
+			    <span id='page_link_".$menu_item->menu_item_id."' style='display:none'><input type='text' name='page_id' class='tip' title='Page-ID'></span>
+			    <span id='extern_link_".$menu_item->menu_item_id."' style='display:none'><input type='text' class='tip' title='Link-URL' name='extern_link_loc'></span>
+			    <br />
+			    <input type='checkbox' name='isvisible' id='isvisible'> Sichtbar
+			  </div>
+			  <img src='ico/color/maximize.png' id='maximize".$menu_item->menu_item_id."' style='float:right;margin-top:3px;' onclick='extendMenuOptions(".$menu_item->menu_item_id.")'>
+			  <img src='ico/color/minimize.png' id='minimize".$menu_item->menu_item_id."' style='float:right;margin-top:3px;display:none' onclick='hideMenuOptions(".$menu_item->menu_item_id.")'>
+			</td>
+			<td>
+			  <img src='ico/ico_help.png' title='".$created.$creator." ".$change.$changer."'>
 			</td>
 		</tr>";
+	$i++;
 	}
 	$content.= "
-	</table>";
+	</tbody>
+	</table>
+	<input type='hidden' name='order_array' value='' id='order_array'>";
 }
 else
 {

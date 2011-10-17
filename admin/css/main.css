@@ -267,3 +267,23 @@ width:200px;
 td img.ico {
 margin-bottom:-3px;
 }
+
+table#extended_option td
+{
+  border:none;
+}
+
+table#extended_option tr>td:first-child
+{
+  text-align:right;
+}
+
+table#extended_option tr>td:last-child
+{
+  text-align:left;
+}
+
+.formtip
+{
+color:lightgray;
+}

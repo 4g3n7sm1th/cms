@@ -8,9 +8,12 @@
 		<script type="text/javascript" src="js/jquery.qtip.js"></script>
 		<script type="text/javascript" src="js/jquery.validate.js"></script>
 		<script type="text/javascript" src="js/jquery.edit.js"></script>
+		<script type="text/javascript" src="js/jquery.dnd.js"></script>
+		<script type="text/javascript" src="js/jquery.formtips.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 		<script type="text/javascript" src="js/tiny_mce/jquery.tinymce.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
+		
 		<link type="text/css" href="css/main.css" rel="stylesheet" />
 		<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />	
 </head>

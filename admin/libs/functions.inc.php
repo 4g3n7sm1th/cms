@@ -150,7 +150,9 @@ function date_mysql($date, $format)
  $time = explode(" ", $d[2]);
  $t = explode(":", $time[1]);
  $datetime_converted = date($format, mktime ($t[0],$t[1],$t[2],$d[1],$d[2],$d[0]));
- return $datetime_converted;
+ if($date == '0000-00-00 00:00')
+ { return ''; } else
+ { return $datetime_converted; }
 }
 
 
