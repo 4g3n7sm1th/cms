@@ -13,13 +13,14 @@ if(conf) {
       if(result=='1') 
       {
       	msg = "Seite wurde erfolgreich gelöscht";
+      	type= 'success';
       }
       else
       {
       	msg = "Seite konnte nicht gelöscht werden";
+      	type= 'error';
       }
-      $('#js-message-success').html(msg);
-      $('#js-message-success').show();
+      message(msg, type);
       return true;
     }
   });

@@ -2,10 +2,6 @@
 /**
  * PHP Class to user access (login, register, logout, etc)
  * 
- * <code><?php
- * include('access.class.php');
- * $user = new flexibleAccess();
- * ? ></code>
  * 
  * For support issues please refer to the webdigity forums :
  *				http://www.webdigity.com/index.php/board,91.0.html
@@ -78,7 +74,7 @@ class flexibleAccess{
 	    if ( isset($_COOKIE[$this->remCookieName]) && !$this->is_loaded()){
 	      //echo 'I know you<br />';
 	      $u = unserialize(base64_decode($_COOKIE[$this->remCookieName]));
-	      $this->login($u['uname'], $u['password']);
+	      $this->login($u['uname'], $u['password'], true);
 	    }
   }
   
@@ -116,7 +112,7 @@ class flexibleAccess{
 			$sql = "UPDATE ".$this->usertable." SET user_session = '".$_SESSION['sid']."' WHERE ".$this->user_id." = ".$_SESSION['user_id'].";";
 			$this->db->query($sql);
 			writelog('login', 'Session: '.$_SESSION['sid'], $_SESSION['user_id']);
-			if ( $remember ){
+			if ( $remember == true ){
 			  $cookie = base64_encode(serialize(array('uname'=>$uname,'password'=>$originalPassword)));
 			  $a = setcookie($this->remCookieName, 
 			  $cookie,time()+$this->remTime, '/', $this->remCookieDomain);

@@ -42,7 +42,7 @@
 								}, 
 								
 								style: {
-      										classes: 'ui-tooltip-tipped ui-tooltip-shadow '
+      										classes: 'ui-tooltip-dark ui-tooltip-shadow '
    								}
 							  });
 							  
@@ -53,7 +53,7 @@
 								}, 
 								
 								style: {
-      										classes: 'ui-tooltip-tipped ui-tooltip-shadow '
+      										classes: 'ui-tooltip-dark ui-tooltip-shadow '
    								}
 							  });
 			
@@ -78,14 +78,14 @@
 		
 		function loadTitle()
 		{
-		$("[title]").filter(':not(.error)').qtip({ 
+		$("[title]").qtip({ 
 								position: {
 											my: 'left center',
 											at: 'right center'
 								}, 
 								
 								style: {
-      										classes: 'ui-tooltip-tipped ui-tooltip-shadow '
+      										classes: 'ui-tooltip-dark ui-tooltip-shadow '
    								}
 							  });
 		}
@@ -113,4 +113,20 @@ function dump(arr,level) {
 		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
 	}
 	return dumped_text;
+}
+
+function message(msg, type, delay) {
+  if(!delay) { delay = '2500'; }
+  if(!type) 
+  { msgclass = ' class="message-message"'; }
+  else if(type == 'error') 
+  { msgclass = ' class="message-error"'; }
+  else if(type == 'success') 
+  { msgclass = ' class="message-success"'; }
+  else if(type == 'message') 
+  { msgclass = ' class="message-message"'; }
+
+  $('#message_div').html('<span'+msgclass+'">'+msg+'</span>');
+  $('#message_div').show();
+  $('#message_div').delay(delay).slideUp();
 }

@@ -285,5 +285,11 @@ table#extended_option tr>td:last-child
 
 .formtip
 {
-color:lightgray;
+color:#aaaaaa; 
+}
+
+.placeholder
+{
+  border:1px dashed black;
+  background-color:#FDFFCC;
 }

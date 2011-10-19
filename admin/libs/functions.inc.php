@@ -99,7 +99,9 @@ function menu($menu_id)
 			if(!$menus[$i]->menu_item_link)
 			{ $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page; }
 			else { $menu_data[$i]['link'] = $menus[$i]->menu_item_link; }
-			$menu_data[$i]['target'] = $menus[$i]->menu_item_target;
+			
+			if($menus[$i]->menu_item_target == '1')
+			{ $menu_data[$i]['target'] = ' target="_blank"'; }
 		}
 	$tpl->assign('pos_menu',$menu_id);
 	return $menu_data;
@@ -136,7 +138,9 @@ function admin_menu($menu_id = '')
 			if(!$menus[$i]->menu_item_link)
 			{ $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page; }
 			else { $menu_data[$i]['link'] = $menus[$i]->menu_item_link; }
-			$menu_data[$i]['target'] = $menus[$i]->menu_item_target;
+			
+			if($menus[$i]->menu_item_target == '1')
+			{ $menu_data[$i]['target'] = ' target="_blank"'; }
 		}
 	if(isset($notmain)) { $menu_id = '1'; }else{ $menu_id = '2'; }
 	$tpl->assign('pos_menu',$menu_id);
@@ -175,11 +179,11 @@ function genUserLevelDropdown($selected = '')
 	return $return;
 }
 
-function escape($str)
+function escape($str, $html = 0)
 {
 	$str = utf8_decode($str);
 	$str = mysql_real_escape_string($str);
-	$str = htmlentities($str);
+	if($html) $str = htmlentities($str);
 	
 	return $str;
 }
