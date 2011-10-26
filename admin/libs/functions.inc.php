@@ -150,13 +150,16 @@ function admin_menu($menu_id = '')
 
 function date_mysql($date, $format)
 {
+ if($date == '0000-00-00 00:00')
+ { return ''; } else {
  $d = explode("-", $date);
  $time = explode(" ", $d[2]);
  $t = explode(":", $time[1]);
  $datetime_converted = date($format, mktime ($t[0],$t[1],$t[2],$d[1],$d[2],$d[0]));
- if($date == '0000-00-00 00:00')
- { return ''; } else
- { return $datetime_converted; }
+ 
+ return $datetime_converted; 
+ 
+ }
 }
 
 
@@ -187,5 +190,118 @@ function escape($str, $html = 0)
 	
 	return $str;
 }
+
+function UF_date($timestamp) // Function for creating the FB-like-user-friedly-time-format (e.g. 'posted 2 minutes ago')
+        {
+        $maxdiff = '10000'; //ab 10 sekunden wird nicht mehr nur 'gerade eben' ausgegeben
+        $now = time();
+        
+        $diff = $now-$timestamp;
+        $start = $timestamp;
+
+        $time = '';
+        
+        if($diff > $maxdiff)
+        {
+          $time = 'vor ';
+          
+          $diff = $diff/1; //umwandlung in sekunden
+          
+          if($diff < '60')
+          {
+            $time.= 'ca. ';
+            $diff = round($diff*10)/10;
+            $diff = explode('.', $diff);
+            $diff = $diff[0];
+            $time.= $diff.' Sekunde';
+            if($diff < '2')
+            { 
+              $time.= 'einer Sekunde'; 
+            } else { 
+              $time.= $diff.' Sekunden'; 
+            }
+          }
+          else
+          {
+            $diff = $diff/60; //umwandlung in minuten
+            
+            if($diff < '60')
+            {
+              $time.= 'ca. ';
+              $diff = round($diff*10)/10;
+              $diff = explode('.', $diff);
+              $diff = $diff[0];
+              if($diff < '2')
+              { 
+                $time.= 'einer Minute'; 
+              } else { 
+                $time.= $diff.' Minuten'; 
+              }
+            }
+            else
+            {
+              $diff = $diff/60; //umwandlung in stunden
+            
+              if($diff < '24')
+              {
+                $diff = round($diff*10)/10;
+                $diff = explode('.', $diff);
+                $diff = $diff[0];
+                if($diff < '2')
+                { 
+                  $time.= 'einer Stunde'; 
+                } else { 
+                  $time.= $diff.' Stunden'; 
+                }
+              }
+              else
+              {
+                $diff = $diff/24; //umwandlung in tage
+            
+                if($diff < '14')
+                {
+                  $diff = round($diff*10)/10;
+                  $diff = explode('.', $diff);
+                  $diff = $diff[0];
+                  if($diff < '2')
+                  { 
+                    $time.= 'einem Tag'; 
+                  } else { 
+                    $time.= $diff.' Tagen'; 
+                  }
+                }
+                else
+                {
+                  $diff = $diff/7; //umwandlung in Wochen
+            
+                  if($diff < '2')
+                  {
+                    $diff = round($diff*10)/10;
+                    $diff = explode('.', $diff);
+                    $diff = $diff[0];
+                    if($diff < '2')
+                    { 
+                      $time.= 'einer Woche'; 
+                    } else { 
+                      $time.= $diff.' Wochen'; 
+                    }
+                  }
+                  else
+                  {
+                    $time = 'am '.date('d.m.Y', $start); //falls unterschied > 2 Wochen: ausgabe des datums
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+        else
+        {
+          $time = 'gerade eben';
+        }
+        
+        return $time;
+        }
 
 ?>

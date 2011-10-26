@@ -21,6 +21,8 @@ $tpl->debugging = false;
 $tpl->caching = false;
 $tpl->cache_lifetime = 120;
 $tpl->assign('app_title', $app_pagename.' Admin-CP');
+$tpl->assign('app_path', $app_mainpath);
+
 
 include('functions.inc.php');
 
