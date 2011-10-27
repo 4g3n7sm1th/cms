@@ -6,12 +6,7 @@
       
     <div id="main" role="main" class="clearfix">
       <div id="topmenu">
-        <span><a href="#">Il Divo</a></span>
-        <span><a href="#">Fanclub</a></span>
-        <span><a href="#">Galerie</a></span>
-        <span><a href="#">Tour</a></span>
-        <span><a href="#">Links</a></span>
-        <span><a href="#">amtm</a></span>
+        {menue id=1}
       </div>
       <div id="navigation">
         <a href="http://www.twitter.com/ildivofanclub" target="_blank"><img src="{$img_dir}/twitter.png"></a>&nbsp;
@@ -30,4 +25,5 @@
           <a href="#"><li class="menu-a">Impressum</li></a>
           <a href="#"><li class="menu-b">Datenschutz</li></a>
         </ul>
+        {include file="message.tpl" position_actual=2}
       </div>

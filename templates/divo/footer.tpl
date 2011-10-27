@@ -14,8 +14,15 @@
 
 
   <!-- scripts concatenated and minified via ant build script-->
-  <script defer src="js/plugins.js"></script>
-  <script defer src="js/script.js"></script>
+  <script defer src="js/plugins.js"></script>	
+	<script type="text/javascript" src="admin/js/jquery.qtip.js"></script>
+	<script type="text/javascript" src="admin/js/jquery.validate.js"></script>
+	<script type="text/javascript" src="admin/js/jquery.edit.js"></script>
+	<script type="text/javascript" src="admin/js/jquery.dnd.js"></script>
+	<script type="text/javascript" src="admin/js/jquery.formtips.js"></script>
+	<script type="text/javascript" src="admin/js/jquery-ui-1.8.16.custom.min.js"></script>
+	<script type="text/javascript" src="admin/js/tiny_mce/jquery.tinymce.js"></script>
+	<script defer src="js/script.js"></script>
   <!-- end scripts-->
 
 	

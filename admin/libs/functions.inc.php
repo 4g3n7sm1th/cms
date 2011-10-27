@@ -193,7 +193,7 @@ function escape($str, $html = 0)
 
 function UF_date($timestamp) // Function for creating the FB-like-user-friedly-time-format (e.g. 'posted 2 minutes ago')
         {
-        $maxdiff = '10000'; //ab 10 sekunden wird nicht mehr nur 'gerade eben' ausgegeben
+        $maxdiff = '10'; //ab 10 sekunden wird nicht mehr nur 'gerade eben' ausgegeben
         $now = time();
         
         $diff = $now-$timestamp;
@@ -209,7 +209,7 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
           
           if($diff < '60')
           {
-            $time.= 'ca. ';
+            $time.= 'etwa ';
             $diff = round($diff*10)/10;
             $diff = explode('.', $diff);
             $diff = $diff[0];
@@ -227,7 +227,7 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
             
             if($diff < '60')
             {
-              $time.= 'ca. ';
+              $time.= 'etwa ';
               $diff = round($diff*10)/10;
               $diff = explode('.', $diff);
               $diff = $diff[0];
@@ -244,6 +244,7 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
             
               if($diff < '24')
               {
+                $time.= 'etwa ';
                 $diff = round($diff*10)/10;
                 $diff = explode('.', $diff);
                 $diff = $diff[0];

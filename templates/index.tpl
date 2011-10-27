@@ -4,4 +4,6 @@
 <br />
 {$content}
 
+<a onclick="getFeeds()">load</a>
+
 {include file="footer.tpl"}

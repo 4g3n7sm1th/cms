@@ -32,5 +32,5 @@ $tpl->assign('app_title', $app_pagename);
 $tpl->assign('app_path', $app_mainpath);
 
 include('./admin/libs/functions.inc.php');
-
+include('./libs/functions.inc.php');
 ?>

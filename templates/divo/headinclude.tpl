@@ -12,7 +12,7 @@
        More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
+  <title>{$app_title} - {$pagetitle}</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -23,6 +23,9 @@
 
   <!-- CSS: implied media=all -->
   <!-- CSS concatenated and minified via ant build script-->
+  <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+	<link type="text/css" href="css/jquery.tooltip.css" rel="stylesheet" />
+	<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/divo.css">
   <!-- end CSS-->
 

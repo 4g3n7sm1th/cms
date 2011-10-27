@@ -12,14 +12,14 @@ if(conf) {
       
       if(result=='1') 
       {
-      	msg = "Benutzer wurde erfolgreich gelöscht";
+      	msg = "<span class='message-success'>Benutzer wurde erfolgreich gelöscht</span>";
       }
       else
       {
-      	msg = "Benutzer konnte nicht gelöscht werden";
+      	msg = "<span class='message-error'>Benutzer konnte nicht gelöscht werden</span>";
       }
-      $('#js-message-success').html(msg);
-      $('#js-message-success').show();
+      $('#message_div').html(msg);
+      $('#message_div').show();
       return true;
     }
   });
