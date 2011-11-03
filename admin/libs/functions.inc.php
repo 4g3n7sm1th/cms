@@ -10,7 +10,7 @@ if($home = '' || $home = ' ') $home = 'index';
 	if($log) writelog('message-'.$mode, $message);
 	if(!$mode == "success" || !$mode == "error" || !$mode == "message")
 	{
-		error('Funktion "message()" nicht richtig definiert. $mode = '.$mode, __LINE__); // error(NACHRICHT, error sammeln JA/NEIN)
+		error(l('Funktion "message()" nicht richtig definiert.').' $mode = '.$mode, __LINE__); // error(NACHRICHT, error sammeln JA/NEIN)
 	}
 	elseif($redirect == 'home')
 	{
@@ -73,7 +73,7 @@ if($content != 'Session: ') { $log = $db->query('INSERT INTO logs
 													        "'.$host.'", 
 													        "'.$ip.'");');
 
-if(!$log) message('Es konnte kein Log angelegt werden. Bitte benachrichtigen Sie den Systemadministrator', 'error', '', '', '', false);}
+if(!$log) message(l('Es konnte kein Log angelegt werden. Bitte benachrichtigen Sie den Systemadministrator'), 'error', '', '', '', false);}
 }
 
 function menu($menu_id)
@@ -88,7 +88,7 @@ function menu($menu_id)
 							  AND menu_item_visible = '1'
 							  AND menu_item_ts_delete IS NULL
 						 ORDER BY menu_item_order_id");
-	if(!$menus) { message('Menü nicht verfügbar.', 'error');  return false;} else {
+	if(!$menus) { message(l('Menü nicht verfügbar.'), 'error');  return false;} else {
 		for($i=0; $i<count($menus); $i++)
 		{
 			if($menus[$i]->menu_item_right && !$user->right($menus[$i]->menu_item_right))
@@ -99,6 +99,10 @@ function menu($menu_id)
 			if(!$menus[$i]->menu_item_link)
 			{ $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page; }
 			else { $menu_data[$i]['link'] = $menus[$i]->menu_item_link; }
+			
+			if(!$menus[$i]->menu_item_parent_page)
+			{ $menu_data[$i]['parent_page'] = ''; }
+			else { $menu_data[$i]['parent_page'] = $menus[$i]->menu_item_parent_page; }
 			
 			if($menus[$i]->menu_item_target == '1')
 			{ $menu_data[$i]['target'] = ' target="_blank"'; }
@@ -127,7 +131,7 @@ function admin_menu($menu_id = '')
 					 
 					 
 	$menus = $db->get_results($sql);
-	if(!$menus) { message('Menü nicht verfügbar.', 'error');  return false;} else {
+	if(!$menus) { message(l('Menü nicht verfügbar.'), 'error');  return false;} else {
 		for($i=0; $i<count($menus); $i++)
 		{
 			if($menus[$i]->menu_item_right && !$user->right($menus[$i]->menu_item_right))
@@ -168,7 +172,7 @@ function genUserLevelDropdown($selected = '')
 	global $db;
 	$levels  = $db->get_results('SELECT * FROM user_level');
 	
-	$return = '<select name="user_level" id="user_level"><option value="">User Level w&auml;hlen</option>';
+	$return = '<select name="user_level" id="user_level"><option value="">'.l('User Level w&auml;hlen').'</option>';
 	
 	$select = '';
 	
@@ -213,12 +217,11 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
             $diff = round($diff*10)/10;
             $diff = explode('.', $diff);
             $diff = $diff[0];
-            $time.= $diff.' Sekunde';
             if($diff < '2')
             { 
-              $time.= 'einer Sekunde'; 
+              $time.= l('einer Sekunde'); 
             } else { 
-              $time.= $diff.' Sekunden'; 
+              $time.= $diff.' '.l('Sekunden'); 
             }
           }
           else
@@ -233,9 +236,9 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
               $diff = $diff[0];
               if($diff < '2')
               { 
-                $time.= 'einer Minute'; 
+                $time.= l('einer Minute'); 
               } else { 
-                $time.= $diff.' Minuten'; 
+                $time.= $diff.' '.l('Minuten'); 
               }
             }
             else
@@ -250,9 +253,9 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
                 $diff = $diff[0];
                 if($diff < '2')
                 { 
-                  $time.= 'einer Stunde'; 
+                  $time.= l('einer Stunde'); 
                 } else { 
-                  $time.= $diff.' Stunden'; 
+                  $time.= $diff.' '.l('Stunden'); 
                 }
               }
               else
@@ -266,9 +269,9 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
                   $diff = $diff[0];
                   if($diff < '2')
                   { 
-                    $time.= 'einem Tag'; 
+                    $time.= l('einem Tag'); 
                   } else { 
-                    $time.= $diff.' Tagen'; 
+                    $time.= $diff.' '.l('Tagen'); 
                   }
                 }
                 else
@@ -282,9 +285,9 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
                     $diff = $diff[0];
                     if($diff < '2')
                     { 
-                      $time.= 'einer Woche'; 
+                      $time.= l('einer Woche'); 
                     } else { 
-                      $time.= $diff.' Wochen'; 
+                      $time.= $diff.' '.l('Wochen'); 
                     }
                   }
                   else
@@ -299,10 +302,74 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
         }
         else
         {
-          $time = 'gerade eben';
+          $time = l('gerade eben');
         }
         
         return $time;
         }
 
+
+function pagination($maxpage, $resultrange = '0', $maxresults = '0', $result_wording = 'Ergebnisse')
+{
+  $url=$_SERVER['REQUEST_URI'];
+  $url = strpos($url, '?page=');
+  if($url === false)
+  {
+    $replace = '&';
+    $url = preg_replace('@page=[0-9]{0,5}[&]{0,1}@is', '', $_SERVER['REQUEST_URI']);
+  }
+  else
+  {
+    $replace = '?';
+    $url = preg_replace('@page=[0-9]{0,5}[&]{0,1}@is', '', $_SERVER['REQUEST_URI']);
+  }
+  if(!isset($_GET['page'])) { $page = '1'; } else { $page = $_GET['page']; }
+
+  if(substr($url, -1, 1) == '&') $url = substr($url, 0, -1);
+  if(strpos($url, '?')) { $add = '&'; } else { $add = '?'; }
+
+  $output = '<br /><span class="pagination">Seite: ';
+  $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
+  //$output.= $url;
+  if($page > '1') $output.= '<a href="'.$url.$add.'page='.($page-1).'">';
+  $output.= '<';
+  if($page > '1') { $output.= '</a> '; } else { $output.= ' '; }
+  
+  for($i=0; $i < $maxpage; $i++)
+  {
+    if(($i+1) == $page) { $bold = true; } else { $bold = false; }
+    
+    if($bold == true) $output.= '<b><u>';
+    if($page != ($i+1)) $output.= '<a href="'.$url.$add.'page='.($i+1).'">';
+    $output.= ($i+1);
+    if($page != ($i+1)) $output.= '</a>';
+    if($bold == true) $output.= '</u></b>';
+    $output.= ' ';
+  }
+  if($page < $maxpage) { $output.= ' <a href="'.$url.$add.'page='.($page+1).'">'; } else { $output.= ' '; }
+  $output.= '>';
+  if($page < $maxpage) $output.= '</a> ';
+  $output.= '</span>';
+  if($resultrange != '0')
+  {
+    $output.= '<span class="resultcount">'.$result_wording.' '.$resultrange;
+    if($maxresults != '0') $output.= ' von '.$maxresults.'</span>';
+  }
+  $output.='<br />';
+  return $output;
+}
+
+function l($str) // TBD: Language-Function
+{
+
+return $str;
+}
+
+
+function getPageTitle($id)
+{
+  global $db;
+	$name  = $db->get_var('SELECT page_title FROM pages WHERE page_id = "'.$id.'";');
+	return $name;
+}
 ?>

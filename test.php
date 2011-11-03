@@ -37,18 +37,57 @@ function var2table($vars)
 	//phpinfo();
 	echo $html;
 	
-	$var = '2011-10-27 09:54:25';
-	echo $var;
-	echo '<bR>';
-	$var = explode(' ', $var);
-	$d = explode('-', $var[0]);
-	$t = explode(':', $var[1]);
-	$time = $d[2].'.'.$d[1].'.'.$d[0].' '.$t[0].':'.$t[1].':'.$t[2];
-	$var = strtotime($time);
-	echo $var;
-	echo '<bR>';
-	echo time();
-	echo '<bR>';
-	echo UF_date($var);
+function color_deg($color1, $step) 
+{ 
+  $steps=5; 
+  $color2 = '#ffffff';
+  $r1=hexdec(substr($color1,1,2)); 
+  $g1=hexdec(substr($color1,3,2)); 
+  $b1=hexdec(substr($color1,5,2)); 
+
+  $r2=hexdec(substr($color2,1,2)); 
+  $g2=hexdec(substr($color2,3,2)); 
+  $b2=hexdec(substr($color2,5,2)); 
+
+  $diff_r=$r2-$r1; 
+  $diff_g=$g2-$g1; 
+  $diff_b=$b2-$b1; 
+
+  for ($i=0; $i<$steps; $i++) 
+    { 
+      $factor=$i / $steps; 
+
+      $r=round($r1 + $diff_r * $factor); 
+      $g=round($g1 + $diff_g * $factor); 
+      $b=round($b1 + $diff_b * $factor); 
+
+      $color[$i]="#" . sprintf("%02X",$r) . sprintf("%02X",$g) . sprintf("%02X",$b); 
+    } 
+  return $color[$step];
+}
+
+//echo '<span style="padding:100px;height:100px;background-color:'.color_deg('#000000', '6').'">&nbsp;</Span>';
+
+
+function getRealIpAddr()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
+    {
+      $ip=$_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+    {
+      $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    else
+    {
+      $ip=$_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
+
+
+echo getRealIpAddr();
+
 	
 	?>

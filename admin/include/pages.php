@@ -2,14 +2,14 @@
 include('inc_tpls/pages.tpl.php');
 
 
-$page['pages']['title'] = "Seiten";
+$page['pages']['title'] = l("Seiten");
 
 $content = "";
 $content.= $tpl_page_head;
 
 if(isset($_GET['new']))
 {
-$page['pages']['title'].= " - neue Seite";
+$page['pages']['title'].= " - ".l("neue Seite");
 
 	if($_POST['page_save'])
 	{
@@ -52,7 +52,7 @@ $page['pages']['title'].= " - Seite bearbeiten";
 			if($_POST['page_loginrequired'] == 'on') { $page_loginrequired = '1'; } else { $page_loginrequired = '0'; }
 			
 			$insert = $db->query('UPDATE pages SET page_title = "'.mysql_real_escape_string($_POST['page_title']).'", 
-																						 page_content = "'.mysql_real_escape_string($_POST['page_content']).'", 
+																						 page_content = "'.$_POST['page_content'].'", 
 																						 page_ts_update = NOW(), 
 																						 page_id_update = '.$_SESSION['user_id'].', 
 																						 page_comments = '.mysql_real_escape_string($page_comments).', 

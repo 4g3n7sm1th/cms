@@ -26,6 +26,8 @@
   <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
 	<link type="text/css" href="css/jquery.tooltip.css" rel="stylesheet" />
 	<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />
+	<link type="text/css" href="css/jquery.liveSearch.css" rel="stylesheet" />
+	<link type="text/css" href="admin/js/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" media="screen" />
   <link rel="stylesheet" href="css/divo.css">
   <!-- end CSS-->
 

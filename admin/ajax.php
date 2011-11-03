@@ -4,6 +4,12 @@ require('libs/globals.inc.php');
 if(!$user->is_loggedin()) header("Location: login.php");
 
 switch($_POST['req']) {
+  case 'lng':
+  
+  echo l($_POST['str']);
+  
+  break;
+
 	case 'updateMenuItemOrder':
 	
 	$orders = $_POST['id'];

@@ -117,16 +117,39 @@ function dump(arr,level) {
 
 function message(msg, type, delay) {
   if(!delay) { delay = '2500'; }
-  if(!type) 
-  { msgclass = ' class="message-message"'; }
+  if(!type) { msgclass = ''; }
   else if(type == 'error') 
   { msgclass = ' class="message-error"'; }
   else if(type == 'success') 
   { msgclass = ' class="message-success"'; }
   else if(type == 'message') 
   { msgclass = ' class="message-message"'; }
+  else { msgclass = ''; }
 
   $('#message_div').html('<span'+msgclass+'">'+msg+'</span>');
   $('#message_div').show();
   $('#message_div').delay(delay).slideUp();
+}
+
+function l(str)
+{
+  $.ajax({
+    type: "POST",
+    url: 'ajax.php',
+    async:true,
+    data: 'req=lng&str='+encodeURIComponent(str),
+    success: function(result) {
+
+      if(result=='0') 
+      {
+      	msg = "Sprachvariable '"+str+"' konnte nicht geladen werden.";
+      	type= 'error';
+      	message(msg, type);
+      }
+      else
+      {
+      	return result;
+      }
+    }
+  });
 }

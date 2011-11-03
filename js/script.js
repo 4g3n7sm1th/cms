@@ -1,5 +1,11 @@
 $(document).ready(function() {
-
+    
+    var selected = '<div class="menu-a" id="selected"></div>';
+    var split = $('title').html().split(' - ');
+    
+    $('#navigation #link_'+split[1]+' a').after(selected);
+    $('#navigation #link_'+split[1]+' #selected').attr('class', $('#link_'+split[1]).attr('class'));
+    
     getFeeds();
     
     var refreshId = setInterval(function() {
@@ -124,7 +130,7 @@ function getFeeds()
     data: 'req=getFeeds',
     success: function(result) {
       
-      $('#allfeeds').fadeOut('300');
+      $('#allfeeds').hide();
       $('#allfeeds').html(result);
       $('#allfeeds').fadeIn('300');
       }

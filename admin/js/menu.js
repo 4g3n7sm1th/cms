@@ -22,7 +22,7 @@ function addMenuItem(i)
   var new_html = "<tr id='id_"+i+"'>"+
 			"<td style='width:50px'>"+
 			  "<img src='ico/color/arrow_updown.png' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>"+
-				"&nbsp;<a onclick='deleteMenu("+i+")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a>"+
+				"&nbsp;<img src='ico/gray/action_delete.png' title='L&ouml;schen erst nach neuladen möglich'>"+
 			"</td>"+
 			"<td>"+i+"</td>"+
 			"<td id='menu_name"+i+"'>"+
@@ -84,7 +84,7 @@ function addMenuItem(i)
 		"</tr>";
 		
 		var html_old = $('table#users').html();
-		$('table#users').html(html_old+new_html);
+		$(new_html).appendTo('table#users tbody.content');
 		extendMenuOptions(i);
 		$('#newlink').hide();
 		$('#newlink_disabled').show();
@@ -144,6 +144,8 @@ function saveMenuOptions(i, new_menu)
 				loadTitle();
       }
       return true;
+      $('#newlink').show();
+		  $('#newlink_disabled').hide();
     }
   });
 
@@ -174,6 +176,7 @@ if(conf) {
       {
       	msg = "Link wurde erfolgreich gelöscht - Bitte laden Sie die Seite neu";
       	type= 'success';
+      	$('#id_'+item_id).slideUp('slow');
       }
       else
       {

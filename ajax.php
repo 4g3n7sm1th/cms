@@ -85,12 +85,9 @@ switch($_POST['req']) {
         $link = explode("<link>", $endtweet[0]);
         $link = explode("</link>", $link[1]);
  
-        $pub[0] = str_replace(',', '', $pub[0]);
-        $d = explode(' ', $pub[0]);
-        $t = explode(':', $d[4]);
-        $date = $d[3].'-'.$m_array[$d[2]].'-'.$d[1];
-        $time = $t[0].':'.$t[1].':'.$t[2];
-        $datetime = $date.' '.$time;
+        $pubdate = strtotime($pub[0]);
+        $propertime = date('Y-m-d H:i:s', $pubdate);
+ 
  
         $title = explode("<title>", $endtweet[0]);
         $content = explode("</title>", $title[1]);
@@ -122,7 +119,7 @@ switch($_POST['req']) {
                                             feed_content)
                                     VALUES ('".$feed_type."',
                                             '".$link[0]."',
-                                            '".$datetime."',
+                                            '".$propertime."',
                                             '".escape($content[0])."');");
           if($insert == false) $fail = true;
         }
@@ -140,12 +137,24 @@ switch($_POST['req']) {
    
     foreach($feeds as $feed)
 	  {
-	  
+
 	  $add = '';
-	  if(strlen($feed->feed_content) > 75) $add = '...';
+	  
+	  $feedcontent = $feed->feed_content;
+	  //$feedcontent = html_entity_decode($feedcontent);
+	  $feedcontent = str_replace('&lt;br /&gt;', '&nbsp;', $feedcontent);
+	  $feedcontent = str_replace('&lt;br/&gt;', '&nbsp;', $feedcontent);
+	  $feedcontent = str_replace('&lt;a href=&quot;', '', $feedcontent);
+	  $feedcontent = str_replace('&quot; target=&quot;_blank&quot; rel=&quot;nofollow nofollow&quot; onmousedown=&quot;UntrustedLink.bootstrap($(this), &quot;vAQFOglW4&quot;, event, bagof({}));&quot;&gt;', '', $feedcontent);
+	  
+	  if(strlen($feedcontent) > 85)
+	  {
+	    if(strlen($feedcontent) > 75) $add = '...';
+	    $feedcontent = substr($feedcontent, 0, 75);	 
+	  } 
 	  
 	  echo '<div id="feed">
-            <a href="'.$feed->feed_link.'"><b>'.ucfirst($feed->feed_type).'</b> '.html_entity_decode(substr(htmlentities($feed->feed_content), 0, 75)).$add.'</a>
+            <a href="'.$feed->feed_link.'"><b>'.ucfirst($feed->feed_type).':</b> '.$feedcontent.$add.'</a>
             <br /><span class="feedtime">'.UF_date(strtotime($feed->feed_ts)).'</span>
             <!--<span class="feedoptions"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;</a></span>-->
           </div>';

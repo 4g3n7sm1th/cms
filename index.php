@@ -32,9 +32,9 @@ elseif(isset($page->page_function))
 							  FROM plugins
 							 WHERE plugin_name = '".$page->page_function."';");
 	if(!$plugin) message("Fehler beim Laden des Plugins (".$page->page_function.", DB)",'error');
-	$folder='';
-	if($plugin->plugin_folder) $folder = $plugin->plugin_folder.'/';
-	$inc_path = 'include/'.$folder.'plugin.'.$plugin->plugin_identify.'.inc.php';
+	$plugin_folder='plugins/';
+	if($plugin->plugin_folder) $plugin_folder.= $plugin->plugin_folder.'/';
+	$inc_path = $plugin_folder.'plugin.'.$plugin->plugin_identify.'.inc.php';
 	$inc = include($inc_path);
 	if(!$inc) message("Fehler beim Laden des Plugins (".$plugin->plugin_name.", '".$inc_path."')",'error');
 	$tpl->assign("content",$plugins['plugin_'.$page->page_function]);

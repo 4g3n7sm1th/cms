@@ -13,7 +13,7 @@ $tpl_menues_form1 = "<form action='index.php?action=".$_GET['action']."&edit=".$
 		</tr><tbody class='content'>";
 		
 $tpl_menues_table = "
-		<tr id='id_".$i."'>
+		<tr id='id_".$menu_item->menu_item_id."'>
 			<td style='width:50px'>
 			  <img src='ico/color/arrow_updown.png' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>
 				&nbsp;<a onclick='deleteMenuItem(".$menu_item->menu_item_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a>
