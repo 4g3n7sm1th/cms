@@ -139,6 +139,8 @@ switch($_POST['req']) {
 	  {
 
 	  $add = '';
+	  $target = '';
+	  if($feed->feed_type == "twitter" || $feed->feed_type == 'facebook') $target = ' target="_blank"';
 	  
 	  $feedcontent = $feed->feed_content;
 	  //$feedcontent = html_entity_decode($feedcontent);
@@ -154,7 +156,7 @@ switch($_POST['req']) {
 	  } 
 	  
 	  echo '<div id="feed">
-            <a href="'.$feed->feed_link.'"><b>'.ucfirst($feed->feed_type).':</b> '.$feedcontent.$add.'</a>
+            <a href="'.$feed->feed_link.'"'.$target.'><b>'.ucfirst($feed->feed_type).':</b> '.$feedcontent.$add.'</a>
             <br /><span class="feedtime">'.UF_date(strtotime($feed->feed_ts)).'</span>
             <!--<span class="feedoptions"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;</a></span>-->
           </div>';

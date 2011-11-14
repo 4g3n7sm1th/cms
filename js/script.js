@@ -1,10 +1,9 @@
 $(document).ready(function() {
     
-    var selected = '<div class="menu-a" id="selected"></div>';
+    /*var selected = '<div class="menu-a" id="selected"></div>';
     var split = $('title').html().split(' - ');
-    
     $('#navigation #link_'+split[1]+' a').after(selected);
-    $('#navigation #link_'+split[1]+' #selected').attr('class', $('#link_'+split[1]).attr('class'));
+    $('#navigation #link_'+split[1]+' #selected').attr('class', $('#link_'+split[1]).attr('class'));*/
     
     getFeeds();
     

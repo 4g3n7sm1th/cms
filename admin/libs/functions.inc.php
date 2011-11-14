@@ -96,9 +96,18 @@ function menu($menu_id)
 				continue;
 			}
 			$menu_data[$i]['title'] = $menus[$i]->menu_item_title;
+			$menu_data[$i]['id'] = $menus[$i]->menu_item_id;
+			
 			if(!$menus[$i]->menu_item_link)
-			{ $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page; }
-			else { $menu_data[$i]['link'] = $menus[$i]->menu_item_link; }
+			{ 
+			  $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page;
+			  $menu_data[$i]['page_id'] = $menus[$i]->menu_item_page; 
+			}
+			else 
+			{ 
+			  $menu_data[$i]['link'] = $menus[$i]->menu_item_link; 
+			  $menu_data[$i]['page_id'] = '';
+			}
 			
 			if(!$menus[$i]->menu_item_parent_page)
 			{ $menu_data[$i]['parent_page'] = ''; }

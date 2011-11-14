@@ -14,6 +14,118 @@ $(document).ready(function() {
 			forcePlaceholderSize: true
 		});
     $("#users tbody.content").disableSelection();
+    
+    $(function() {
+		var words = [
+			"ActionScript",
+			"AppleScript",
+			"Asp",
+			"BASIC",
+			"C",
+			"C++",
+			"Clojure",
+			"COBOL",
+			"ColdFusion",
+			"Erlang",
+			"Fortran",
+			"Groovy",
+			"Haskell",
+			"Java",
+			"JavaScript",
+			"Lisp",
+			"Perl",
+			"PHP",
+			"Python",
+			"Ruby",
+			"Scala",
+			"Scheme"
+		];
+		function split( val ) {
+			return val.split( /,\s*/ );
+		}
+		function extractLast( term ) {
+			return split( term ).pop();
+		}
+
+    $('.tags_pages').tagBox();
+
+        
+
+        // I've hacked the jQuery UI autocomplete render function
+        // to highlight part of the matched string
+        $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+            var re = new RegExp("^" + this.term, "i") ;
+            var t = item.label.replace(re,"<strong>" + this.term + "</strong>");
+            return $( "<li></li>" )
+                .data( "item.autocomplete", item )
+                .append( "<a>" + t + "</a>" )
+                .appendTo( ul );
+        };
+
+        // Some sample WORDS for autocomplete to use
+                                
+         $.ajax({
+                  type: "POST",
+                  url: 'ajax.php',
+                  async:true,
+                  data: 'req=searchPages',
+                  dataType: 'json',
+                  success: function(result) { 
+                  alert(dump(result));
+                  // The autocomplete for the last tagbox
+        $(".tagbox .input input").autocomplete({
+            source: function(req, responseFn) {
+                var re = $.ui.autocomplete.escapeRegex(req.term);
+                var matcher = new RegExp( "^" + re, "i" );
+                var a = $.grep( result.page_title, function(item,index){
+                    return matcher.test(item);
+                });
+                responseFn( a );
+            },
+            minLength: 0,
+            select: function(e, ui) {
+                e.preventDefault();
+                if(e.keyCode != 13) {
+                    $(this).val(ui.item.value);
+                    $(this).trigger("selectTag");
+                }
+            }
+        });
+                  
+                  },
+              });
+		
+		/*$(".tagbox .input input")
+			// don't navigate away from the field on tab when selecting an item
+			.bind( "keydown", function( event ) {
+				if ( event.keyCode === $.ui.keyCode.TAB &&
+						$( this ).data( "autocomplete" ).menu.active ) {
+					event.preventDefault();
+				}
+			})
+			.autocomplete({
+				minLength: 0,
+				source: availableTags,
+				focus: function() {
+					// prevent value inserted on focus
+					return false;
+				},
+				select: function( event, ui ) {
+					var terms = split( this.value );
+					// remove the current input
+					terms.pop();
+					// add the selected item
+					terms.push( ui.item.value );
+					// add placeholder to get the comma-and-space at the end
+					terms.push( "" );
+					this.value = terms.join( ", " );
+					return false;
+				}
+			});*/
+		
+			
+	});
+    
 });
 
 function addMenuItem(i)

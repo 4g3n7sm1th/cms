@@ -25,9 +25,14 @@ $tpl_menues_table = "
 			  </span>
 			  &nbsp;<img src='ico/color/action_check.png' id='success_ico_".$menu_item->menu_item_id."' style='float:left;display:none'>
 			  <div id='extended_option_".$menu_item->menu_item_id."' style='height:175px;float:left;display:none'>
-			    <table id='extended_option' style='width:350px'>
+			    <table id='extended_option' style='width:500px'>
 			    <tr>
-			      <td>Link-Name:</td><td><input type='text' style='width:200px' class='tip' title='Link-Name' value='".$menu_item->menu_item_title."' id='link_name_".$menu_item->menu_item_id."'></td>
+			      <td style='width:80px;'>Link-Name:</td><td><input type='text' style='width:200px' class='tip' title='Link-Name' value='".$menu_item->menu_item_title."' id='link_name_".$menu_item->menu_item_id."'></td>
+			      <td rowspan='7' style='width:50px;'>&nbsp;</td>
+			      <td rowspan='7' style='width:200px;'>
+			        Untermen&uuml;-Seiten:<br />
+			        <input type='text' class='tags_pages'>
+			      </td>
 			    </tr>
 			    <tr>
 			      <td>Link-Typ:</td>
@@ -99,7 +104,7 @@ $tpl_menues_tablelist = "
 				&nbsp;<!--<a onclick='deleteMenu(".$menu->menu_id.")'>--><img src='ico/gray/action_delete.png' title='L&ouml;schen noch nicht m&ouml;glich'></a>
 			</td>
 			<td>".$menu->menu_id."</td>
-			<td id='menu_name".$menu->menu_id."'><span><img src='ico/color/reply.png' title='Namen &auml;ndern' onclick='editMenuName(".$menu->menu_id.")'>&nbsp;".$menu->menu_name."</span></td>
+			<td id='menu_name".$menu->menu_id."'><span>".$nochange_start."<img src='ico/color/reply.png' title='Namen &auml;ndern' onclick='editMenuName(".$menu->menu_id.")'>".$nochange_end."&nbsp;".$menu->menu_name."</span></td>
 			<td><img src='ico/ico_help.png' title='".$created.$creator." ".$change.$changer."'>
 			</td>
 		</tr>";

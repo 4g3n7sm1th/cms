@@ -37,6 +37,15 @@ $tpl_page_tablehead = "
 			<td style='width:50px;' title='Der Inhalt der Seite wird durch das eingestellte Plugin &uuml;berschrieben'>Plugin</td>
 			<td>&nbsp;</td>
 		</tr>";
+		
+		$tpl_page_tablehead_menu_edit = "
+	<table id='pages'>
+		<tr style='font-weight:bold'>
+			<td style='width:20px !important'>&nbsp;</td>
+			<td style='width:25px;'>ID</td>
+			<td>Name</td>
+			<td style='width:20px !important'>&nbsp;</td>
+		</tr>";
 
 $tpl_page_tablebody = "
 		<tr>
@@ -49,6 +58,18 @@ $tpl_page_tablebody = "
 			<td>".$pagess->page_title."</td>
 			<td>".$pagess->page_function."</td>
 			<td><img src='ico/".$login_ico_color."/login.png' title='".$login_ico_title."'>&nbsp;<img src='ico/".$comment_ico_color."/comments.png' title='".$comment_ico_title."'>
+			<img src='ico/ico_help.png' title='".$created."'>
+			</td>
+		</tr>";
+		
+$tpl_page_tablebody_menu_edit = "
+		<tr>
+			<td>
+				<a href='index.php?action=menues&edit=".$_GET['edit']."&umenu=".$pagess->page_id."'><img src='ico/color/reply.png' title='Untermen&uuml; f&uuml;r \"".$pagess->page_title."\" bearbeiten'></a>
+			</td>
+			<td>".$pagess->page_id."</td>
+			<td>".$pagess->page_title."</td>
+			<td>
 			<img src='ico/ico_help.png' title='".$created."'>
 			</td>
 		</tr>";

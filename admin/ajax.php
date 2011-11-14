@@ -4,11 +4,39 @@ require('libs/globals.inc.php');
 if(!$user->is_loggedin()) header("Location: login.php");
 
 switch($_POST['req']) {
+
   case 'lng':
+    echo l($_POST['str']);
+  break;
+
+
+
+  case 'searchPages':
   
-  echo l($_POST['str']);
+    $pages = $db->get_results('SELECT page_title FROM pages WHERE page_ts_delete IS NULL');
+  
+    //$pages = array('Home', 'News', 'Wer wir sind', 'Fanclub', 'amtm');
+    //$pages = "['Home', 'News', 'Wer wir sind', 'Fanclub', 'amtm']";
+    //echo json_encode($pages);
+    
+    $arr = '{"page_title":[';
+    $i=1;
+    foreach($pages as $page)
+    {
+      $arr.= '"'.$page->page_title.'"';
+      if(count($pages) > $i) $arr.=',';
+      $i++;
+    }
+    $arr.=']}';
+    
+    echo $arr;
+    //echo var_dump($pages);
+    //echo '[{"id":"1","value":"Home"},{"id":"1","value":"News"},{"id":"1","value":"Wer wir sind"},{"id":"1","value":"Fanclub"},{"id":"1","value":"amtm"}]';
+  
   
   break;
+
+
 
 	case 'updateMenuItemOrder':
 	
@@ -100,6 +128,8 @@ switch($_POST['req']) {
 		
 	break;
 	
+	
+	
 	case 'deletePage':
 		$page_id = $_POST['page_id'];
 		
@@ -110,6 +140,8 @@ switch($_POST['req']) {
 		else
 		{ echo '1'; }
 	break;
+	
+	
 	
 	case 'deleteMenuItem':
 		$menu_item_id = $_POST['menu_item_id'];
@@ -123,6 +155,8 @@ switch($_POST['req']) {
 		else
 		{ echo '1'; }
 	break;
+	
+	
 	
 	case 'deleteMenu':
 		$menu_id = $_POST['menu_id'];
@@ -148,6 +182,8 @@ switch($_POST['req']) {
 		{ echo '1'; }
 	break;
 	
+	
+	
 	case 'saveMenuName':
 		
 		$menu_name = $_POST['menu_name'];
@@ -161,6 +197,8 @@ switch($_POST['req']) {
 		else
 		{ echo '1'; }
 	break;
+	
+	
 	
 	default:
 	  echo '0';
