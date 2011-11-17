@@ -29,10 +29,10 @@ $tpl_menues_table = "
 			    <tr>
 			      <td style='width:80px;'>Link-Name:</td><td><input type='text' style='width:200px' class='tip' title='Link-Name' value='".$menu_item->menu_item_title."' id='link_name_".$menu_item->menu_item_id."'></td>
 			      <td rowspan='7' style='width:50px;'>&nbsp;</td>
-			      <td rowspan='7' style='width:200px;'>
+			      <!--<td rowspan='7' style='width:200px;'>
 			        Untermen&uuml;-Seiten:<br />
 			        <input type='text' class='tags_pages'>
-			      </td>
+			      </td>-->
 			    </tr>
 			    <tr>
 			      <td>Link-Typ:</td>

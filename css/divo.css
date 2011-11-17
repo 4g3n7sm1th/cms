@@ -636,6 +636,11 @@ margin-right:50px;
   margin-top:10px;
 }
 
+#topmenu #selected
+{
+  display:none;
+}
+
 footer
 {
   position:relative;

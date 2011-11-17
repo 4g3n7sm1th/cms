@@ -204,6 +204,28 @@ function escape($str, $html = 0)
 	return $str;
 }
 
+function genPageDropdown($mainPages = false, $selected = '')
+{
+	global $db;
+	
+	if($mainPages == true) { $pages  = $db->get_results('SELECT * FROM pages WHERE page_parent = "0" AND page_ts_delete IS NULL'); }
+	else { $pages  = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL'); }
+	
+	$return = '<select name="page_parent" id="page_parent"><option value="0">- '.l('Hauptseite').' -</option>';
+	
+	$select = '';
+	
+	foreach($pages as $page)
+	{
+		if($selected != '' && $selected == $page->page_id) $select = ' selected';
+		$return.= '<option value="'.$page->page_id.'"'.$select.'>'.$page->page_title.'</option>';
+		$select = '';
+	}
+	
+	$return.= '</select>';
+	return $return;
+}
+
 function UF_date($timestamp) // Function for creating the FB-like-user-friedly-time-format (e.g. 'posted 2 minutes ago')
         {
         $maxdiff = '10'; //ab 10 sekunden wird nicht mehr nur 'gerade eben' ausgegeben

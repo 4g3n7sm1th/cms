@@ -57,6 +57,11 @@ padding: 10px;
 float: right;
 }
 
+div#topmenu div#selected
+{
+  display:none;
+}
+
 #menu ul {
 float:left;
 vertical-align:middle;

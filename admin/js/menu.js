@@ -71,7 +71,7 @@ $(document).ready(function() {
                   data: 'req=searchPages',
                   dataType: 'json',
                   success: function(result) { 
-                  alert(dump(result));
+                  
                   // The autocomplete for the last tagbox
         $(".tagbox .input input").autocomplete({
             source: function(req, responseFn) {

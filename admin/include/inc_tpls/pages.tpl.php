@@ -6,6 +6,9 @@ $tpl_page_form1 = '	<form action="index.php?action=pages&new=1" method="post">
 								<div style="float:right;margin-right:10px;" id="submitbox">
 									<span style="float:left;margin-left:10px;"><input id="loginrequired" type="checkbox" name="page_loginrequired"><label for="loginrequired">Login ben&ouml;tigt</label></span><br />
 									<span style="float:left;margin-left:10px;"><input id="comments" type="checkbox" name="page_comments" checked><label for="comments">Kommentare erlaubt</label></span>
+									<span style="float:left;margin-left:10px;">
+									  '.$page_dropdown.'
+									  <label for="page_parent">&Uuml;ber-Seite</label></span>
 									</span>
 									<input type="submit" value="Speichern" name="page_save">
 								</div>
@@ -19,6 +22,9 @@ $tpl_page_form2 = '	<form action="index.php?action=pages&edit='.$_GET['edit'].'"
 								<div style="float:right;margin-right:10px;" id="submitbox">
 									<span><input id="loginrequired" type="checkbox" name="page_loginrequired"'.$page_loginrequired.'><label for="loginrequired">Login ben&ouml;tigt</label></span><br />
 									<span><input id="comments" type="checkbox" name="page_comments"'.$page_comments.'><label for="comments">Kommentare erlaubt</label></span>
+									<span style="float:left;margin-left:10px;">
+									  '.$page_dropdown.'
+									  <label for="page_parent">&Uuml;ber-Seite</label></span>
 									</span>
 									<input type="submit" value="Speichern" name="page_save">
 								</div>

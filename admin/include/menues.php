@@ -203,7 +203,7 @@ $menues = $db->get_results('SELECT * FROM menus WHERE menu_ts_delete IS NULL AND
 		$content.= $tpl_menues_tablelist;
 	}
 	
-	$content.= "
+	/*$content.= "
 	</table><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>Seiten-Untermen&uuml;:</b><br />".$tpl_menues_tablehead;
 	
 	$menu->menu_id = '0';
@@ -216,7 +216,7 @@ $menues = $db->get_results('SELECT * FROM menus WHERE menu_ts_delete IS NULL AND
 	$nochange_end = '-->';
 	
 	include('inc_tpls/menues.tpl.php');
-	$content.=$tpl_menues_tablelist;
+	$content.=$tpl_menues_tablelist;*/
 	
 	$content.= '</table>';
 	 

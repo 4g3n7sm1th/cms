@@ -10,7 +10,8 @@ $content.= $tpl_page_head;
 if(isset($_GET['new']))
 {
 $page['pages']['title'].= " - ".l("neue Seite");
-
+  $page_dropdown = genPageDropdown(true);
+  
 	if($_POST['page_save'])
 	{
 		if($_POST['page_title'] != '' && $_POST['page_title'] != "Geben Sie hier den Titel an" && $_POST['page_content'] != '')
@@ -23,13 +24,15 @@ $page['pages']['title'].= " - ".l("neue Seite");
 																							 page_ts_create, 
 																							 page_author, 
 																							 page_comments, 
-																							 page_loginrequired) 
+																							 page_loginrequired,
+																							 page_parent) 
 																			 VALUES ("'.mysql_real_escape_string($_POST['page_title']).'",
 																			 				 "'.mysql_real_escape_string($_POST['page_content']).'",
 																			 				 NOW(),
 																			 				 "'.$_SESSION['user_id'].'",
 																			 				 '.mysql_real_escape_string($page_comments).',
-																			 				 '.mysql_real_escape_string($page_loginrequired).');');
+																			 				 '.mysql_real_escape_string($page_loginrequired).',
+																			 				 "'.$_POST['page_parent'].'");');
 																			 				 
 			if($insert) { message("Die Seite wurde erfolgreich gespeichert", 'success'); }
 			else { message('Die Seite konnte nicht gespeichert werden', 'error'); }
@@ -44,6 +47,10 @@ elseif(isset($_GET['edit']))
 {
 $page['pages']['title'].= " - Seite bearbeiten";
 
+$pages = $db->get_row('SELECT * FROM pages WHERE page_ts_delete IS NULL AND page_id = '.mysql_real_escape_string($_GET['edit']).';');
+$page_dropdown = genPageDropdown(true, $pages->page_parent);
+
+
 	if($_POST['page_save'])
 	{
 		if($_POST['page_title'] != '' && $_POST['page_title'] != "Geben Sie hier den Titel an" && $_POST['page_content'] != '')
@@ -56,7 +63,8 @@ $page['pages']['title'].= " - Seite bearbeiten";
 																						 page_ts_update = NOW(), 
 																						 page_id_update = '.$_SESSION['user_id'].', 
 																						 page_comments = '.mysql_real_escape_string($page_comments).', 
-																						 page_loginrequired = '.mysql_real_escape_string($page_loginrequired).'
+																						 page_loginrequired = '.mysql_real_escape_string($page_loginrequired).',
+																						 page_parent = "'.$_POST['page_parent'].'"
 																			 WHERE page_id = '.mysql_real_escape_string($_GET['edit']).';');
 																			 				 
 			if($insert) { message("Die Seite wurde erfolgreich gespeichert", 'success'); }
