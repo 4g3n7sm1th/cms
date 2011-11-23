@@ -378,6 +378,7 @@ strong
   border-left: 1px dashed #a50101;
   border-right:1px solid black;
   padding-bottom:80px;
+  overflow:hidden;
 }
 
 #navigation

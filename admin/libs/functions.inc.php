@@ -181,7 +181,7 @@ function genUserLevelDropdown($selected = '')
 	global $db;
 	$levels  = $db->get_results('SELECT * FROM user_level');
 	
-	$return = '<select name="user_level" id="user_level"><option value="">'.l('User Level w&auml;hlen').'</option>';
+	$return = '<select name="user_level" id="user_level"><option value="">'.l('User Level wählen').'</option>';
 	
 	$select = '';
 	
@@ -204,26 +204,51 @@ function escape($str, $html = 0)
 	return $str;
 }
 
-function genPageDropdown($mainPages = false, $selected = '')
+function genPageDropdown($mainPages = false, $selected = '', $i='')
 {
 	global $db;
 	
-	if($mainPages == true) { $pages  = $db->get_results('SELECT * FROM pages WHERE page_parent = "0" AND page_ts_delete IS NULL'); }
-	else { $pages  = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL'); }
+	$pages = genPageArray($mainPages);
 	
-	$return = '<select name="page_parent" id="page_parent"><option value="0">- '.l('Hauptseite').' -</option>';
+	$name = ($mainPages == true)? 'page_parent':'page_id';
+	$name.= ($i != '')? '_'.$i:'';
+	
+	$return = '<select name="'.$name.'" id="'.$name.'"><option value="0">';
+	if($mainPages == true)
+	{ $return.= '- '.l('Hauptseite').' -'; } else
+	{ $return.= l('Bitte wählen...'); }
+	$return.= '</option>';
 	
 	$select = '';
 	
 	foreach($pages as $page)
 	{
 		if($selected != '' && $selected == $page->page_id) $select = ' selected';
-		$return.= '<option value="'.$page->page_id.'"'.$select.'>'.$page->page_title.'</option>';
+		$return.= '<option value="'.$page->page_id.'"'.$select.'>';
+		if($page->page_parent !=0) $return.= $db->get_var('SELECT page_title FROM pages WHERE page_id = '.$page->page_parent.';').' => ';
+		$return.= $page->page_title;
+		$return.= '</option>';
 		$select = '';
 	}
 	
 	$return.= '</select>';
 	return $return;
+}
+
+function pageIsChild($page_id)
+{
+  $parent_id = $db->get_var('SELECT page_parent FROM pages WHERE page_ts_delete IS NULL AND page_id = '.$page_id.';');
+  
+  if($parent_id == '') { return false; } else { return $parent_id; }
+}
+
+function genPageArray($mainPages = false)
+{
+  global $db;
+  if($mainPages == true) { $pages  = $db->get_results('SELECT * FROM pages WHERE page_parent = "0" AND page_ts_delete IS NULL'); }
+	else { $pages  = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL'); }
+	
+	return $pages;
 }
 
 function UF_date($timestamp) // Function for creating the FB-like-user-friedly-time-format (e.g. 'posted 2 minutes ago')
@@ -392,6 +417,11 @@ function pagination($maxpage, $resultrange = '0', $maxresults = '0', $result_wor
 
 function l($str) // TBD: Language-Function
 {
+$search = array('ä','Ä','ü','Ü','ö','Ö','ß');
+$replace = array('&auml;','&Auml;','&uuml;','&Uuml;','&ouml;','&Ouml;','&szlig;');
+
+$str = str_replace($search, $replace, $str);
+
 
 return $str;
 }

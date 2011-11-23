@@ -45,7 +45,7 @@ $tpl_menues_table = "
 			      </td>
 			    </tr>
 			    <tr id='page_link_".$menu_item->menu_item_id."' style='display:none'>
-			        <td>Seiten-ID:</td><td><input style='width:200px' type='text' id='page_id_".$menu_item->menu_item_id."' class='tip' title='Page-ID' value='".$menu_item_page."'></td>
+			        <td>Seite:</td><td>".$menu_item->genPageDropdown."</td>
 			    </tr>
 			    <tr id='extern_link_".$menu_item->menu_item_id."' style='display:none'>
 			        <td>Link-URL:</td><td><input style='width:200px' type='text' class='tip' title='Link-URL' id='extern_link_loc_".$menu_item->menu_item_id."' value='".$menu_item_link."'></td>
