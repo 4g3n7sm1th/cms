@@ -22,6 +22,8 @@ global $db;
    		$sql = "SELECT * FROM pages WHERE page_parent = '".$page_id."' AND page_ts_delete IS NULL";
    		$pages = $db->get_results($sql);
    		
+   		if($pages == '') { $pages = $db->get_results("SELECT * FROM pages WHERE page_id = '".$page_id."' AND page_ts_delete IS NULL"); }
+   		
    		$i=1;
    		$class='a';
    		$liclass = '';

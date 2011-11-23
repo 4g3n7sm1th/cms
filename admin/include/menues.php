@@ -1,7 +1,7 @@
 <?php
 include('inc_tpls/menues.tpl.php');
 
-$page['menues']['title'] = "Men&uuml;s";
+$page['menues']['title'] = l('Menüs');
 
 $content = "";
 $content.= $tpl_menues_head;
@@ -13,7 +13,7 @@ if(isset($_GET['edit']))
   {
     if(isset($_GET['umenu']))
     {
-      $page['menues']['title'].= ' - Untermen&uuml;-Punkte bearbeiten';
+      $page['menues']['title'].= ' - '.l('Untermenü-Punkte bearbeiten');
 	
 	$menu_items = $db->get_results('
 	    SELECT * 
@@ -25,7 +25,7 @@ if(isset($_GET['edit']))
 	       AND menu_item_ts_delete IS NULL 
 	  ORDER BY menu_item_order_id;');
 	  
-	if(!$menu_items) { $content.='Es wurden keine Men&uuml;punkte gefunden.'; }
+	if(!$menu_items) { $content.=l('Es wurden keine Menüpunkte gefunden.'); }
 	else
 	{
 	  
@@ -39,10 +39,10 @@ if(isset($_GET['edit']))
 	foreach($menu_items as $menu_item)
 	{
 		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_create."");
-		$created = '<b>Erstellt:</b> <br />'.date_mysql($menu_item->menu_item_ts_create, "d.m.y, H:i").' Uhr';
+		$created = '<b>'.l('Erstellt').':</b> <br />'.date_mysql($menu_item->menu_item_ts_create, "d.m.y, H:i").' '.l('Uhr');
 		if($menu_item->menu_item_ts_update != '') { 
-			$change = '<br /><br /><b>Letzte Änderung: </b><br />'.date_mysql($menu_item->menu_item_ts_update, "d.m.y, H:i").' Uhr'; 
-			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_update.";");
+			$change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($menu_item->menu_item_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
+			$changer = ' '.l('von').' '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_update.";");
 		} else { 
 			$change = ''; 
 			$changer = '';
@@ -83,7 +83,7 @@ if(isset($_GET['edit']))
     }
     else
     {
-    $page['menues']['title'].= ' - Untermen&uuml;s bearbeiten';
+    $page['menues']['title'].= ' - '.l('Untermenüs bearbeiten');
 	
 	  $pages = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL;');
 	
@@ -94,8 +94,8 @@ if(isset($_GET['edit']))
   	{
 		  $creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_author.";");
 		  if($pagess->page_ts_update != '') { 
-			  $change = '<br /><br /><b>Letzte Änderung: </b><br />'.date_mysql($pagess->page_ts_update, "d.m.y, H:i").' Uhr'; 
-			  $changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_id_update.";");
+			  $change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($pagess->page_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
+			  $changer = ' '.l('von').' '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_id_update.";");
 		  } else { 
 			  $change = ''; 
 			  $changer = '';
@@ -105,18 +105,18 @@ if(isset($_GET['edit']))
 		
 		    if($pagess->page_loginrequired == '1') { 
 		      $login_ico_color = "color";
-				  $login_ico_title = 'Seite ist nur eingeloggten Nutzern zug&auml;nglich'; 
+				  $login_ico_title = l('Seite ist nur eingeloggten Nutzern zugänglich'); 
 				} else {
 				  $login_ico_color = "gray";
-				  $login_ico_title = 'Seite ist jedem zug&auml;nglich'; 
+				  $login_ico_title = l('Seite ist jedem zugänglich'); 
 		    }
 		    
 		    if($pagess->page_comments == '1') { 
 		      $comment_ico_color = "color";
-				  $comment_ico_title = 'Kommentare erlaubt'; 
+				  $comment_ico_title = l('Kommentare erlaubt'); 
 				} else { 
 				  $comment_ico_color = "gray";
-				  $comment_ico_title = 'Kommentare nicht erlaubt';  }
+				  $comment_ico_title = l('Kommentare nicht erlaubt');  }
 		
 		  include('inc_tpls/pages.tpl.php');
 		  $content.= $tpl_page_tablebody_menu_edit;
@@ -127,7 +127,7 @@ if(isset($_GET['edit']))
   }
   else
   {
-  $page['menues']['title'].= ' - Links bearbeiten';
+  $page['menues']['title'].= ' - '.l('Links bearbeiten');
 	
 	$menu_items = $db->get_results('SELECT * FROM menu_items WHERE menu_item_ts_delete IS NULL AND menu_id = '.escape($_GET['edit']).' ORDER BY menu_item_order_id ASC;');
 	$new_item_id = $db->get_var('SELECT MAX(menu_item_id) FROM menu_items');
@@ -140,9 +140,9 @@ if(isset($_GET['edit']))
 	foreach($menu_items as $menu_item)
 	{
 		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_create."");
-		$created = '<b>Erstellt:</b> <br />'.date_mysql($menu_item->menu_item_ts_create, "d.m.y, H:i").' Uhr';
+		$created = '<b>'.l('Erstellt').':</b> <br />'.date_mysql($menu_item->menu_item_ts_create, "d.m.y, H:i").' '.l('Uhr');
 		if($menu_item->menu_item_ts_update != '') { 
-			$change = '<br /><br /><b>Letzte Änderung: </b><br />'.date_mysql($menu_item->menu_item_ts_update, "d.m.y, H:i").' Uhr'; 
+			$change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($menu_item->menu_item_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
 			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_update.";");
 		} else { 
 			$change = ''; 
@@ -192,9 +192,9 @@ $menues = $db->get_results('SELECT * FROM menus WHERE menu_ts_delete IS NULL AND
 	foreach($menues as $menu)
 	{
 		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu->menu_id_create."");
-		$created = '<b>Erstellt:</b> <br />'.date_mysql($menu->menu_ts_create, "d.m.y, H:i").' Uhr';
+		$created = '<b>'.l('Erstellt').':</b> <br />'.date_mysql($menu->menu_ts_create, "d.m.y, H:i").' '.l('Uhr');
 		if($menu->menu_ts_update != '') { 
-			$change = '<br /><br /><b>Letzte Änderung: </b><br />'.date_mysql($menu->menu_ts_update, "d.m.y, H:i").' Uhr'; 
+			$change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($menu->menu_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
 			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu->menu_id_update.";");
 		} else { 
 			$change = ''; 
