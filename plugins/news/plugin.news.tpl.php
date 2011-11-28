@@ -1,13 +1,19 @@
 <?php
+$tpl_plugin_news_start = '<div id="meldung">';
 
-$tpl_plugin_news = '<div id="meldung">
-          <h3><a href="#">'.$news->plugin_news_title.'</a></h3>
+$tpl_plugin_news = '
+          <h3><a href="?p='.$_GET['p'].'&news_id='.$news->plugin_news_id.'">'.$news->plugin_news_title.'</a></h3>
           <h6>geschrieben von <a href="#">'.$author.'</a> '.$created.' - Kategorie: <a href="#">Il Divo</a></h6>
           <!--<img src="images/test.png" class="newsimage">-->
-          '.$news->plugin_news_content.'
-          <br />
-          <span class="readmore"><a href="#">weiter lesen...</a></span>
-        </div>';
+          '.$news_content_new.'
+          <br />';
+          
+$tpl_plugin_news_readmore = '<span class="readmore"><a href="?p='.$_GET['p'].'&news_id='.$news->plugin_news_id.'">weiter lesen...</a></span>';
+        
+$tpl_plugin_news_end = '</div>';
 
+$tpl_plugin_news_commentcount = '<br /><span class="commentcount">'.$commentcount.' Kommentar'.(($commentcount == 1)?"":"e").' vorhanden.</span>';
+
+$tpl_plugin_news_overview_link = '<a href="?p='.$_GET['p'].'">zurück zur News-Übersicht</a>';
 
 ?>

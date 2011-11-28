@@ -175,6 +175,11 @@ function date_mysql($date, $format)
  }
 }
 
+function getUsername($user_id)
+{
+  global $db;
+  return $db->get_var("SELECT user_name FROM users WHERE user_id='".$user_id."';");
+}
 
 function genUserLevelDropdown($selected = '')
 {
@@ -365,7 +370,7 @@ function UF_date($timestamp) // Function for creating the FB-like-user-friedly-t
         }
 
 
-function pagination($maxpage, $resultrange = '0', $maxresults = '0', $result_wording = 'Ergebnisse')
+function pagination($maxpage, $results='0', $maxresults = '0', $result_wording = 'Ergebnisse')
 {
   $url=$_SERVER['REQUEST_URI'];
   $url = strpos($url, '?page=');
@@ -379,7 +384,19 @@ function pagination($maxpage, $resultrange = '0', $maxresults = '0', $result_wor
     $replace = '?';
     $url = preg_replace('@page=[0-9]{0,5}[&]{0,1}@is', '', $_SERVER['REQUEST_URI']);
   }
-  if(!isset($_GET['page'])) { $page = '1'; } else { $page = $_GET['page']; }
+  if(!isset($_GET['page'])) 
+  { 
+    $page = '1';  
+  } 
+  else 
+  { 
+    $page = $_GET['page']; 
+  }
+  
+  $startval = (($page-1)*$maxresults)+1; 
+	$endval = $page*$maxresults;
+
+  if($endval > $maxresults) $endval = $results;
 
   if(substr($url, -1, 1) == '&') $url = substr($url, 0, -1);
   if(strpos($url, '?')) { $add = '&'; } else { $add = '?'; }
@@ -387,9 +404,11 @@ function pagination($maxpage, $resultrange = '0', $maxresults = '0', $result_wor
   $output = '<br /><span class="pagination">Seite: ';
   $url = 'http://'.$_SERVER['HTTP_HOST'].$url;
   //$output.= $url;
-  if($page > '1') $output.= '<a href="'.$url.$add.'page='.($page-1).'">';
-  $output.= '<';
-  if($page > '1') { $output.= '</a> '; } else { $output.= ' '; }
+  if($page > '1') { 
+    $output.= '<a href="'.$url.$add.'page='.($page-1).'">';
+    $output.= '<';
+    $output.= '</a> '; 
+  } else { $output.= ' '; }
   
   for($i=0; $i < $maxpage; $i++)
   {
@@ -402,14 +421,18 @@ function pagination($maxpage, $resultrange = '0', $maxresults = '0', $result_wor
     if($bold == true) $output.= '</u></b>';
     $output.= ' ';
   }
-  if($page < $maxpage) { $output.= ' <a href="'.$url.$add.'page='.($page+1).'">'; } else { $output.= ' '; }
-  $output.= '>';
-  if($page < $maxpage) $output.= '</a> ';
+  if($page < $maxpage) { $output.= ' <a href="'.$url.$add.'page='.($page+1).'">';
+    $output.= '>';
+    $output.= '</a> ';
+  } else { $output.= ' '; }
   $output.= '</span>';
+
+  $resultrange = $startval.'-'.($endval > $results? $results:$endval);
+  
   if($resultrange != '0')
   {
     $output.= '<span class="resultcount">'.$result_wording.' '.$resultrange;
-    if($maxresults != '0') $output.= ' von '.$maxresults.'</span>';
+    if($maxresults != '0') $output.= ' von '.$results.'</span>';
   }
   $output.='<br />';
   return $output;

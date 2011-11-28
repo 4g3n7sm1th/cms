@@ -299,6 +299,7 @@ strong
   background-color:#ffedb3;
   height:100%;
   width:676px;
+  padding-top:10px;
   padding-left:50px;
   padding-right:50px;
   padding-bottom:80px;
@@ -309,14 +310,22 @@ strong
 
 #content #meldung
 {
-  margin-top:40px;
+  margin-top:20px;
   margin-bottom:0px;
+  padding:10px 10px 25px 10px;
   font-family:Helvetica, Arial;
   font-size:13px;
   font-weight:normal;
   letter-spacing: 0px;
   color:#76320a;
   text-decoration:none;
+  background-color:#FCE69D;
+}
+
+.commentcount
+{
+  font-size:9px;
+  margin:0;
 }
 
 #content #meldung h3
@@ -326,6 +335,18 @@ strong
   font-weight:bold;
   font-size:24px;
   margin-bottom:0;
+  margin:0;
+  letter-spacing: 2px;
+}
+
+#content #meldung h4
+{
+  font-family:Palatino;
+  color:#76320a;
+  font-weight:bold;
+  font-size:18px;
+  margin-bottom:0;
+  margin:0;
   letter-spacing: 2px;
 }
 
@@ -351,6 +372,24 @@ strong
   margin-bottom:10px;
 }
 
+#content #meldung hr
+{
+  color:#E3A681;
+  background-color:#E3A681;
+  height:1px;
+  border:0;
+}
+
+#content #meldung .comment>h6
+{
+  font-family:Helvetica, Arial;
+  color:#76320a;
+  font-weight:normal;
+  font-size:9px;
+  margin-bottom:0px;
+  margin-top:20px;
+}
+
 #content #meldung h6 a
 {
   text-decoration:none;
@@ -358,6 +397,19 @@ strong
 }
 
 #content #meldung h6 a:hover
+{
+  text-decoration:underline;
+  color:#b65115;
+}
+
+.readmore, .readmore a
+{
+  float:right;
+  text-decoration:none;
+  color:#76320a;
+}
+
+.readmore a:hover
 {
   text-decoration:underline;
   color:#b65115;
@@ -526,21 +578,6 @@ padding: 0;
 display:inline;
 margin-left:50px;
 margin-right:50px;
-}
-
-
-
-.readmore, .readmore a
-{
-  float:right;
-  text-decoration:none;
-  color:#76320a;
-}
-
-.readmore a:hover
-{
-  text-decoration:underline;
-  color:#b65115;
 }
 
 #feed

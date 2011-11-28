@@ -1,5 +1,6 @@
 $(document).ready(function() {
     
+    
     /*var selected = '<div class="menu-a" id="selected"></div>';
     var split = $('title').html().split(' - ');
     $('#navigation #link_'+split[1]+' a').after(selected);
@@ -7,10 +8,15 @@ $(document).ready(function() {
     
     getFeeds();
     
+    $('#allfeeds').tinyscrollbar();
+    
     var refreshId = setInterval(function() {
       loadFeeds();
-      var t=setTimeout(function() { getFeeds(); }, 3000);
+      var t=setTimeout(function() { 
+        getFeeds(); 
+      }, 3000);
    }, 20000);
+    
     
     $('input.tip').formtips({
         tippedClass: 'formtip'
@@ -131,6 +137,7 @@ function getFeeds()
       
       $('#allfeeds').hide();
       $('#allfeeds').html(result);
+      $('#allfeeds').tinyscrollbar_update();
       $('#allfeeds').fadeIn('300');
       }
   });

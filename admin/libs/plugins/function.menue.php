@@ -9,7 +9,7 @@ global $db;
         return;
     }
     
-    if(!isset($_GET['p'])) { $page_id = '1'; } else { $page_id = $_GET['p']; }
+    if(!isset($_GET['p']) && $_GET['p'] != '' && $_GET['p'] != '0') { $page_id = '1'; } else { $page_id = $_GET['p']; }
     
     if(empty($params['id']) && $params['page'] == 'true') {
     $menu_id = '0';
