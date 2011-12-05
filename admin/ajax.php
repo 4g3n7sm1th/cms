@@ -9,7 +9,19 @@ switch($_POST['req']) {
     echo l($_POST['str']);
   break;
 
-
+  case 'changePluginStatus':
+		$plugin_id = $_POST['plugin_id'];
+		$status = $_POST['status'];
+		
+		$activate = $db->query('UPDATE plugins SET plugin_active = '.$status.' WHERE plugin_id = '.$plugin_id.'');
+		
+		if(!$activate)
+		{ echo '0'; }
+		else
+		{ echo '1'; }
+	break;
+  
+  
 
   case 'searchPages':
   
