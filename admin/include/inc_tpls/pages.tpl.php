@@ -37,11 +37,11 @@ $tpl_page_form2 = '	<form action="index.php?action=pages&edit='.$_GET['edit'].'"
 $tpl_page_tablehead = "
 	<table id='pages'>
 		<tr style='font-weight:bold'>
-			<td>&nbsp;</td>
+			<td style='width:80px;'>&nbsp;</td>
 			<td style='width:25px;'>ID</td>
 			<td>Name</td>
-			<td style='width:50px;' title='Der Inhalt der Seite wird durch das eingestellte Plugin &uuml;berschrieben'>Plugin</td>
-			<td>&nbsp;</td>
+			<td style='width:60px;' title='Der Inhalt der Seite wird durch das eingestellte Plugin &uuml;berschrieben'>Plugin</td>
+			<td style='width:70px;'>&nbsp;</td>
 		</tr>";
 		
 		$tpl_page_tablehead_menu_edit = "
@@ -56,15 +56,15 @@ $tpl_page_tablehead = "
 $tpl_page_tablebody = "
 		<tr>
 			<td>
-				<a href='index.php?action=pages&edit=".$pagess->page_id."'><img src='ico/color/reply.png' title='Seite \"".$pagess->page_title."\" bearbeiten'></a>
-				&nbsp;<a href='".$app_mainpath.$app_mainpage."?p=".$pagess->page_id."' target='_blank'><img src='ico/color/application.png' title='Live-Vorschau'></a>
-				&nbsp;<a onclick='deletePage(".$pagess->page_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a>
+				<a href='index.php?action=pages&edit=".$pagess->page_id."'><img src='ico/new/Wrench.png' title='Seite \"".$pagess->page_title."\" bearbeiten'></a>
+				&nbsp;<a href='".$app_mainpath.$app_mainpage."?p=".$pagess->page_id."' target='_blank'><img src='ico/new/Desktop.png' title='Live-Vorschau'></a>
+				&nbsp;<a onclick='deletePage(".$pagess->page_id.")'><img src='ico/new/Remove.png' title='L&ouml;schen'></a>
 			</td>
 			<td>".$pagess->page_id."</td>
 			<td>".$pagess->page_title."</td>
 			<td>".$pagess->page_function."</td>
-			<td><img src='ico/".$login_ico_color."/login.png' title='".$login_ico_title."'>&nbsp;<img src='ico/".$comment_ico_color."/comments.png' title='".$comment_ico_title."'>
-			<img src='ico/ico_help.png' title='".$created."'>
+			<td><img src='ico/new/Lock.png' style='opacity:".(($login_ico_color == 'gray')? '0.4':'1')."' title='".$login_ico_title."'>&nbsp;<img src='ico/new/chat.png' style='opacity:".(($comment_ico_color == 'gray')? '0.4':'1')."' title='".$comment_ico_title."'>
+			<img src='ico/new/Light-Off.png' title='".$created."'>
 			</td>
 		</tr>";
 		
