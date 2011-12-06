@@ -34,7 +34,18 @@
 			$('input.tip').formtips({
         tippedClass: 'formtip'
     });				  
-							  
+			$(".bigtip[title]").filter(':not(input)').qtip({ 
+				content: $('.'+$(this).attr('title')),
+				position: {
+							my: 'left center',
+							at: 'right center'
+				}, 
+				
+				style: {
+								classes: 'ui-tooltip-dark ui-tooltip-shadow '
+					}
+			  });
+			
 			$(".miniprofile[title]").qtip({ 
 								position: {
 											my: 'bottom center',
@@ -46,16 +57,19 @@
    								}
 							  });
 							  
+			
+			
 			$("[title]").filter(':not(input)').qtip({ 
-								position: {
-											my: 'left center',
-											at: 'right center'
-								}, 
-								
-								style: {
-      										classes: 'ui-tooltip-dark ui-tooltip-shadow '
-   								}
-							  });
+				
+				position: {
+							my: 'left center',
+							at: 'right center'
+				}, 
+				
+				style: {
+								classes: 'ui-tooltip-dark ui-tooltip-shadow '
+					}
+			  });
 			
 			
 			var textvalue = $('#titletext').val();

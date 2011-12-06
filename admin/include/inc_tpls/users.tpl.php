@@ -79,7 +79,24 @@ $tpl_users_tablefoot = "
 				&nbsp;<a onclick='deleteUser(".$userss->user_id.")'><img src='".icon('delete')."' title='L&ouml;schen'></a>
 			</td>
 			<td>".$userss->user_id."</td>
-			<td><img src='".icon('info')."' style='margin-bottom:-4px' title='".$user_info."' class='miniprofile'>&nbsp;".$userss->user_name."</td>
+			<td><img src='".icon('info')."' style='margin-bottom:-4px' class='bigtip' title='miniprofile_".$userss->user_id."'>&nbsp;".$userss->user_name."</td>
+			<div id='miniprofile_".$userss->user_id."' style='display:none'>
+                Benutzer: <b>'.$userss->user_name.'</b><br />
+                <br />
+                <table border='0' id='user_info'>
+                ".((isset($userss->user_level))? $db->get_var('SELECT user_level_name FROM user_level WHERE user_level = '.$userss->user_level.';'): '')."
+                
+                ".((isset($userss->user_firstname) && $userss->user_firstname != '' && $userss->user_firstname != '0')? '<tr><td><b>Vorname:</b></td><td>'.$userss->user_firstname.'</td></tr>':'')."
+                ".((isset($userss->user_lastname) && $userss->user_lastname != '' && $userss->user_lastname != '0')? '<tr><td><b>Nachname:</b></td><td>'.$userss->user_lastname.'</td></tr>':'')."
+                ".((isset($userss->user_street) && $userss->user_street != '' && $userss->user_street != '0')? '<tr><td><b>Stra&szlig;e:</b></td><td>'.$userss->user_street.' '.$userss->user_housenumber.'</td></tr>':'')."
+                ".((isset($userss->user_city) && $userss->user_city != '' && $userss->user_city != '0')? '<tr><td><b>Stadt:</b></td><td>'.$userss->user_zipcode.' '.$userss->user_city.'</td></tr>':'')."
+                ".((isset($userss->user_phone) && $userss->user_phone != '' && $userss->user_phone != '0')? '<tr><td><b>Telefon:</b></td><td>'.$userss->user_phone.'</td></tr>':'')."
+                ".((isset($userss->user_mobile) && $userss->user_mobile != '' && $userss->user_mobile != '0')? '<tr><td><b>Handy:</b></td><td>'.$userss->user_mobile.'</td></tr>':'')."
+                ".((isset($userss->user_web) && $userss->user_web != '' && $userss->user_web != '0')? '<tr><td><b>Web:</b></td><td>'.$userss->user_web.'</td></tr>':'')."
+                ".((isset($userss->user_mail) && $userss->user_mail != '' && $userss->user_mail != '0')? '<tr><td><b>E-Mail:</b></td><td>'.$userss->user_mail.'</td></tr>':'')."
+                ".((isset($user_level_name) && $user_level_name != '' && $user_level_name != '0')? '<tr><td><b>User-Level:</b></td><td>'.$user_level_name.'</td></tr>':'')."
+                </table>
+			</div>
 			<td><img src='".icon('login')."' style='opacity:".(($user_active_color == 'gray')? '0.4':'1')."' title='".$user_active_title."'>&nbsp;<img src='".icon('info')."' title='".$created.$creator." ".$change.$changer."'>
 			</td>
 		</tr>";
