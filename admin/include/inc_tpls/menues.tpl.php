@@ -7,8 +7,8 @@ $tpl_menues_form1 = "<form action='index.php?action=".$_GET['action']."&edit=".$
 			<td style='width:25px'>ID</td>
 			<td>Link-Name</td>
 			<td>
-			  <img src='ico/color/action_add.png' id='newlink' title='Neuen Link zum Men&uuml; hinzuf&uuml;gen' onclick='addMenuItem(".$new_item_id.")'>
-			  <img src='ico/gray/action_add.png' id='newlink_disabled' title='Speichern Sie bitte erst den neuen Link' style='display:none'>
+			  <img src='".icon('plus')."' id='newlink' title='Neuen Link zum Men&uuml; hinzuf&uuml;gen' onclick='addMenuItem(".$new_item_id.")'>
+			  <img src='".icon('plus')."' id='newlink_disabled' title='Speichern Sie bitte erst den neuen Link' style='display:none'>
 			</td>
 		</tr><tbody class='content'>";
 		
@@ -16,14 +16,14 @@ $tpl_menues_table = "
 		<tr id='id_".$menu_item->menu_item_id."'>
 			<td style='width:50px'>
 			  <img src='ico/color/arrow_updown.png' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>
-				&nbsp;<a onclick='deleteMenuItem(".$menu_item->menu_item_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a>
+				&nbsp;<a onclick='deleteMenuItem(".$menu_item->menu_item_id.")'><img src='".icon('delete')."' title='L&ouml;schen'></a>
 			</td>
 			<td>".$menu_item->menu_item_id."</td>
 			<td id='menu_name".$menu_item->menu_item_id."'>
 			  <span id='extend_option_".$menu_item->menu_item_id."' style='height:20px;float:left'>
 			    ".$menu_item->menu_item_title."
 			  </span>
-			  &nbsp;<img src='ico/color/action_check.png' id='success_ico_".$menu_item->menu_item_id."' style='float:left;display:none'>
+			  &nbsp;<img src='".icon('check')."' id='success_ico_".$menu_item->menu_item_id."' style='float:left;display:none'>
 			  <div id='extended_option_".$menu_item->menu_item_id."' style='height:175px;float:left;display:none'>
 			    <table id='extended_option' style='width:500px'>
 			    <tr>
@@ -73,9 +73,9 @@ $tpl_menues_table = "
 			    </tr>
 			  </table>
 			  </div>
-			  <img src='ico/color/reply.png' title='Link bearbeiten' id='maximize".$menu_item->menu_item_id."' style='float:right;margin-top:3px;' onclick='extendMenuOptions(".$menu_item->menu_item_id.")'>
-			  <img src='ico/color/save.png' title='Link speichern' id='save".$menu_item->menu_item_id."' style='float:right;margin-top:3px;display:none' onclick='saveMenuOptions(".$menu_item->menu_item_id.")'>
-			  <img src='ico/color/minimize.png' title='Editor einklappen' id='minimize".$menu_item->menu_item_id."' style='float:right;margin-right:3px;margin-top:3px;display:none' onclick='hideMenuOptions(".$menu_item->menu_item_id.")'>
+			  <img src='".icon('edit')."' title='Link bearbeiten' id='maximize".$menu_item->menu_item_id."' style='float:right;margin-top:3px;' onclick='extendMenuOptions(".$menu_item->menu_item_id.")'>
+			  <img src='".icon('save')."' title='Link speichern' id='save".$menu_item->menu_item_id."' style='float:right;margin-top:3px;display:none' onclick='saveMenuOptions(".$menu_item->menu_item_id.")'>
+			  <img src='".icon('minus')."' title='Editor einklappen' id='minimize".$menu_item->menu_item_id."' style='float:right;margin-right:3px;margin-top:3px;display:none' onclick='hideMenuOptions(".$menu_item->menu_item_id.")'>
 			</td>
 			<td>
 			  <img src='ico/ico_help.png' title='".$created.$creator." ".$change.$changer."'>
@@ -101,11 +101,11 @@ $tpl_menues_tablelist = "
 		<tr>
 			<td>
 				<a href='index.php?action=menues&edit=".$menu->menu_id."'><img src='ico/ico_settings.png' title='Men&uuml; \"".$menu->menu_name."\" bearbeiten'></a>
-				&nbsp;<!--<a onclick='deleteMenu(".$menu->menu_id.")'>--><img src='ico/gray/action_delete.png' title='L&ouml;schen noch nicht m&ouml;glich'></a>
+				&nbsp;<!--<a onclick='deleteMenu(".$menu->menu_id.")'>--><img src='".icon('delete')."' style='opacity:0.4' title='L&ouml;schen noch nicht m&ouml;glich'></a>
 			</td>
 			<td>".$menu->menu_id."</td>
-			<td id='menu_name".$menu->menu_id."'><span>".$nochange_start."<img src='ico/color/reply.png' title='Namen &auml;ndern' onclick='editMenuName(".$menu->menu_id.")'>".$nochange_end."&nbsp;".$menu->menu_name."</span></td>
-			<td><img src='ico/ico_help.png' title='".$created.$creator." ".$change.$changer."'>
+			<td id='menu_name".$menu->menu_id."'><span>".$nochange_start."<img src='".icon('edit')."' title='Namen &auml;ndern' onclick='editMenuName(".$menu->menu_id.")'>".$nochange_end."&nbsp;".$menu->menu_name."</span></td>
+			<td><img src='".icon('info')."' title='".$created.$creator." ".$change.$changer."'>
 			</td>
 		</tr>";
 ?>

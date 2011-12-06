@@ -43,13 +43,13 @@ foreach($files as $file)
 	if(file_exists($path)) $plugin_admin = true;
 	
 	$content.="<td>
-				".(($plugin_admin == true || $plugin->plugin_active == 1)?"<a href='index.php?action=menues&edit=1'><img src='ico/ico_settings.png' title='Men&uuml; bearbeiten'></a>":"")."
-				&nbsp;<a onclick='changePluginStatus(\"".(($plugin->plugin_active == 1)? "0":"1")."\",\"".$plugin->plugin_id."\")'><img src='ico/ico_available.png' style='opacity:".(($plugin->plugin_active == 1)? "1":"0.4")."' title='".(($plugin->plugin_active == 1)? l("Plugin deaktivieren"):l("Plugin aktivieren"))."'></a>
+				".(($plugin_admin == true || $plugin->plugin_active == 1)?"<a href='index.php?action=menues&edit=1'><img src='".icon('settings')."' title='Men&uuml; bearbeiten'></a>":"")."
+				&nbsp;<a onclick='changePluginStatus(\"".(($plugin->plugin_active == 1)? "0":"1")."\",\"".$plugin->plugin_id."\")'><img src='".icon('check')."' style='opacity:".(($plugin->plugin_active == 1)? "1":"0.4")."' title='".(($plugin->plugin_active == 1)? l("Plugin deaktivieren"):l("Plugin aktivieren"))."'></a>
 			</td>
 			<td>".$plugin->plugin_id."</td>
 			<td id='menu_name".$i."'><span>".$plugin_name." (Version: ".$plugin_version.")</span> </td>
 
-			<td><img src='ico/ico_help.png' title='<b>Autor:</b> <br />".$plugin_author." <br />(".$plugin_author_web.")<br /><br /><b>Erstellt: </b><br />".$plugin_created."'>
+			<td><img src='".icon('info')."' title='<b>Autor:</b> <br />".$plugin_author." <br />(".$plugin_author_web.")<br /><br /><b>Erstellt: </b><br />".$plugin_created."'>
 			</td>";
 	
 	//$content.= $file.' - '.$plugin_name;

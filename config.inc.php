@@ -17,6 +17,7 @@ $app_pagename = 'MCMS Demo';
 error_reporting(E_ALL ^ E_NOTICE); //Normal-Debug
 //error_reporting(E_ALL); //big-debug
 //error_reporting(0); // Live
+$global_icon_folder = "ico/new";
 // ################ General-Configuration ################# 
 
 // ################## User-Configuration ##################

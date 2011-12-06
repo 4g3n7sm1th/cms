@@ -75,12 +75,12 @@ $tpl_users_tablehead = "
 $tpl_users_tablefoot = "
 		<tr>
 			<td>
-				<a href='index.php?action=users&edit=".$userss->user_id."'><img src='ico/color/reply.png' title='Benutzer \"".$userss->user_name."\" bearbeiten'></a>
-				&nbsp;<a onclick='deleteUser(".$userss->user_id.")'><img src='ico/color/action_delete.png' title='L&ouml;schen'></a>
+				<a href='index.php?action=users&edit=".$userss->user_id."'><img src='".icon('edit')."' title='Benutzer \"".$userss->user_name."\" bearbeiten'></a>
+				&nbsp;<a onclick='deleteUser(".$userss->user_id.")'><img src='".icon('delete')."' title='L&ouml;schen'></a>
 			</td>
 			<td>".$userss->user_id."</td>
-			<td><img src='ico/color/search.png' style='margin-bottom:-4px' title='".$user_info."' class='miniprofile'>&nbsp;".$userss->user_name."</td>
-			<td><img src='ico/".$user_active_color."/login.png' title='".$user_active_title."'>&nbsp;<img src='ico/ico_help.png' title='".$created.$creator." ".$change.$changer."'>
+			<td><img src='".icon('info')."' style='margin-bottom:-4px' title='".$user_info."' class='miniprofile'>&nbsp;".$userss->user_name."</td>
+			<td><img src='".icon('login')."' style='opacity:".(($user_active_color == 'gray')? '0.4':'1')."' title='".$user_active_title."'>&nbsp;<img src='".icon('info')."' title='".$created.$creator." ".$change.$changer."'>
 			</td>
 		</tr>";
 ?>

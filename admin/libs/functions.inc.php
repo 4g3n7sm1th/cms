@@ -449,6 +449,55 @@ $str = str_replace($search, $replace, $str);
 return $str;
 }
 
+function icon($icon, $ext='png')
+{
+	global $global_icon_folder;
+	
+	switch($icon)
+	{
+		case 'edit':
+			$icon_file = 'Wrench';
+		break;
+		case 'info':
+			$icon_file = 'Light-Off';
+		break;
+		case 'save':
+			$icon_file = 'Computer-Hard-Drive';
+		break;
+		case 'minus':
+			$icon_file = 'minus';
+		break;
+		case 'plus':
+			$icon_file = 'plus';
+		break;
+		case 'login':
+			$icon_file = 'Lock';
+		break;
+		case 'delete':
+			$icon_file = 'Remove';
+		break;
+		case 'comment':
+			$icon_file = 'Chat';
+		break;
+		case 'preview':
+			$icon_file = 'Desktop';
+		break;
+		case 'check':
+			$icon_file = 'Checkmark';
+		break;
+		case 'write':
+			$icon_file = 'Pencil';
+		break;
+		case 'settings':
+			$icon_file = 'Gear';
+		break;
+		default:
+			$icon_file = $icon;
+		break;
+	}
+	
+	return $global_icon_folder.'/'.$icon_file.'.'.$ext;
+}
 
 function getPageTitle($id)
 {

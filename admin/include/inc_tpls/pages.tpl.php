@@ -56,22 +56,22 @@ $tpl_page_tablehead = "
 $tpl_page_tablebody = "
 		<tr>
 			<td>
-				<a href='index.php?action=pages&edit=".$pagess->page_id."'><img src='ico/new/Wrench.png' title='Seite \"".$pagess->page_title."\" bearbeiten'></a>
-				&nbsp;<a href='".$app_mainpath.$app_mainpage."?p=".$pagess->page_id."' target='_blank'><img src='ico/new/Desktop.png' title='Live-Vorschau'></a>
-				&nbsp;<a onclick='deletePage(".$pagess->page_id.")'><img src='ico/new/Remove.png' title='L&ouml;schen'></a>
+				<a href='index.php?action=pages&edit=".$pagess->page_id."'><img src='".icon('edit')."' title='Seite \"".$pagess->page_title."\" bearbeiten'></a>
+				&nbsp;<a href='".$app_mainpath.$app_mainpage."?p=".$pagess->page_id."' target='_blank'><img src='".icon('preview')."' title='Live-Vorschau'></a>
+				&nbsp;<a onclick='deletePage(".$pagess->page_id.")'><img src='".icon('delete')."' title='L&ouml;schen'></a>
 			</td>
 			<td>".$pagess->page_id."</td>
 			<td>".$pagess->page_title."</td>
 			<td>".$pagess->page_function."</td>
-			<td><img src='ico/new/Lock.png' style='opacity:".(($login_ico_color == 'gray')? '0.4':'1')."' title='".$login_ico_title."'>&nbsp;<img src='ico/new/chat.png' style='opacity:".(($comment_ico_color == 'gray')? '0.4':'1')."' title='".$comment_ico_title."'>
-			<img src='ico/new/Light-Off.png' title='".$created."'>
+			<td><img src='".icon('login')."' style='opacity:".(($login_ico_color == 'gray')? '0.4':'1')."' title='".$login_ico_title."'>&nbsp;<img src='".icon('comment')."' style='opacity:".(($comment_ico_color == 'gray')? '0.4':'1')."' title='".$comment_ico_title."'>
+			<img src='".icon('info')."' title='".$created."'>
 			</td>
 		</tr>";
 		
 $tpl_page_tablebody_menu_edit = "
 		<tr>
 			<td>
-				<a href='index.php?action=menues&edit=".$_GET['edit']."&umenu=".$pagess->page_id."'><img src='ico/color/reply.png' title='Untermen&uuml; f&uuml;r \"".$pagess->page_title."\" bearbeiten'></a>
+				<a href='index.php?action=menues&edit=".$_GET['edit']."&umenu=".$pagess->page_id."'><img src='".icon('edit')."' title='Untermen&uuml; f&uuml;r \"".$pagess->page_title."\" bearbeiten'></a>
 			</td>
 			<td>".$pagess->page_id."</td>
 			<td>".$pagess->page_title."</td>

@@ -12,6 +12,7 @@ $dbprefix = ""; // Prefix for Table-Name
 // ################ General-Configuration ################ 
 $app_mainpath = "http://localhost:8080/cms/"; // Main path
 $app_mainpage = "index.php"; // Main-Page
+$global_icon_folder = "ico/new";
 $startpage = '1'; // Home-Page ID
 $app_pagename = 'MCMS Demo';
 error_reporting(E_ALL ^ E_NOTICE); //Normal-Debug
@@ -20,6 +21,6 @@ error_reporting(E_ALL ^ E_NOTICE); //Normal-Debug
 // ################ General-Configuration ################ 
 
 // ################ User-Configuration ################
-$usrtimeout = '1800'; // Timeout before the user gets logged out (1800 = 30min)
+$usrtimeout = '1800'; // Timeout before the user gets logged out (1800s = 30min)
 // ################ User-Configuration ################
 ?>
