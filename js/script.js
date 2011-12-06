@@ -8,12 +8,14 @@ $(document).ready(function() {
     
     getFeeds();
     
-    $('#allfeeds').tinyscrollbar();
+    $('#content').tinyscrollbar();
+
     
     var refreshId = setInterval(function() {
       loadFeeds();
       var t=setTimeout(function() { 
-        getFeeds(); 
+        getFeeds();
+        
       }, 3000);
    }, 20000);
     
@@ -137,7 +139,6 @@ function getFeeds()
       
       $('#allfeeds').hide();
       $('#allfeeds').html(result);
-      $('#allfeeds').tinyscrollbar_update();
       $('#allfeeds').fadeIn('300');
       }
   });

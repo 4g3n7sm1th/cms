@@ -1,5 +1,5 @@
 <?php
-  $maxresults = '5';
+  $maxresults = '10';
   $maxresults_comments = '10';
 
 if(isset($_GET['news_id']))
@@ -144,6 +144,7 @@ else
 	//$plugins[plugin_news]=$tpl->display('login.tpl');
 	
 	$output.= pagination($page_count, $news_count, $maxresults, 'News');
+	$output.= '<br /><br />';
 }
 $plugins[plugin_news]=$output;
 ?>

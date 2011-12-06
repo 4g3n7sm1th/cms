@@ -1,7 +1,8 @@
     
     <footer>
-      Content &copy; 2012 IlDivo-Fanclub.de - Design &copy; 2012 JulianKern.com - Powered by MCMS Final 1 &copy; 2012 JulianKern.com
-      <span class="right">Hilfe - Impressum - Disclaimer - Datenschutz - Kontakt</span>
+      <span class="left">Content &copy; 2012 <a href="http://ildivo-fanclub.de" target="_blank">IlDivo-Fanclub.de</a> - Design &copy; 2012 <a href="http://juliankern.com" target="_blank">JulianKern.com</a> - Powered by MCMS Final 1 &copy; 2012 <a href="http://juliankern.com" target="_blank">JulianKern.com</a></span>
+      <!--<span class="right">Hilfe - Impressum - Disclaimer - Datenschutz - Kontakt</span>-->
+      <span class="right">{menue id=3}</span>
     </footer>
   </div> <!--! end of #container -->
 
@@ -9,7 +10,7 @@
   <!-- JavaScript at the bottom for fast page loading -->
 
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
 
 

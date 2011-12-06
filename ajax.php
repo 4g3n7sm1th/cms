@@ -133,7 +133,7 @@ switch($_POST['req']) {
   
   case 'getFeeds':
   
-    $feeds = $db->get_results('SELECT * FROM feeds ORDER BY feed_ts DESC LIMIT 12');
+    $feeds = $db->get_results('SELECT * FROM feeds ORDER BY feed_ts DESC LIMIT 15');
    
     foreach($feeds as $feed)
 	  {
