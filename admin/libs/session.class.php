@@ -100,6 +100,8 @@ class flexibleAccess{
 		$sql = "SELECT * FROM ".$this->usertable." 
 		WHERE ".$this->user_name." = '$uname' AND ".$this->user_pass." = $password LIMIT 1";
 		$this->userData = $this->db->get_results($sql);
+        session_start();
+        session_regenerate_id();
 		if ( @count($this->userData) == 0)
 			return false;
 		if ( $loadUser )
@@ -128,11 +130,15 @@ class flexibleAccess{
   */
   function logout($redirectTo = '')
   {
+    $sql = "UPDATE ".$this->usertable." SET user_session = NULL WHERE ".$this->user_id." = ".$_SESSION['user_id'].";";
+    $logout = $this->db->query($sql);
+    if(!$logout) return false;
+    
   	writelog('logout', 'Session: '.$_SESSION['sid'], $_SESSION['user_id']);
     setcookie($this->remCookieName, '', time()-3600);
     $_SESSION[$this->sessionVariable] = '';
     $this->userData = '';
-    session_unset();
+    session_destroy();
     if ( $redirectTo != '' && !headers_sent()){
 	   header('Location: '.$redirectTo );
 	   exit;//To ensure security
@@ -161,8 +167,13 @@ class flexibleAccess{
   
   function get_property($property)
   {
-    if (empty($_SESSION['user_id'])) $this->error('No user is loaded', __LINE__);
+    if (empty($_SESSION['user_id'])) 
+    { 
+        $this->error('No user is loaded', __LINE__); 
+        return false;
+    }
     $sql = "SELECT ".$property." FROM ".$this->usertable." WHERE ".$this->user_session." = '".$_SESSION['sid']."';";
+    //echo $sql;
     $res = $this->db->get_var($sql);
     if (count($res)==0) 
     { 

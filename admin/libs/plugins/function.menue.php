@@ -9,7 +9,7 @@ global $db;
         return;
     }
     
-    if(!isset($_GET['p']) && $_GET['p'] != '' && $_GET['p'] != '0') { $page_id = '1'; } else { $page_id = $_GET['p']; }
+    if(!isset($_GET['p']) || $_GET['p'] != '' || $_GET['p'] == '0' || !$_GET['p']) { $page_id = '1'; } else { $page_id = $_GET['p']; }
     
     if(empty($params['id']) && $params['page'] == 'true') {
     $menu_id = '0';
@@ -23,7 +23,7 @@ global $db;
    		$pages = $db->get_results($sql);
    		
    		if($pages == '') { $pages = $db->get_results("SELECT * FROM pages WHERE page_id = '".$page_id."' AND page_ts_delete IS NULL"); }
-   		
+        
    		$i=1;
    		$class='a';
    		$liclass = '';

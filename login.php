@@ -7,6 +7,7 @@ if($_POST['loginsubmit'])
 	$remember = false;
 	if($_POST['page']) {$page= 'p='.$_POST['page'];}else{$page='';}
 	if($_POST['action']) {$action = 'action='.$_POST['action'];}else{$action='';}
+    
 	$tpl->assign('test', 'test');
 	$username = $_POST['username'];
 	$password = $_POST['password'];

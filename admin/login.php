@@ -29,7 +29,7 @@ if($_POST['loginsubmit'])
 elseif($_GET['action'] == 'logout')
 {
 	$logout = $user->logout();
-	message("Sie wurden erfolgreich ausgeloggt.", 'success', '2', 'index.php?p='.$pages);
+	message("Sie wurden erfolgreich ausgeloggt.", 'success', '2', './../index.php');
 }
 else
 {
