@@ -134,14 +134,14 @@ function addMenuItem(i)
   var new_html = "<tr id='id_"+i+"'>"+
 			"<td style='width:50px'>"+
 			  "<img src='ico/color/arrow_updown.png' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>"+
-				"&nbsp;<img src='ico/gray/action_delete.png' title='L&ouml;schen erst nach neuladen möglich'>"+
+				"&nbsp;<img src='"+icon('delete')+"' title='L&ouml;schen erst nach neuladen möglich'>"+
 			"</td>"+
 			"<td>"+i+"</td>"+
 			"<td id='menu_name"+i+"'>"+
 			  "<span id='extend_option_"+i+"' style='height:20px;float:left'>"+
 			    ""+
 			  "</span>"+
-			  "&nbsp;<img src='ico/color/action_check.png' id='success_ico_"+i+"' style='float:left;display:none'>"+
+			  "&nbsp;<img src='"+icon('check')+"' id='success_ico_"+i+"' style='float:left;display:none'>"+
 			  "<div id='extended_option_"+i+"' style='height:175px;float:left;display:none'>"+
 			    "<table id='extended_option' style='width:350px'>"+
 			    "<tr>"+
@@ -186,12 +186,12 @@ function addMenuItem(i)
 			    "</tr>"+
 			  "</table>"+
 			  "</div>"+
-			  "<img src='ico/color/reply.png' title='Link bearbeiten' id='maximize"+i+"' style='float:right;margin-top:3px;' onclick='extendMenuOptions("+i+")'>"+
-			  "<img src='ico/color/save.png' title='Link speichern' id='save"+i+"' style='float:right;margin-top:3px;display:none' onclick='saveMenuOptions("+i+", 1)'>"+
-			  "<img src='ico/color/minimize.png' title='Editor einklappen' id='minimize"+i+"' style='float:right;margin-right:3px;margin-top:3px;display:none' onclick='hideMenuOptions("+i+")'>"+
+			  "<img src='"+icon('edit')+"' title='Link bearbeiten' id='maximize"+i+"' style='float:right;margin-top:3px;' onclick='extendMenuOptions("+i+")'>"+
+			  "<img src='"+icon('save')+"' title='Link speichern' id='save"+i+"' style='float:right;margin-top:3px;display:none' onclick='saveMenuOptions("+i+", 1)'>"+
+			  "<img src='"+icon('minus')+"' title='Editor einklappen' id='minimize"+i+"' style='float:right;margin-right:3px;margin-top:3px;display:none' onclick='hideMenuOptions("+i+")'>"+
 			"</td>"+
 			"<td>"+
-			  "<img src='ico/ico_help.png' title='<b>Erstellt:</b> <br />noch nicht gespeichert '>"+
+			  "<img src='"+icon('info')+"' title='<b>Erstellt:</b> <br />noch nicht gespeichert '>"+
 			"</td>"+
 		"</tr>";
 		
@@ -379,7 +379,7 @@ function hideMenuOptions(i)
 function editMenuName(menu_id) 
 {
 	$('#menu_name'+menu_id+' span').fadeOut('fast');
-	$('#menu_name'+menu_id+' span').html('Neuer Name: <input type="text" style="width:80px;" id="newMenuName'+menu_id+'"> <img class="ico" title="Speichern" src="ico/ico_download.png" onclick="saveMenuName('+menu_id+')">');
+	$('#menu_name'+menu_id+' span').html('Neuer Name: <input type="text" style="width:80px;" id="newMenuName'+menu_id+'"> <img class="ico" title="Speichern" src="'+icon('save')+'" onclick="saveMenuName('+menu_id+')">');
 	$('#menu_name'+menu_id+' span').fadeIn('fast');
 	loadTitle();
 }
@@ -398,7 +398,7 @@ function saveMenuName(menu_id)
       if(result=='1') 
       {
       	$('#menu_name'+menu_id+' span').fadeOut('fast');
-				$('#menu_name'+menu_id+' span').html("<img src='ico/color/reply.png' title='Namen &auml;ndern' onclick='editMenuName("+menu_id+")'>"+new_name).val();
+				$('#menu_name'+menu_id+' span').html("<img src='"+icon('write')+"' title='Namen &auml;ndern' onclick='editMenuName("+menu_id+")'>"+new_name).val();
 				$('#menu_name'+menu_id+' span').fadeIn('fast');
 				loadTitle();
       }

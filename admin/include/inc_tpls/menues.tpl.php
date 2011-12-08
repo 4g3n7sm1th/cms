@@ -15,7 +15,7 @@ $tpl_menues_form1 = "<form action='index.php?action=".$_GET['action']."&edit=".$
 $tpl_menues_table = "
 		<tr id='id_".$menu_item->menu_item_id."'>
 			<td style='width:50px'>
-			  <img src='ico/color/arrow_updown.png' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>
+			  <img src='".icon('move')."' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>
 				&nbsp;<a onclick='deleteMenuItem(".$menu_item->menu_item_id.")'><img src='".icon('delete')."' title='L&ouml;schen'></a>
 			</td>
 			<td>".$menu_item->menu_item_id."</td>
@@ -78,7 +78,7 @@ $tpl_menues_table = "
 			  <img src='".icon('minus')."' title='Editor einklappen' id='minimize".$menu_item->menu_item_id."' style='float:right;margin-right:3px;margin-top:3px;display:none' onclick='hideMenuOptions(".$menu_item->menu_item_id.")'>
 			</td>
 			<td>
-			  <img src='ico/ico_help.png' title='".$created.$creator." ".$change.$changer."'>
+			  <img src='".icon('info')."' title='".$created.$creator." ".$change.$changer."'>
 			</td>
 		</tr>";
 		
@@ -91,20 +91,20 @@ $tpl_menues_tableend = "</tbody>
 $tpl_menues_tablehead = "
 	<table id='users'>
 		<tr style='font-weight:bold'>
-			<td>&nbsp;</td>
+			<td style='width:50px;'>&nbsp;</td>
 			<td style='width:25px'>ID</td>
 			<td>Name</td>
-			<td>&nbsp;</td>
+			<td style='width:20px;'>&nbsp;</td>
 		</tr>";
 		
 $tpl_menues_tablelist = "
 		<tr>
 			<td>
-				<a href='index.php?action=menues&edit=".$menu->menu_id."'><img src='ico/ico_settings.png' title='Men&uuml; \"".$menu->menu_name."\" bearbeiten'></a>
+				<a href='index.php?action=menues&edit=".$menu->menu_id."'><img src='".icon('settings')."' title='Men&uuml; \"".$menu->menu_name."\" bearbeiten'></a>
 				&nbsp;<!--<a onclick='deleteMenu(".$menu->menu_id.")'>--><img src='".icon('delete')."' style='opacity:0.4' title='L&ouml;schen noch nicht m&ouml;glich'></a>
 			</td>
 			<td>".$menu->menu_id."</td>
-			<td id='menu_name".$menu->menu_id."'><span>".$nochange_start."<img src='".icon('edit')."' title='Namen &auml;ndern' onclick='editMenuName(".$menu->menu_id.")'>".$nochange_end."&nbsp;".$menu->menu_name."</span></td>
+			<td id='menu_name".$menu->menu_id."'><span>".$nochange_start."<img src='".icon('write')."' title='Namen &auml;ndern' onclick='editMenuName(".$menu->menu_id.")'>".$nochange_end."&nbsp;".$menu->menu_name."</span></td>
 			<td><img src='".icon('info')."' title='".$created.$creator." ".$change.$changer."'>
 			</td>
 		</tr>";

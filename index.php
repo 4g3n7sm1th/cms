@@ -32,13 +32,22 @@ elseif(isset($page->page_function))
 							  FROM plugins
 							 WHERE plugin_name = '".$page->page_function."';");
 	if(!$plugin) message("Fehler beim Laden des Plugins (".$page->page_function.", DB)",'error');
-	$plugin_folder='plugins/';
-	if($plugin->plugin_folder) $plugin_folder.= $plugin->plugin_folder.'/';
-	$inc_path = $plugin_folder.'plugin.'.$plugin->plugin_identify.'.inc.php';
-	$inc = include($inc_path);
-	if(!$inc) message("Fehler beim Laden des Plugins (".$plugin->plugin_name.", '".$inc_path."')",'error');
-	$tpl->assign("content",$plugins['plugin_'.$page->page_function]);
-	$tpl->assign("pagetitle",utf8_encode($page->page_title));
+	if($plugin->plugin_active == 1)
+	{
+	  $plugin_folder='plugins/';
+	  if($plugin->plugin_folder) $plugin_folder.= $plugin->plugin_folder.'/';
+	  $inc_path = $plugin_folder.'plugin.'.$plugin->plugin_identify.'.inc.php';
+	  $inc = include($inc_path);
+	  if(!$inc) message("Fehler beim Laden des Plugins (".$plugin->plugin_name.", '".$inc_path."')",'error');
+	  $tpl->assign("content",$plugins['plugin_'.$page->page_function]);
+	  $tpl->assign("pagetitle",utf8_encode($page->page_title));
+  }
+  else
+  {
+    message('Auf dieser Seite ist ein Plugin vorhanden, aber es ist nicht aktiviert!', 'error');
+    $tpl->assign("content",utf8_encode($page->page_content));
+		$tpl->assign("pagetitle",utf8_encode($page->page_title));
+  }
 }
 
 

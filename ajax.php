@@ -2,6 +2,7 @@
 require('libs/globals.inc.php');
 
 switch($_POST['req']) {
+
 	case 'loadFacebookFeed':
 	
 	  $feed_type = 'facebook';

@@ -491,6 +491,9 @@ function icon($icon, $ext='png')
 		case 'settings':
 			$icon_file = 'Gear';
 		break;
+		case 'move':
+			$icon_file = 'Arrow-Move';
+		break;
 		default:
 			$icon_file = $icon;
 		break;

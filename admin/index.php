@@ -2,7 +2,7 @@
 require('libs/globals.inc.php');
 
 if(!$user->is_loggedin()) header("Location: login.php");
-if(!$user->right('admin.panel')) message(l('Sie haben nicht die Berechtigung das Admin-Panel zu betreten'), "success", '', $redirect);
+if(!$user->right('admin.panel')) message(l('Sie haben nicht die Berechtigung das Admin-Panel zu betreten'), "error", '', 'login.php');
 
 if(isset($_GET['action'])) { $action =  $_GET['action']; } else { $action = 'dashboard'; }
 

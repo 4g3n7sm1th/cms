@@ -33,9 +33,22 @@
 		$(document).ready(function() {
 			$('input.tip').formtips({
         tippedClass: 'formtip'
-    });				  
-			$(".bigtip[title]").filter(':not(input)').qtip({ 
-				content: $('.'+$(this).attr('title')),
+      });	
+      			  
+			$(".miniprofile").each(function() { 
+			  $(this).qtip({ 
+				content: {
+            text: 'Loading...', // Make sure we declare some basic loading content
+            ajax: {
+               url: 'ajax.php', // Grab user data from serverside PHP script...
+               type: 'POST',
+               once: false,
+               data: { 
+                  userid: $(this).attr('rel'),  // ...providing a 'userid' which is stored in the avatars REL attribute
+                  req: 'miniprofile'
+               } 
+            }
+         },
 				position: {
 							my: 'left center',
 							at: 'right center'
@@ -45,6 +58,8 @@
 								classes: 'ui-tooltip-dark ui-tooltip-shadow '
 					}
 			  });
+			});
+			
 			
 			$(".miniprofile[title]").qtip({ 
 								position: {
@@ -59,7 +74,7 @@
 							  
 			
 			
-			$("[title]").filter(':not(input)').qtip({ 
+			$("[title]").filter(':not(input)').not('.bigtip').qtip({ 
 				
 				position: {
 							my: 'left center',
@@ -166,4 +181,58 @@ function l(str)
       }
     }
   });
+}
+
+function icon(icon, ext, icon_folder)
+{
+	if(!ext) ext='png';
+	if(!icon_folder) icon_folder='ico/new';
+	
+	switch(icon)
+	{
+		case 'edit':
+			icon_file = 'Wrench';
+		break;
+		case 'info':
+			icon_file = 'Light-Off';
+		break;
+		case 'save':
+			icon_file = 'Computer-Hard-Drive';
+		break;
+		case 'minus':
+			icon_file = 'minus';
+		break;
+		case 'plus':
+			icon_file = 'plus';
+		break;
+		case 'login':
+			icon_file = 'Lock';
+		break;
+		case 'delete':
+			icon_file = 'Remove';
+		break;
+		case 'comment':
+			icon_file = 'Chat';
+		break;
+		case 'preview':
+			icon_file = 'Desktop';
+		break;
+		case 'check':
+			icon_file = 'Checkmark';
+		break;
+		case 'write':
+			icon_file = 'Pencil';
+		break;
+		case 'settings':
+			icon_file = 'Gear';
+		break;
+		case 'move':
+			icon_file = 'Arrow-Move';
+		break;
+		default:
+			icon_file = icon;
+		break;
+	}
+	
+	return icon_folder+'/'+icon_file+'.'+ext;
 }
