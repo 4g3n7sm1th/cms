@@ -9,11 +9,15 @@ $content.= $tpl_page_head;
 
 if(isset($_GET['plugin']))
 {
-  $content.='Plugin-Admin!';
+  $plugin_inc = $plugin_path.'/'.$file.'/plugin.inc.php';
+	
+	if(file_exists($plugin_inc)) 
+	{ include($plugin_inc); } else
+	{ message('Plugin '.$file.': '.l('Dem Plugin fehlt die include-Datei!'), 'error'); }
 }
 else
 {
-  $files = scandir('../plugins');
+  $files = scandir($plugin_path);
 
   //var_dump($files);
 

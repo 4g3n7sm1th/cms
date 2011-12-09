@@ -38,7 +38,7 @@
 			$(".miniprofile").each(function() { 
 			  $(this).qtip({ 
 				content: {
-            text: 'Loading...', // Make sure we declare some basic loading content
+            text: '<img src="./ico/loader_gray.gif">', // Make sure we declare some basic loading content
             ajax: {
                url: 'ajax.php', // Grab user data from serverside PHP script...
                type: 'POST',

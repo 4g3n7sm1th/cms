@@ -250,6 +250,7 @@ text-align:center;
 }
 
 table.user_info {
+color:white;
 font-size:12px;
 border:none;
 margin:0;
@@ -262,7 +263,7 @@ text-align:right;
 
 .miniprofile
 {
-  color:white;
+  text-decoration: underline;
 }
 
 div#users input[type="text"], div#users input[type="password"] {
