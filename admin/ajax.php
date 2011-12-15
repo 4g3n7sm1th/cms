@@ -1,7 +1,7 @@
 <?php
 require('libs/globals.inc.php');
 
-if(!$user->is_loggedin()) header("Location: login.php");
+if(!$user->is_loggedin()) message('Login required','error');
 
 switch($_POST['req']) {
   case 'miniprofile':
@@ -161,6 +161,20 @@ switch($_POST['req']) {
 		
 	break;
 	
+	
+	case 'deleteData':
+		$id = $_POST['id'];
+		$type = $_POST['type'];
+		
+		if($type == '' || $id == '') die(0);
+		
+		$delete = $db->query('UPDATE '.$type.((substr($type, -1)=='s')? "":"s").' SET '.$type.'_ts_delete = NOW(), '.$type.'_id_delete = "'.$_SESSION['user_id'].'" WHERE '.$type.'_id = '.$id.'');
+		
+		if(!$delete)
+		{ echo '0'; }
+		else
+		{ echo '1'; }
+	break;
 	
 	
 	case 'deletePage':

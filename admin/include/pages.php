@@ -91,10 +91,10 @@ else
 	
 	foreach($pages as $pagess)
 	{
-		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_author.";");
+		$creator = ' von '.getUsername($pagess->page_author);
 		if($pagess->page_ts_update != '') { 
 			$change = '<br /><br /><b>Letzte Änderung: </b><br />'.date_mysql($pagess->page_ts_update, "d.m.y, H:i").' Uhr'; 
-			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_id_update.";");
+			$changer = ' von '.getUsername($pagess->page_id_update);
 		} else { 
 			$change = ''; 
 			$changer = '';

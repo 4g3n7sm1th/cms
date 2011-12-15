@@ -2,7 +2,7 @@
 $tpl_plugin_news_start = '<div id="meldung">';
 
 $tpl_plugin_news = '
-          <h3><a href="?p='.$_GET['p'].'&news_id='.$news->plugin_news_id.'">'.$news->plugin_news_title.'</a></h3>
+          <h3><a href="?p='.$_GET['p'].'&news_id='.$news->plugin_news_id.'">'.utf8_encode($news->plugin_news_title).'</a></h3>
           <h6>geschrieben von <a href="#">'.$author.'</a> '.$created.' - Kategorie: <a href="#">Il Divo</a></h6>
           <!--<img src="images/test.png" class="newsimage">-->
           '.$news_content_new.'

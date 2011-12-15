@@ -449,7 +449,7 @@ $str = str_replace($search, $replace, $str);
 return $str;
 }
 
-function icon($icon, $ext='png')
+function icon($icon, $mode='1', $ext='png')
 {
 	global $global_icon_folder;
 	
@@ -499,7 +499,14 @@ function icon($icon, $ext='png')
 		break;
 	}
 	
-	return $global_icon_folder.'/'.$icon_file.'.'.$ext;
+	if($mode == '1')
+	{
+	  return $global_icon_folder.'/'.$icon_file.'.'.$ext;
+	}
+	elseif($mode == '2')
+	{
+	  return '<img src="'.$global_icon_folder.'/'.$icon_file.'.'.$ext.'">';
+	}
 }
 
 function getPageTitle($id)

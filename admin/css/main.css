@@ -226,7 +226,7 @@ width:60px;
 text-align:center;
 }
 
-table#users {
+table {
 border:1px solid black;
 font-size:12px;
 border-collapse:collapse;
@@ -234,17 +234,23 @@ width:82%;
 margin-left:10px;
 }
 
-table#users td {
+table td {
 border:1px solid black;
 padding:5px;
 }
 
-table#users tr>td:first-child {
+table th {
+text-align:left;
+padding:5px;
+font-size:12px;
+}
+
+table tr>td:first-child {
 width:40px;
 text-align:center;
 }
 
-table#users tr>td:last-child {
+table tr>td:last-child {
 width:40px;
 text-align:center;
 }
@@ -252,14 +258,27 @@ text-align:center;
 table.user_info {
 color:white;
 font-size:12px;
-border:none;
+border:0;
 margin:0;
-padding:0
+padding:0;
+width:100px;
 }
 
 table.user_info tr>td:first-child {
 text-align:right;
+border:0;
 }
+
+table.user_info tr>td:last-child {
+text-align:left;
+border:0;
+}
+
+table.user_info td
+{
+  border:0;
+  padding:2px;
+} 
 
 .miniprofile
 {

@@ -12,11 +12,13 @@ if($_GET['action'] == 'logout')
 	message("Sie wurden erfolgreich ausgeloggt.", 'success', '2', 'index.php?p='.$pages);
 }
 
-$page = $db->get_row('SELECT * FROM pages WHERE page_id = '.mysql_real_escape_string($pages).';');
+$page = $db->get_row('SELECT * FROM pages 
+                          LEFT JOIN plugin2page ON plugin2page.page_id = pages.page_id
+                              WHERE pages.page_id = '.mysql_real_escape_string($pages).'
+                              ;');
 if(!$page) message("Diese Seite konnte leider nicht gefunden werden.", 'error');
 
-
-if($page->page_function == '') {
+if(!$page->plugin_id) {
 	if($page->page_loginrequired == '1' && $user->is_loggedin() == false)
 	{ message('Um diese Seite betrachten zu können müssen Sie eingeloggt sein.', 'error'); }
 	else
@@ -26,12 +28,12 @@ if($page->page_function == '') {
 		$tpl->assign("pagetitle",utf8_encode($page->page_title));
 	}
 }
-elseif(isset($page->page_function))
+elseif(isset($page->plugin_id) && $page->plugin_id != '')
 {
 	$plugin = $db->get_row("SELECT *
 							  FROM plugins
-							 WHERE plugin_name = '".$page->page_function."';");
-	if(!$plugin) message("Fehler beim Laden des Plugins (".$page->page_function.", DB)",'error');
+							 WHERE plugin_id = '".$page->plugin_id."';");
+	if(!$plugin) message("Fehler beim Laden des Plugins (ID: ".$page->plugin_id.", DB)",'error');
 	if($plugin->plugin_active == 1)
 	{
 	  $plugin_folder='plugins/';

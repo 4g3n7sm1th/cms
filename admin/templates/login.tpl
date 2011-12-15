@@ -1,6 +1,6 @@
 {include file="headinclude.tpl"}
-<table style="width:100%;height:100%;font-size:1em;"><tr>
-<td style="background-color:#eee;text-align:center;vertical-align:middle">
+<table style="width:100%;height:100%;font-size:1em;padding:0;margin:0;border:0;"><tr>
+<td style="background-color:#eee;text-align:center;vertical-align:middle;padding:0;margin:0;border:0">
 
 <div class="message-message login">
 <form action="login.php" method="post" id="login">

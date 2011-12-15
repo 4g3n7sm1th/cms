@@ -130,9 +130,13 @@ class flexibleAccess{
   */
   function logout($redirectTo = '')
   {
-    $sql = "UPDATE ".$this->usertable." SET user_session = NULL WHERE ".$this->user_id." = ".$_SESSION['user_id'].";";
-    $logout = $this->db->query($sql);
-    if(!$logout) return false;
+    if(isset($_SESSION['user_id']))
+    {
+      $sql = "UPDATE ".$this->usertable." SET user_session = NULL WHERE user_id = ".$_SESSION['user_id'].";";
+      //echo $sql;
+      $logout = $this->db->query($sql);
+      if(!$logout) return false;
+    }
     
   	writelog('logout', 'Session: '.$_SESSION['sid'], $_SESSION['user_id']);
     setcookie($this->remCookieName, '', time()-3600);

@@ -132,11 +132,11 @@ else
 	$content.= $tpl_users_tablehead;
 	foreach($users as $userss)
 	{
-		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$userss->user_id_create."");
+		$creator = ' von '.getUsername($userss->user_id_create);
 		$created = '<b>Erstellt:</b> <br />'.date_mysql($userss->user_ts_create, "d.m.y, H:i").' Uhr';
 		if($userss->user_ts_update != '') { 
 			$change = '<br /><br /><b>Letzte Änderung: </b><br />'.date_mysql($userss->user_ts_update, "d.m.y, H:i").' Uhr'; 
-			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$userss->user_id_update.";");
+			$changer = ' von '.getUsername($userss->user_id_update);
 		} else { 
 			$change = ''; 
 			$changer = '';

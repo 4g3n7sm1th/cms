@@ -28,6 +28,34 @@
 			media_external_list_url : "lists/media_list.js",
 
 		});
+		
+		$('textarea.editor-small').tinymce({
+			// Location of TinyMCE script
+			script_url : 'js/tiny_mce/tiny_mce.js',
+
+			// General options
+			theme : "advanced",
+			plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
+
+			// Theme options
+			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,fontsizeselect,formatselect,|,pagebreak,|,link,unlink,image,|,sub,sup,|,media,|,bullist,numlist,|,removeformat",
+			theme_advanced_buttons2 : "",
+			theme_advanced_buttons3 : "",
+			theme_advanced_toolbar_location : "top",
+			theme_advanced_toolbar_align : "left",
+			theme_advanced_statusbar_location : "bottom",
+			theme_advanced_resizing : true,
+
+			// Example content CSS (should be your site CSS)
+			content_css : "css/content.css",
+
+			// Drop lists for link/image/media/template dialogs
+			template_external_list_url : "lists/template_list.js",
+			external_link_list_url : "lists/link_list.js",
+			external_image_list_url : "lists/image_list.js",
+			media_external_list_url : "lists/media_list.js",
+
+		});
 	});
 
 		$(document).ready(function() {
@@ -181,6 +209,41 @@ function l(str)
       }
     }
   });
+}
+
+function deleteData(type, id)
+{
+
+  conf = confirm('Wollen Sie den Datensatz wirklich löschen?');
+
+  if(conf) {
+	  $.ajax({
+      type: "POST",
+      url: 'ajax.php',
+      async:true,
+      data: 'req=deleteData&type='+encodeURIComponent(type)+'&id='+encodeURIComponent(id),
+      success: function(result) {
+        if(result=='1') 
+        {
+      	  msg = "Erfolgreich gelöscht";
+      	  type= 'success';
+        }
+        else
+        {
+      	  msg = "Löschen fehlgeschlagen";
+      	  type= 'error';
+        }
+        message(msg, type);
+        setTimeout(function(){window.location.reload();}, 2000);
+        return true;
+      }
+    });
+  }
+  else
+  {
+    return false;
+  }
+
 }
 
 function icon(icon, ext, icon_folder)

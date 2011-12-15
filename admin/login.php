@@ -20,10 +20,10 @@ if($_POST['loginsubmit'])
 	if($page && $action) { $redirect .='?'.$page.'&'.$post; }
 	elseif($page && !$action) { $redirect .='?'.$page; }
 	elseif(!$page && $action) { $redirect .='?'.$action; }
-	if($login) message($meldung, "success", '', $redirect); 
+	if($login == true) message($meldung, "success", '', $redirect); 
 	$error = 'Beim Login ist ein Fehler aufgetreten.';
 	
-	if(!$login) message($error, 'error');
+	if($login == false) message('Ihr Benutzername oder Ihr Passwort ist falsch', 'error', '', 'login.php');
 	}
 }
 elseif($_GET['action'] == 'logout')

@@ -38,11 +38,11 @@ if(isset($_GET['edit']))
 	$i=1;	
 	foreach($menu_items as $menu_item)
 	{
-		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_create."");
+		$creator = ' von '.getUsername($menu_item->menu_item_id_create);
 		$created = '<b>'.l('Erstellt').':</b> <br />'.date_mysql($menu_item->menu_item_ts_create, "d.m.y, H:i").' '.l('Uhr');
 		if($menu_item->menu_item_ts_update != '') { 
 			$change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($menu_item->menu_item_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
-			$changer = ' '.l('von').' '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_update.";");
+			$changer = ' '.l('von').' '.getUsername($menu_item->menu_item_id_update);
 		} else { 
 			$change = ''; 
 			$changer = '';
@@ -92,10 +92,10 @@ if(isset($_GET['edit']))
 	
   	foreach($pages as $pagess)
   	{
-		  $creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_author.";");
+		  $creator = ' von '.getUsername($pagess->page_author);
 		  if($pagess->page_ts_update != '') { 
 			  $change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($pagess->page_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
-			  $changer = ' '.l('von').' '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$pagess->page_id_update.";");
+			  $changer = ' '.l('von').' '.getUsername($pagess->page_id_update);
 		  } else { 
 			  $change = ''; 
 			  $changer = '';
@@ -139,11 +139,11 @@ if(isset($_GET['edit']))
 	$i=1;	
 	foreach($menu_items as $menu_item)
 	{
-		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_create."");
+		$creator = ' von '.getUsername($menu_item->menu_item_id_create);
 		$created = '<b>'.l('Erstellt').':</b> <br />'.date_mysql($menu_item->menu_item_ts_create, "d.m.y, H:i").' '.l('Uhr');
 		if($menu_item->menu_item_ts_update != '') { 
 			$change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($menu_item->menu_item_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
-			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu_item->menu_item_id_update.";");
+			$changer = ' von '.getUsername($menu_item->menu_item_id_update);
 		} else { 
 			$change = ''; 
 			$changer = '';
@@ -191,11 +191,11 @@ $menues = $db->get_results('SELECT * FROM menus WHERE menu_ts_delete IS NULL AND
 	$content.= $tpl_menues_tablehead;
 	foreach($menues as $menu)
 	{
-		$creator = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu->menu_id_create."");
+		$creator = ' von '.getUsername($menu->menu_id_create);
 		$created = '<b>'.l('Erstellt').':</b> <br />'.date_mysql($menu->menu_ts_create, "d.m.y, H:i").' '.l('Uhr');
 		if($menu->menu_ts_update != '') { 
 			$change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($menu->menu_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
-			$changer = ' von '.$db->get_var("SELECT user_name FROM users WHERE user_id = ".$menu->menu_id_update.";");
+			$changer = ' von '.getUsername($menu->menu_id_update);
 		} else { 
 			$change = ''; 
 			$changer = '';
