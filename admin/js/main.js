@@ -1,5 +1,5 @@
 	$().ready(function() {
-	
+	  
 	
 		$('textarea.tinymce').tinymce({
 			// Location of TinyMCE script
@@ -88,21 +88,19 @@
 			  });
 			});
 			
+			$(".gallery").qtip({ 
+				
+				position: {
+							my: 'top center',
+							at: 'bottom center'
+				}, 
+				
+				style: {
+								classes: 'ui-tooltip-dark ui-tooltip-shadow '
+					}
+			  });
 			
-			$(".miniprofile[title]").qtip({ 
-								position: {
-											my: 'bottom center',
-											at: 'top center'
-								}, 
-								
-								style: {
-      										classes: 'ui-tooltip-dark ui-tooltip-shadow '
-   								}
-							  });
-							  
-			
-			
-			$("[title]").filter(':not(input)').not('.bigtip').qtip({ 
+			$("[title]").filter(':not(input)').not('.gallery').qtip({ 
 				
 				position: {
 							my: 'left center',
@@ -131,11 +129,15 @@
 					}
 				});
 		
-		});
+		    $('div.gallery').lightBox({
+		      imageLoading: 'ico/loader_black.gif'
+		    });
 		
-		function loadTitle()
-		{
-		$("[title]").qtip({ 
+		}); // Page-Load end
+		
+function loadTitle()
+{
+$("[title]").qtip({ 
 								position: {
 											my: 'left center',
 											at: 'right center'
@@ -145,7 +147,7 @@
       										classes: 'ui-tooltip-dark ui-tooltip-shadow '
    								}
 							  });
-		}
+}
 		
 function dump(arr,level) {
 	var dumped_text = "";

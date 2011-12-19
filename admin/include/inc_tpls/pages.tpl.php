@@ -35,7 +35,7 @@ $tpl_page_form2 = '	<form action="index.php?action=pages&edit='.$_GET['edit'].'"
 							</form>';
 							
 $tpl_page_tablehead = "
-	<table id='pages'>
+	<table>
 		<tr style='font-weight:bold'>
 			<td style='width:80px;'>&nbsp;</td>
 			<td style='width:25px;'>ID</td>
@@ -45,7 +45,7 @@ $tpl_page_tablehead = "
 		</tr>";
 		
 		$tpl_page_tablehead_menu_edit = "
-	<table id='pages'>
+	<table>
 		<tr style='font-weight:bold'>
 			<td style='width:20px !important'>&nbsp;</td>
 			<td style='width:25px;'>ID</td>

@@ -180,6 +180,14 @@ width:600px;
 font-size:26px;
 width:100%;
 color:lightgray;
+border:1px solid lightgray;
+}
+
+.biginput {
+font-size:26px;
+width:100%;
+color:#555;
+border:1px solid lightgray;
 }
 
 #submitbox {
@@ -255,13 +263,48 @@ width:40px;
 text-align:center;
 }
 
+table#users {
+border:1px solid black;
+font-size:12px;
+border-collapse:collapse;
+width:82%;
+margin-left:10px;
+}
+
+table#users tr {
+border:1px solid black;
+}
+
+table#users td {
+text-align:left !important;
+border:0;
+padding:5px;
+}
+
+table#users th {
+text-align:left;
+padding:5px;
+font-size:12px;
+border:0;
+}
+
+table#users tr>td:first-child {
+width:40px;
+text-align:center;
+}
+
+table#users tr>td:last-child {
+width:40px;
+text-align:center;
+}
+
 table.user_info {
 color:white;
 font-size:12px;
 border:0;
 margin:0;
 padding:0;
-width:100px;
+width:auto;
 }
 
 table.user_info tr>td:first-child {

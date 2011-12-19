@@ -23,7 +23,7 @@
 
   <!-- CSS: implied media=all -->
   <!-- CSS concatenated and minified via ant build script-->
-  <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+  <link type="text/css" href="css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
 	<link type="text/css" href="css/jquery.tooltip.css" rel="stylesheet" />
 	<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />
 	<link type="text/css" href="css/jquery.liveSearch.css" rel="stylesheet" />

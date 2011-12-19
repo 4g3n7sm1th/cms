@@ -1,7 +1,8 @@
 <?php
 $tpl_menues_head = '<script type="text/javascript" src="js/menu.js"></script>';
 
-$tpl_menues_form1 = "<form action='index.php?action=".$_GET['action']."&edit=".$_GET['edit']."' method='post'><table id='users'>
+$tpl_menues_form1 = "<form action='index.php?action=".$_GET['action']."&edit=".$_GET['edit']."' method='post'>
+  <table>
 		<tr style='font-weight:bold'>
 			<td>&nbsp;</td>
 			<td style='width:25px'>ID</td>
@@ -89,7 +90,7 @@ $tpl_menues_tableend = "</tbody>
 	</form>";
 	
 $tpl_menues_tablehead = "
-	<table id='users'>
+	<table>
 		<tr style='font-weight:bold'>
 			<td style='width:50px;'>&nbsp;</td>
 			<td style='width:25px'>ID</td>

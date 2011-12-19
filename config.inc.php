@@ -12,12 +12,13 @@ $dbprefix = ""; // Prefix for Table-Name
 // ################ General-Configuration ################# 
 $app_mainpath = "http://localhost:8080/cms/"; // Main path
 $app_mainpage = "index.php"; // Main-Page
-$startpage = '1'; // Home-Page ID
 $app_pagename = 'MCMS Demo';
+$startpage = '1'; // Home-Page ID
 error_reporting(E_ALL ^ E_NOTICE); //Normal-Debug
 //error_reporting(E_ALL); //big-debug
 //error_reporting(0); // Live
 $global_icon_folder = "ico/new";
+$global_upload_folder = "media/";
 // ################ General-Configuration ################# 
 
 // ################## User-Configuration ##################

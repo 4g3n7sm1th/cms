@@ -35,7 +35,7 @@ else
 
   //var_dump($files);
 
-  $content.="<table id='users'>
+  $content.="<table>
 		<tr style='font-weight:bold'>
 			<td style='width:50px'>&nbsp;</td>
 			<td style='width:25px'>ID</td>

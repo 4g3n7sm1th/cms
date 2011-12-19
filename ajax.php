@@ -29,7 +29,7 @@ switch($_POST['req']) {
                                     VALUES ('".$feed_type."',
                                             '".$fb['link']."',
                                             '".date('Y-m-d H:i:s', strtotime($fb['date']))."',
-                                            '".escape(htmlentities($fb['desc']))."');");
+                                            '".$fb['desc']."');");
           if($insert == false) $fail = true;
         }
         else { $exists = $i.', '; }
@@ -93,9 +93,12 @@ switch($_POST['req']) {
         $title = explode("<title>", $endtweet[0]);
         $content = explode("</title>", $title[1]);
         //$content[0] = substr($content[0],0, 70);
+        
         $content[0] = trim($content[0]);
-        //$content[0] = preg_replace("/(http:\/\/|(www\.))(([^\s<]{4,100})[^\s<]*)/", '<a href="http://$2$3" >$4</a>', $content[0]);
-        //$content[0] = preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\" >@\\1</a>", $content[0]);
+        
+        $content[0] = preg_replace("/(http:\/\/|(www\.))(([^\s<]{4,100})[^\s<]*)/", '<a href="http://$2$3" >$4</a>', $content[0]);
+        $content[0] = preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\" >@\\1</a>", $content[0]);
+        
         $content[0] = str_replace($username.': ', '', $content[0]);
         $mytweets[] = $content[0]; 
         
@@ -121,7 +124,7 @@ switch($_POST['req']) {
                                     VALUES ('".$feed_type."',
                                             '".$link[0]."',
                                             '".$propertime."',
-                                            '".escape($content[0])."');");
+                                            '".$content[0]."');");
           if($insert == false) $fail = true;
         }
         else { $exists = $i.', '; }
@@ -145,10 +148,23 @@ switch($_POST['req']) {
 	  
 	  $feedcontent = $feed->feed_content;
 	  //$feedcontent = html_entity_decode($feedcontent);
-	  $feedcontent = str_replace('&lt;br /&gt;', '&nbsp;', $feedcontent);
-	  $feedcontent = str_replace('&lt;br/&gt;', '&nbsp;', $feedcontent);
+	  
+	  
+	  $feedcontent = str_replace(array('<br>','<br />','<br/>'), ' ', $feedcontent);
+	  /*
 	  $feedcontent = str_replace('&lt;a href=&quot;', '', $feedcontent);
+	  $feedcontent = str_replace('&quot;', '', $feedcontent);
+	  $feedcontent = str_replace(array('id=', 'title=', 'target=', 'onclick=', 'style=', 'onmousedown='), '', $feedcontent);
 	  $feedcontent = str_replace('&quot; target=&quot;_blank&quot; rel=&quot;nofollow nofollow&quot; onmousedown=&quot;UntrustedLink.bootstrap($(this), &quot;vAQFOglW4&quot;, event, bagof({}));&quot;&gt;', '', $feedcontent);
+	  */
+	  
+	  preg_match('/<a\s[^>]*href=\"([^\"]*)\"[^>]*>(.*)<\/a>/siU', $feedcontent, $feedcontent_link);
+	  
+	  //print_r($feedcontent_link);
+	  
+	  $feedcontent_complete = utf8_encode(strip_tags(trim($feedcontent), '<br><br />'));
+	  
+	  $feedcontent = $feedcontent_complete.' '.$feedcontent_link[1].' ';
 	  
 	  if(strlen($feedcontent) > 85)
 	  {
@@ -156,7 +172,7 @@ switch($_POST['req']) {
 	    $feedcontent = substr($feedcontent, 0, 75);	 
 	  } 
 	  
-	  echo '<div id="feed">
+	  echo '<div id="feed" title="'.$feedcontent_complete.'">
             <a href="'.$feed->feed_link.'"'.$target.'><b>'.ucfirst($feed->feed_type).':</b> '.$feedcontent.$add.'</a>
             <br /><span class="feedtime">'.UF_date(strtotime($feed->feed_ts)).'</span>
             <!--<span class="feedoptions"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;</a></span>-->

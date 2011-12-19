@@ -8,7 +8,7 @@ switch($_POST['req']) {
     $userss = $db->get_row('SELECT * FROM users WHERE user_id = "'.$_POST['userid'].'";');
     
     $output = "
-      <table border='0' class='user_info'>
+      <table border='0' class='user_info' style='min-width:120px;'>
         <tr><td><b>Benutzer:</b></td><td>".$userss->user_name."</td></tr>
         ".((isset($userss->user_level))? '<tr><td><b>Rang:</b></td><td>'.$db->get_var('SELECT user_level_name FROM user_level WHERE user_level = '.$userss->user_level.';').'</td></tr>': '')."
         ".((isset($userss->user_firstname) && $userss->user_firstname != '' && $userss->user_firstname != '0')? '<tr><td><b>Vorname:</b></td><td>'.$userss->user_firstname.'</td></tr>':'')."

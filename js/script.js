@@ -7,7 +7,7 @@ $(document).ready(function() {
     $('#navigation #link_'+split[1]+' #selected').attr('class', $('#link_'+split[1]).attr('class'));*/
     
     getFeeds();
-    
+    loadTitles();
     $('#content').tinyscrollbar();
 
     
@@ -23,32 +23,22 @@ $(document).ready(function() {
     $('input.tip').formtips({
         tippedClass: 'formtip'
     });				  
-							  
-			$("[title]").filter(':not(input)').qtip({ 
-								position: {
-											my: 'left center',
-											at: 'right center'
-								}, 
-								
-								style: {
-      										classes: 'ui-tooltip-dark ui-tooltip-shadow '
-   								}
-							  });
-		});
+});			  
+			
 		
-		function loadTitle()
-		{
-		$("[title]").qtip({ 
-								position: {
-											my: 'left center',
-											at: 'right center'
+function loadTitles()
+{
+	$("[title]").filter(':not(input)').qtip({ 
+			position: {
+									my: 'bottom center',
+									at: 'top center'
 								}, 
 								
-								style: {
-      										classes: 'ui-tooltip-dark ui-tooltip-shadow '
-   								}
-							  });
-		}
+				 style: {
+      						classes: 'ui-tooltip-dark ui-tooltip-shadow'
+   							}
+	});
+}
 		
 function dump(arr,level) {
 	var dumped_text = "";
@@ -140,6 +130,7 @@ function getFeeds()
       $('#allfeeds').hide();
       $('#allfeeds').html(result);
       $('#allfeeds').fadeIn('300');
+      loadTitles();
       }
   });
 }

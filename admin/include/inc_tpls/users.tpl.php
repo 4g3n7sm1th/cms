@@ -9,18 +9,18 @@ $tpl_users_form1 = '	<form id="newuser" action="index.php?action=users&new=1" me
 									<input type="submit" value="Benutzer speichern" name="user_save">
 								</div>
 								<div id="users" style="float:left">
-									<table>
-										<tr><td colspan="2"><b>Login-Daten</b></td></tr>
+									<table id="users" style="width:400px;">
+										<tr><th colspan="2"><b>Login-Daten</b></td></tr>
 										<tr title="ben&ouml;tigtes Feld"><td>Benutzername*:</td><td><input type="text" name="user_name"></td></tr>
 										<tr title="ben&ouml;tigtes Feld"><td>Passwort:</td><td><input type="password" name="user_password"></td></tr>
 										<tr title="ben&ouml;tigtes Feld<br />Wiederholung des Passworts"><td>Passwort (Wiederholung):</td><td><input type="password" name="user_password_wh" id="user_password_wh"></td></tr>
 										<tr><td colspan="2">&nbsp;</td></tr>
-										<tr><td colspan="2"><b>Benutzerdaten</b></td></tr>
+										<tr><th colspan="2"><b>Benutzerdaten</b></td></tr>
 										<tr><td>Vorname:</td><td><input type="text" name="user_firstname"></td></tr>
 										<tr><td>Nachname:</td><td><input type="text" name="user_lastname"></td></tr>
 										<tr title="ben&ouml;tigtes Feld"><td>E-Mail*:</td><td><input type="text" name="user_mail"></td></tr>
 										<tr><td colspan="2">&nbsp;</td></tr>
-										<tr><td colspan="2"><b>Pers&ouml;nliche-Daten</b></td></tr>
+										<tr><th colspan="2"><b>Pers&ouml;nliche-Daten</b></td></tr>
 										<tr><td>Stra&szlig;e / Hausnummer:</td><td><input type="text" name="user_street" style="width:170px"><input type="text" name="user_housenumber" style="width:30px"></td></tr>
 										<tr><td>PLZ / Stadt:</td><td><input type="text" name="user_zipcode" style="width:50px"><input type="text" name="user_city" style="width:150px"></td></tr>
 										<tr><td>Telefon:</td><td><input type="text" name="user_phone"></td></tr>
@@ -40,19 +40,19 @@ $tpl_users_form2 = '	<form id="edituser" action="index.php?action=users&edit='.$
 									<input type="submit" value="Benutzer speichern" name="user_save">
 								</div>
 								<div id="users" style="float:left">
-									<table>
-										<tr><td colspan="2"><b>Login-Daten</b></td></tr>
+									<table id="users" style="width:auto;">
+										<tr><th colspan="2"><b>Login-Daten</b></td></tr>
 										<tr title="ben&ouml;tigtes Feld"><td>Benutzername*:</td><td><input type="text" name="user_name" value="'.$users->user_name.'"></td></tr>
 										<tr title="ben&ouml;tigtes Feld"><td>Passwort:</td><td><input type="password" name="user_password"></td></tr>
 										<tr title="ben&ouml;tigtes Feld<br />Wiederholung des Passworts"><td>Passwort (Wiederholung):</td><td><input type="password" name="user_password_wh" id="user_password_wh"></td></tr>
 										<tr><td colspan="2">&nbsp;</td></tr>
-										<tr><td colspan="2"><b>Benutzerdaten</b></td></tr>
+										<tr><td colspan="2"><h>Benutzerdaten</b></td></tr>
 										<tr><td>Vorname:</td><td><input type="text" name="user_firstname" value="'.$users->user_firstname.'"></td></tr>
 										<tr><td>Nachname:</td><td><input type="text" name="user_lastname" value="'.$users->user_lastname.'"></td></tr>
 										<tr title="ben&ouml;tigtes Feld"><td>E-Mail*:</td><td><input type="text" name="user_mail" value="'.$users->user_mail.'"></td></tr>
 										<tr><td colspan="2">&nbsp;</td></tr>
-										<tr><td colspan="2"><b>Pers&ouml;nliche-Daten</b></td></tr>
-										<tr><td>Stra&szlig;e / Hausnummer:</td><td><input type="text" name="user_street" style="width:170px" value="'.$users->user_street.'"><input type="text" name="user_housenumber" style="width:30px" value="'.$users->user_housenumber.'"></td></tr>
+										<tr><td colspan="2"><h>Pers&ouml;nliche-Daten</b></td></tr>
+										<tr><td>Stra&szlig;e&nbsp;/&nbsp;Hausnummer:</td><td><input type="text" name="user_street" style="width:170px" value="'.$users->user_street.'"><input type="text" name="user_housenumber" style="width:30px" value="'.$users->user_housenumber.'"></td></tr>
 										<tr><td>PLZ / Stadt:</td><td><input type="text" name="user_zipcode" style="width:50px" value="'.$users->user_zipcode.'"><input type="text" name="user_city" style="width:150px" value="'.$users->user_city.'"></td></tr>
 										<tr><td>Telefon:</td><td><input type="text" name="user_phone" value="'.$users->user_phone.'"></td></tr>
 										<tr><td>Mobiltelefon:</td><td><input type="text" name="user_mobile" value="'.$users->user_mobile.'"></td></tr>
@@ -64,7 +64,7 @@ $tpl_users_form2 = '	<form id="edituser" action="index.php?action=users&edit='.$
 							</form>';
 							
 $tpl_users_tablehead = "
-	<table id='users'>
+	<table>
 		<tr style='font-weight:bold'>
 			<td style='width:50px'>&nbsp;</td>
 			<td style='width:25px'>ID</td>
