@@ -9,7 +9,7 @@ global $db;
         return;
     }
     
-    if(!isset($_GET['p']) || $_GET['p'] != '' || $_GET['p'] == '0' || !$_GET['p']) { $page_id = '1'; } else { $page_id = $_GET['p']; }
+    if(!isset($_GET['p']) || $_GET['p'] == '' || $_GET['p'] == '0' || !$_GET['p']) { $page_id = '1'; } else { $page_id = $_GET['p']; }
     
     if(empty($params['id']) && $params['page'] == 'true') {
     $menu_id = '0';
@@ -22,13 +22,18 @@ global $db;
    		$sql = "SELECT * FROM pages WHERE page_parent = '".$page_id."' AND page_ts_delete IS NULL";
    		$pages = $db->get_results($sql);
    		
-   		if($pages == '') { $pages = $db->get_results("SELECT * FROM pages WHERE page_id = '".$page_id."' AND page_ts_delete IS NULL"); }
+   		
+   		if(!$pages) 
+   		{  
+   		  $parent_id = $db->get_row("SELECT page_parent FROM pages WHERE page_id = '".$page_id."' AND page_ts_delete IS NULL"); 
+   		  if($parent_id->page_parent) $pages = $db->get_results("SELECT * FROM pages WHERE page_parent = '".$parent_id->page_parent."' AND page_ts_delete IS NULL");
+   		}
         
    		$i=1;
    		$class='a';
    		$liclass = '';
    		
-   		if($pages != '')
+   		if($pages)
    		{  		
         $sql = 'SELECT page_title FROM pages WHERE page_id = "'.$pages[0]->page_parent.'" AND page_ts_delete IS NULL';
         //echo $sql;

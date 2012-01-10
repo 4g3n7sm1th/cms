@@ -2,6 +2,16 @@
 
   <div id="container">
     <header>
+      <div id="socialbuttons">
+        <a href="http://www.youtube.com/user/GermanIldivofanclub" target="_blank">
+          <img class="feedtitle" title="Der Fanclub bei Youtube" src="admin/ico/social_big/youtube.png"></a>
+        <br />
+        <a href="http://www.twitter.com/ildivofanclub" target="_blank">
+          <img class="feedtitle" title="Der Fanclub bei Twitter" src="admin/ico/social_big/twitter.png"></a>
+        <br />
+        <a href="http://www.facebook.com/pages/1-Deutscher-Il-DIvo-Fanclub/213869231395" target="_blank">
+          <img class="feedtitle" title="Der Fanclub bei Facebook" src="admin/ico/social_big/facebook.png"></a>
+      </div>
     </header>
       
     <div id="main" role="main" class="clearfix">
@@ -9,8 +19,7 @@
         {menue id=1}
       </div>
       <div id="navigation">
-        <a href="http://www.twitter.com/ildivofanclub" target="_blank"><img src="{$img_dir}/twitter.png"></a>&nbsp;
-        <a href="http://www.facebook.com/pages/1-Deutscher-Il-DIvo-Fanclub/213869231395" target="_blank"><img src="{$img_dir}/facebook.png"></a>
+        &nbsp;
         {menue id=2}
         <div id="page_menu">
         {menue page=true nocache}

@@ -53,8 +53,8 @@ class flexibleAccess{
    */
   function flexibleAccess($dbConn = '', $settings = '')
   {
-  global $db;
   global $usrtimeout;
+  global $db;
   $this->db = &$db;
   $this->usrtimeout = &$usrtimeout;
 	    if ( is_array($settings) ){

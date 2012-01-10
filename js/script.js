@@ -8,7 +8,8 @@ $(document).ready(function() {
     
     getFeeds();
     loadTitles();
-    $('#content').tinyscrollbar();
+    loadGallerys();
+    $('#content, #feedbar').lionbars();
 
     
     var refreshId = setInterval(function() {
@@ -31,7 +32,20 @@ function loadTitles()
 	$("[title]").filter(':not(input)').qtip({ 
 			position: {
 									my: 'bottom center',
-									at: 'top center'
+									at: 'top center',
+									viewport: $(window)
+								}, 
+								
+				 style: {
+      						classes: 'ui-tooltip-dark ui-tooltip-shadow'
+   							}
+	});
+	
+	$(".feedtitle").qtip({ 
+			position: {
+									my: 'right center',
+									at: 'left center',
+									viewport: $(window)
 								}, 
 								
 				 style: {
@@ -39,6 +53,26 @@ function loadTitles()
    							}
 	});
 }
+
+function loadGallerys()
+{
+
+  $(".gallery .gallerylink").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	500, 
+		'speedOut'		:	400, 
+		'overlayShow'	:	true
+	});
+		    
+	$('.gallery').each(function() {
+		      var id = $(this).attr('rel');
+		      $(this).hover(function() {
+		        $('.gallery-edit-'+id).fadeToggle('100');
+		      });
+	});
+
+}	
 		
 function dump(arr,level) {
 	var dumped_text = "";
@@ -131,6 +165,7 @@ function getFeeds()
       $('#allfeeds').html(result);
       $('#allfeeds').fadeIn('300');
       loadTitles();
+      loadGallerys();
       }
   });
 }

@@ -25,11 +25,10 @@ font-size: 36px;
 }
 
 #menu {
-border: 1px solid lightgray;
-height:3%;
-padding: 5px;
+height:30px;
 margin:auto;
 overflow: hidden;
+margin-top:40px;
 }
 
 #footer {
@@ -42,7 +41,6 @@ margin-top:10px;
 }
 
 #content {
-border: 1px solid lightgray;
 height:69%;
 padding:10px;
 margin:0px 0;

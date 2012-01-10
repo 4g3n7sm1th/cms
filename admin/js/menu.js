@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#users tbody.content").sortable({ 
+    $("table tbody.content").sortable({ 
       opacity: 0.6, 
       cursor: 'move',
       items: 'tr',
@@ -13,7 +13,7 @@ $(document).ready(function() {
 			handle: '.handle',
 			forcePlaceholderSize: true
 		});
-    $("#users tbody.content").disableSelection();
+    $("table tbody.content").disableSelection();
     
     $(function() {
 		var words = [
@@ -133,7 +133,7 @@ function addMenuItem(i)
   
   var new_html = "<tr id='id_"+i+"'>"+
 			"<td style='width:50px'>"+
-			  "<img src='ico/color/arrow_updown.png' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>"+
+			  "<img src='"+icon('move')+"' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>"+
 				"&nbsp;<img src='"+icon('delete')+"' title='L&ouml;schen erst nach neuladen möglich'>"+
 			"</td>"+
 			"<td>"+i+"</td>"+
@@ -195,9 +195,9 @@ function addMenuItem(i)
 			"</td>"+
 		"</tr>";
 		
-		var html_old = $('table#users').html();
-		$(new_html).appendTo('table#users tbody.content');
+		$('table tbody.content').append(new_html);
 		extendMenuOptions(i);
+		//alert(i);
 		$('#newlink').hide();
 		$('#newlink_disabled').show();
 		
@@ -219,7 +219,7 @@ function saveMenuOptions(i, new_menu)
   { var extern_link = '0'; } else
   { var extern_link = $('#extern_link_loc_'+i).val(); }
   
-  if($('#page_id_'+i).val() == $('#page_id_'+i).attr('title') || $('#change_type_'+i).val() == 'extern')
+  if($('#page_id_'+i).val() == '0' || $('#change_type_'+i).val() == 'extern')
   { var page_id = '0'; } else
   { var page_id = $('#page_id_'+i).val(); }
   

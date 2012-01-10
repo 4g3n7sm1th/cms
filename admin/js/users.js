@@ -26,8 +26,8 @@ if(conf) {
   }
 }
 
-$(document).ready(function()
-{
+google.setOnLoadCallback(function() {
+
 	var error = "bums";
 	
    $('#newuser').validate({

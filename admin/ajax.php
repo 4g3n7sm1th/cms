@@ -168,7 +168,24 @@ switch($_POST['req']) {
 		
 		if($type == '' || $id == '') die(0);
 		
-		$delete = $db->query('UPDATE '.$type.((substr($type, -1)=='s')? "":"s").' SET '.$type.'_ts_delete = NOW(), '.$type.'_id_delete = "'.$_SESSION['user_id'].'" WHERE '.$type.'_id = '.$id.'');
+		$delete = $db->query('UPDATE '.$type.((substr($type, -1)=='s')? '':'s').' SET '.$type.'_ts_delete = NOW(), '.$type.'_id_delete = "'.$_SESSION['user_id'].'" WHERE '.$type.'_id = '.$id.'');
+		
+		if(!$delete)
+		{ echo '0'; }
+		else
+		{ echo '1'; }
+	break;
+	
+	
+	case 'updateData':
+		$id = $_POST['id'];
+		$data = $_POST['data'];
+		$type = $_POST['type'];
+		$field = $_POST['field'];
+		
+		if($type == '' || $id == '') die(0);
+		
+		$delete = $db->query('UPDATE '.$type.((substr($type, -1)=='s')? '':'s').' SET '.$type.'_'.$field.' = "'.$data.'" WHERE '.$type.'_id = '.$id.'');
 		
 		if(!$delete)
 		{ echo '0'; }

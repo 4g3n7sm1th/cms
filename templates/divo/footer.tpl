@@ -21,11 +21,13 @@
 	<script type="text/javascript" src="admin/js/jquery.tinyscrollbar.js"></script>
 	<script type="text/javascript" src="admin/js/jquery.edit.js"></script>
 	<script type="text/javascript" src="admin/js/jquery.dnd.js"></script>
+	<script type="text/javascript" src="admin/js/jquery.lionbars.js"></script>
 	<script type="text/javascript" src="admin/js/jquery.formtips.js"></script>
 	<script type="text/javascript" src="admin/js/jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="admin/js/tiny_mce/jquery.tinymce.js"></script>
+	<script type="text/javascript" src="admin/js/yoxview/yoxview-init.js"></script>
 	<script type="text/javascript" src="admin/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-	<script type="text/javascript" src="admin/js/fancybox/jquery.easing-1.3.pack.js"></script>
+	<script type="text/javascript" src="admin/js/fancybox/jquery.easing-1.4.pack.js"></script>
 	<script defer src="js/script.js"></script>
   <!-- end scripts-->
 

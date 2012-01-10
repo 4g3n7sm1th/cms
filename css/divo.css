@@ -553,6 +553,26 @@ header
   display:block;
 }
 
+#socialbuttons
+{
+  position:absolute;
+  margin-top:270px;
+  float:right;
+  right:10px;
+  margin-bottom:10px;
+}
+
+#socialbuttons img
+{
+  margin-bottom:10px;
+  opacity:0.5;
+}
+
+#socialbuttons img:hover
+{
+  opacity:1;
+}
+
 #topmenu
 {
   height:34px;
@@ -569,7 +589,7 @@ header
 
 #topmenu ul>li:first-child
 {
-margin-left:150px;
+margin-left:80px;
 }
 
 #topmenu li a 
@@ -607,8 +627,8 @@ margin-right:50px;
   min-height:28px;
   color:#76320a;
   font-family:Palatino, Palatino Linotype;
-  font-size:13px;
-  letter-spacing:-1px;
+  font-size:12px;
+  letter-spacing:0px;
 }
 
 #feed:hover
@@ -619,8 +639,9 @@ margin-right:50px;
 #feed b
 {
   font-weight:bold;
-  font-size:15px;
+  font-size:16px;
   font-variant: small-caps;
+  letter-spacing:0px;
 }
 
 #feed a

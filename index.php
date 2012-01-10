@@ -41,7 +41,7 @@ elseif(isset($page->plugin_id) && $page->plugin_id != '')
 	  $inc_path = $plugin_folder.'plugin.'.$plugin->plugin_identify.'.inc.php';
 	  $inc = include($inc_path);
 	  if(!$inc) message("Fehler beim Laden des Plugins (".$plugin->plugin_name.", '".$inc_path."')",'error');
-	  $tpl->assign("content",$plugins['plugin_'.$page->page_function]);
+	  $tpl->assign("content",$plugins['plugin_'.$plugin->plugin_identify]);
 	  $tpl->assign("pagetitle",utf8_encode($page->page_title));
   }
   else

@@ -174,7 +174,7 @@ if(isset($_GET['edit']))
 		else
 		{ $menu_islink = ''; $menu_ispage = ''; }
 		
-		$menu_item->genPageDropdown = genPageDropdown(false, $menu_item_page, $i);
+		$menu_item->genPageDropdown = genPageDropdown(false, $menu_item_page, $menu_item->menu_item_id);
 		
 		include('inc_tpls/menues.tpl.php');
 		$content.= $tpl_menues_table;

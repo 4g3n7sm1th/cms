@@ -40,7 +40,7 @@ $tpl_page_tablehead = "
 			<td style='width:80px;'>&nbsp;</td>
 			<td style='width:25px;'>ID</td>
 			<td>Name</td>
-			<td style='width:60px;' title='Der Inhalt der Seite wird durch das eingestellte Plugin &uuml;berschrieben'>Plugin</td>
+			<td style='width:80px;' title='Der Inhalt der Seite wird durch das eingestellte Plugin &uuml;berschrieben'>Plugin</td>
 			<td style='width:70px;'>&nbsp;</td>
 		</tr>";
 		
@@ -62,7 +62,7 @@ $tpl_page_tablebody = "
 			</td>
 			<td>".$pagess->page_id."</td>
 			<td>".$pagess->page_title."</td>
-			<td>".$pagess->page_function."</td>
+			<td>".$page_plugin."</td>
 			<td><img src='".icon('login')."' style='opacity:".(($login_ico_color == 'gray')? '0.4':'1')."' title='".$login_ico_title."'>&nbsp;<img src='".icon('comment')."' style='opacity:".(($comment_ico_color == 'gray')? '0.4':'1')."' title='".$comment_ico_title."'>
 			<img src='".icon('info')."' title='".$created."'>
 			</td>

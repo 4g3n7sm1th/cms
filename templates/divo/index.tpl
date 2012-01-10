@@ -1,15 +1,10 @@
 {include file="headinclude.tpl"}
 {include file="header.tpl"}
 <div id="content">
-  <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-	<div class="viewport">
-		<div class="overview">
       {include file="message.tpl" position_actual=1}
       <div id="message_div"></div>
       {$content}
       <!-- <a onclick="loadFeeds()">load</a>-<a onclick="getFeeds()">get</a> -->
-    </div>
-  </div>
 </div>
       <div id="feedbar">
         <div id="allfeeds">

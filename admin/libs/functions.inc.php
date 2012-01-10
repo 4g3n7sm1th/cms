@@ -414,11 +414,11 @@ function pagination($maxpage, $results='0', $maxresults = '0', $result_wording =
   {
     if(($i+1) == $page) { $bold = true; } else { $bold = false; }
     
-    if($bold == true) $output.= '<b><u>';
+    if($bold == true) $output.= '<b>';
     if($page != ($i+1)) $output.= '<a href="'.$url.$add.'page='.($i+1).'">';
     $output.= ($i+1);
     if($page != ($i+1)) $output.= '</a>';
-    if($bold == true) $output.= '</u></b>';
+    if($bold == true) $output.= '</b>';
     $output.= ' ';
   }
   if($page < $maxpage) { $output.= ' <a href="'.$url.$add.'page='.($page+1).'">';
@@ -493,6 +493,9 @@ function icon($icon, $mode='1', $ext='png')
 		break;
 		case 'move':
 			$icon_file = 'Arrow-Move';
+		break;
+		case 'upload':
+			$icon_file = 'Upload';
 		break;
 		default:
 			$icon_file = $icon;

@@ -149,34 +149,53 @@ switch($_POST['req']) {
 	  $feedcontent = $feed->feed_content;
 	  //$feedcontent = html_entity_decode($feedcontent);
 	  
-	  
-	  $feedcontent = str_replace(array('<br>','<br />','<br/>'), ' ', $feedcontent);
-	  /*
-	  $feedcontent = str_replace('&lt;a href=&quot;', '', $feedcontent);
-	  $feedcontent = str_replace('&quot;', '', $feedcontent);
-	  $feedcontent = str_replace(array('id=', 'title=', 'target=', 'onclick=', 'style=', 'onmousedown='), '', $feedcontent);
-	  $feedcontent = str_replace('&quot; target=&quot;_blank&quot; rel=&quot;nofollow nofollow&quot; onmousedown=&quot;UntrustedLink.bootstrap($(this), &quot;vAQFOglW4&quot;, event, bagof({}));&quot;&gt;', '', $feedcontent);
-	  */
-	  
-	  preg_match('/<a\s[^>]*href=\"([^\"]*)\"[^>]*>(.*)<\/a>/siU', $feedcontent, $feedcontent_link);
-	  
-	  //print_r($feedcontent_link);
-	  
-	  $feedcontent_complete = utf8_encode(strip_tags(trim($feedcontent), '<br><br />'));
-	  
-	  $feedcontent = $feedcontent_complete.' '.$feedcontent_link[1].' ';
-	  
-	  if(strlen($feedcontent) > 85)
+	  if($feed->feed_type == 'gallery')
 	  {
-	    if(strlen($feedcontent) > 75) $add = '...';
-	    $feedcontent = substr($feedcontent, 0, 75);	 
-	  } 
+	    $feedtitle = utf8_encode(strip_tags(trim($feedcontent)));
+	  }
+	  else
+	  {
+	    
+	    
+	    /*
+	    $feedcontent = str_replace('&lt;a href=&quot;', '', $feedcontent);
+	    $feedcontent = str_replace('&quot;', '', $feedcontent);
+	    $feedcontent = str_replace(array('id=', 'title=', 'target=', 'onclick=', 'style=', 'onmousedown='), '', $feedcontent);
+	    $feedcontent = str_replace('&quot; target=&quot;_blank&quot; rel=&quot;nofollow nofollow&quot; onmousedown=&quot;UntrustedLink.bootstrap($(this), &quot;vAQFOglW4&quot;, event, bagof({}));&quot;&gt;', '', $feedcontent);
+	    */
 	  
-	  echo '<div id="feed" title="'.$feedcontent_complete.'">
+	    preg_match('/<a\s[^>]*href=\"([^\"]*)\"[^>]*>(.*)<\/a>/siU', $feedcontent, $feedcontent_link);
+	    //$feedcontent = preg_replace('/<a\s[^>]*href=\"([^\"]*)\"[^>]*>(.*)<\/a>/siU', '', $feedcontent);
+	  
+	    //print_r($feedcontent_link);
+	  
+	  
+	    
+	    
+	    //$feedcontent = $feedcontent.' '.$feedcontent_link[1].' ';
+	    //$feedcontent = str_replace(array('<','>'), ' ', $feedcontent);
+	    $feedcontent = utf8_encode(strip_tags(trim($feedcontent), '<br><br /><br/>'));
+	    
+	    $feedtitle = $feedcontent;
+	    
+	    $feedcontent = str_replace(array('<br>','<br />','<br/>'), ' ', $feedcontent);
+	    
+	    
+	    if(strlen($feedcontent) > 80)
+	    {
+	      $add = '...';
+	      $feedcontent = substr($feedcontent, 0, 75);	 
+	    }
+	    
+	    
+	    
+	  } 
+	  echo '<div id="feed" '.(($feedtitle != "")? "class='feedtitle' title='".$feedtitle."'":"").'>
             <a href="'.$feed->feed_link.'"'.$target.'><b>'.ucfirst($feed->feed_type).':</b> '.$feedcontent.$add.'</a>
             <br /><span class="feedtime">'.UF_date(strtotime($feed->feed_ts)).'</span>
             <!--<span class="feedoptions"><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;</a></span>-->
           </div>';
+    $feedcontent_long ="";
     }
   
   break;

@@ -90,7 +90,7 @@ if(isset($_GET['news_id']))
 	}
 	else
 	{
-	  $output.= 'keine Kommentare vorhanden';
+	  $output.= '<br />keine Kommentare vorhanden';
 	}
 	$output .= $tpl_plugin_news_end;
 }

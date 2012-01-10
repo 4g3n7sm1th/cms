@@ -1,7 +1,5 @@
-	$().ready(function() {
-	  
-	
-		$('textarea.tinymce').tinymce({
+$(document).ready(function() {
+	  $('textarea.tinymce').tinymce({
 			// Location of TinyMCE script
 			script_url : 'js/tiny_mce/tiny_mce.js',
 
@@ -28,6 +26,26 @@
 			media_external_list_url : "lists/media_list.js",
 
 		});
+		
+
+    $('textarea#editor_small').wysiwyg({
+      autoSave: true,
+      i18n: { lang: "de" },
+      controls: {
+        "pageBreak": {
+            visible: true,
+            exec: function() 
+            { 
+              $(this).wysiwyg('insertImage', 'http://localhost:8080/cms/admin/js/jwysiwyg/pagebreak.gif');
+              $(this).wysiwyg("insertHtml", "<!-- pagebreak -->");
+              
+            },
+            className: 'pagebreak',
+            tooltip: "insert Page-Break"
+        }
+      }
+    });
+
 		
 		$('textarea.editor-small').tinymce({
 			// Location of TinyMCE script
@@ -56,61 +74,9 @@
 			media_external_list_url : "lists/media_list.js",
 
 		});
-	});
-
-		$(document).ready(function() {
-			$('input.tip').formtips({
-        tippedClass: 'formtip'
-      });	
-      			  
-			$(".miniprofile").each(function() { 
-			  $(this).qtip({ 
-				content: {
-            text: '<img src="./ico/loader_gray.gif">', // Make sure we declare some basic loading content
-            ajax: {
-               url: 'ajax.php', // Grab user data from serverside PHP script...
-               type: 'POST',
-               once: false,
-               data: { 
-                  userid: $(this).attr('rel'),  // ...providing a 'userid' which is stored in the avatars REL attribute
-                  req: 'miniprofile'
-               } 
-            }
-         },
-				position: {
-							my: 'left center',
-							at: 'right center'
-				}, 
-				
-				style: {
-								classes: 'ui-tooltip-dark ui-tooltip-shadow '
-					}
-			  });
-			});
-			
-			$(".gallery").qtip({ 
-				
-				position: {
-							my: 'top center',
-							at: 'bottom center'
-				}, 
-				
-				style: {
-								classes: 'ui-tooltip-dark ui-tooltip-shadow '
-					}
-			  });
-			
-			$("[title]").filter(':not(input)').not('.gallery').qtip({ 
-				
-				position: {
-							my: 'left center',
-							at: 'right center'
-				}, 
-				
-				style: {
-								classes: 'ui-tooltip-dark ui-tooltip-shadow '
-					}
-			  });
+		$('input.tip').formtips({
+      tippedClass: 'formtip'
+    });	
 			
 			
 			var textvalue = $('#titletext').val();
@@ -129,24 +95,106 @@
 					}
 				});
 		
-		    $('div.gallery').lightBox({
-		      imageLoading: 'ico/loader_black.gif'
-		    });
+		    loadGallerys();
+		    loadTitle();
 		
-		}); // Page-Load end
+}); // Page-Load end
 		
+function loadGallerys()
+{
+
+  /*$('.gallery-thumbnails').yoxview({
+		      lang: 'de',
+		      titleAttribute: 'alt',
+		      renderInfo: false,
+		      renderButtons:true,
+		      buttonsFadeTime: 20
+		    });*/
+	
+	$(".gallery .gallerylink").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	500, 
+		'speedOut'		:	400, 
+		'overlayShow'	:	true
+	});
+		    
+	$('.gallery').each(function() {
+		      var id = $(this).attr('ref');
+		      $(this).hover(function() {
+		        $('.gallery-edit-'+id).fadeToggle('100');
+		      });
+	});
+
+}		
+
+
 function loadTitle()
 {
-$("[title]").qtip({ 
+  $("[title]").qtip({ 
 								position: {
 											my: 'left center',
-											at: 'right center'
+											at: 'right center',
+											viewport: $(window)
 								}, 
+								
 								
 								style: {
       										classes: 'ui-tooltip-dark ui-tooltip-shadow '
    								}
-							  });
+  });
+							  
+  $(".miniprofile").each(function() { 
+			$(this).qtip({ 
+			  content: {
+          text: '<img src="./ico/loader_gray.gif">', // Make sure we declare some basic loading content
+          ajax: {
+              url: 'ajax.php', // Grab user data from serverside PHP script...
+              type: 'POST',
+              once: false,
+              data: { 
+                userid: $(this).attr('rel'),  // ...providing a 'userid' which is stored in the avatars REL attribute
+                req: 'miniprofile'
+              } 
+          }
+        },
+				position: {
+							my: 'left center',
+							at: 'right center',
+							viewport: $(window)
+				}, 
+				
+				style: {
+								classes: 'ui-tooltip-dark ui-tooltip-shadow '
+					}
+			  });
+  });
+			
+  $(".gallery").qtip({ 
+				
+				position: {
+							my: 'bottom center',
+							at: 'top center',
+							viewport: $(window)
+				}, 
+				
+				style: {
+								classes: 'ui-tooltip-dark ui-tooltip-shadow '
+					}
+  });
+			
+  $("[title]").filter(':not(input)').not('.gallery').qtip({ 
+  				
+				position: {
+							my: 'left center',
+							at: 'right center',
+							viewport: $(window)
+				}, 
+				
+				style: {
+								classes: 'ui-tooltip-dark ui-tooltip-shadow '
+					}
+  });
 }
 		
 function dump(arr,level) {
@@ -175,7 +223,7 @@ function dump(arr,level) {
 }
 
 function message(msg, type, delay) {
-  if(!delay) { delay = '2500'; }
+  if(!delay) { delay = '5000'; }
   if(!type) { msgclass = ''; }
   else if(type == 'error') 
   { msgclass = ' class="message-error"'; }
@@ -213,9 +261,41 @@ function l(str)
   });
 }
 
-function deleteData(type, id)
+function updateData(type, field, data, id, reload)
 {
+  
+  if(!reload) reload = 'true';
+  
+	  $.ajax({
+      type: "POST",
+      url: 'ajax.php',
+      async:true,
+      data: 'req=updateData&type='+encodeURIComponent(type)+'&field='+encodeURIComponent(field)+'&id='+encodeURIComponent(id)+'&data='+encodeURIComponent(data),
+      success: function(result) {
+        if(result=='1') 
+        {
+      	  msg = "Erfolgreich geändert";
+      	  type= 'success';
+        }
+        else
+        {
+      	  msg = "Ändern fehlgeschlagen";
+      	  type= 'error';
+        }
+        message(msg, type);
+        
+        if(reload == 'true') setTimeout(function(){window.location.reload();}, 2000);
+        
+        return true;
+      }
+    });
+}
 
+function deleteData(type, id, reload)
+{
+  
+  if(!reload) reload = 'true';
+  
   conf = confirm('Wollen Sie den Datensatz wirklich löschen?');
 
   if(conf) {
@@ -236,7 +316,9 @@ function deleteData(type, id)
       	  type= 'error';
         }
         message(msg, type);
-        setTimeout(function(){window.location.reload();}, 2000);
+        
+        if(reload == 'true') setTimeout(function(){window.location.reload();}, 2000);
+        
         return true;
       }
     });
@@ -293,6 +375,9 @@ function icon(icon, ext, icon_folder)
 		break;
 		case 'move':
 			icon_file = 'Arrow-Move';
+		break;
+		case 'upload':
+			icon_file = 'Upload';
 		break;
 		default:
 			icon_file = icon;

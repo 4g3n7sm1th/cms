@@ -14,6 +14,6 @@ $tpl_plugin_news_end = '</div>';
 
 $tpl_plugin_news_commentcount = '<br /><span class="commentcount">'.$commentcount.' Kommentar'.(($commentcount == 1)?"":"e").' vorhanden.</span>';
 
-$tpl_plugin_news_overview_link = '<a href="?p='.$_GET['p'].'">zurück zur News-Übersicht</a>';
+$tpl_plugin_news_overview_link = '<br /><a href="?p='.$_GET['p'].'">&laquo; zurück zur News-Übersicht</a>';
 
 ?>

@@ -102,6 +102,8 @@ else
 		
 		$created = "<b>Erstellt:</b> <br />".date_mysql($pagess->page_ts_create, "d.m.y, H:i")." Uhr".$creator." ".$change.$changer;
 		
+		$page_plugin = $db->get_var('SELECT plugin_name FROM plugins INNER JOIN plugin2page ON plugin2page.plugin_id = plugins.plugin_id WHERE plugin2page.page_id = '.$pagess->page_id.';');
+		
 		if($pagess->page_loginrequired == '1') { 
 		      $login_ico_color = "color";
 				  $login_ico_title = 'Seite ist nur eingeloggten Nutzern zug&auml;nglich'; 

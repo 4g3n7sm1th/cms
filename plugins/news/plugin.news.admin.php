@@ -35,7 +35,7 @@ if(isset($_GET['edit']) && $_GET['edit']!='' && $_GET['edit']!='0')
 		</div>
 		<div id="pages" style="float:left">
 			<input type="text" id="titletext" style="color:black" value="'.$news->plugin_news_title.'" name="news_title"><br />
-			<textarea class="editor-small" rows="25" cols="80" name="news_content">'.$news->plugin_news_content.'</textarea>
+			<textarea id="editor_small" rows="25" cols="80" name="news_content">'.$news->plugin_news_content.'</textarea>
 		</div>
 	</form>
   ';
@@ -96,7 +96,7 @@ elseif(isset($_GET['new']))
 		</div>
 		<div id="pages" style="float:left">
 			<input type="text" id="titletext" style="color:black" title="News-Titel" value="" name="news_title"><br />
-			<textarea class="editor-small" rows="25" cols="80" name="news_content"></textarea>
+			<textarea id="editor_small" rows="25" cols="80" name="news_content"></textarea>
 		</div>
 	</form>
   ';
