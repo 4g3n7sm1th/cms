@@ -16,15 +16,16 @@
   <script type="text/javascript" src="js/jquery.autoGrowInput.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 	<script type="text/javascript" src="js/tiny_mce/jquery.tinymce.js"></script>
-	<script type="text/javascript" src="js/yoxview/yoxview-init.js"></script>
 	<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 	<script type="text/javascript" src="js/fancybox/jquery.easing-1.3.pack.js"></script>
-	<script type="text/javascript" src="js/jwysiwyg/jquery.wysiwyg.js"></script>
-	<script type="text/javascript" src="js/jwysiwyg/controls/wysiwyg.image.js"></script>
+	<script type="text/javascript" src="js/markitup/jquery.markitup.js"></script>
+	<script type="text/javascript" src="js/markitup/sets/html/set.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 			
 	
-	<link rel="stylesheet" href="js/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+  <link type="text/css" href="js/markitup/skins/simple/style.css" rel="stylesheet" />
+  <link type="text/css" href="js/markitup/sets/html/style.css" rel="stylesheet" />		
+	<link type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" rel="stylesheet" />
 	<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />
   <link type="text/css" href="css/jquery.tagbox.css" rel="stylesheet" />
   <link type="text/css" href="css/jquery.liveSearch.css" rel="stylesheet" />
@@ -36,7 +37,6 @@
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<link type="text/css" href="css/main.css" rel="stylesheet" />
-	<link type="text/css" href="js/jwysiwyg/jquery.wysiwyg.css" rel="stylesheet" />
 	
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection" />
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/style_ie.css" type="text/css" media="screen, projection" /><![endif]-->

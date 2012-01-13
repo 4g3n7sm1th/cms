@@ -14,7 +14,7 @@ $tpl_page_form1 = '	<form action="index.php?action=pages&new=1" method="post">
 								</div>
 								<div id="pages" style="float:left">
 									<input type="text" id="titletext" value="Geben Sie hier den Titel an" name="page_title"><br />
-									<textarea class="tinymce" rows="25" cols="80" name="page_content"></textarea>
+									<textarea id="texteditor" rows="25" cols="80" name="page_content"></textarea>
 								</div>
 							</form>';
 
@@ -30,7 +30,7 @@ $tpl_page_form2 = '	<form action="index.php?action=pages&edit='.$_GET['edit'].'"
 								</div>
 								<div id="pages" style="float:left">
 									<input type="text" id="titletext" style="color:black" value="'.$pages[0]->page_title.'" name="page_title"><br />
-									<textarea class="tinymce" rows="25" cols="80" name="page_content">'.$pages[0]->page_content.'</textarea>
+									<textarea id="texteditor" rows="25" cols="80" name="page_content">'.$pages[0]->page_content.'</textarea>
 								</div>
 							</form>';
 							

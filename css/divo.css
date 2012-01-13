@@ -535,6 +535,11 @@ margin-left:16px;
   box-shadow: 2px -2px 2px #ccc;
 }
 
+.page_menu #selected
+{
+  margin-top:0;
+}
+
 .umenu
 {
   margin-top:0px !important;
@@ -565,7 +570,7 @@ header
 #socialbuttons img
 {
   margin-bottom:10px;
-  opacity:0.5;
+  opacity:0.8;
 }
 
 #socialbuttons img:hover
@@ -580,16 +585,17 @@ header
   margin:auto;
   background-color:#000;
   color:#f2e0c8;
-  font-family:Palatino, Palatino Linotype;;
+  font-family:Palatino, Palatino Linotype;
   font-variant:small-caps;
   font-size:26px;
   padding-top:6px;
   display:block;
+  white-space: nowrap;
 }
 
 #topmenu ul>li:first-child
 {
-margin-left:80px;
+margin-left:70px;
 }
 
 #topmenu li a 

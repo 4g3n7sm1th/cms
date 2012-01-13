@@ -3,6 +3,7 @@
 <div id="content">
       {include file="message.tpl" position_actual=1}
       <div id="message_div"></div>
+      <h1>{$pagetitle}</h1>
       {$content}
       <!-- <a onclick="loadFeeds()">load</a>-<a onclick="getFeeds()">get</a> -->
 </div>

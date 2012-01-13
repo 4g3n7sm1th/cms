@@ -37,7 +37,7 @@ if(isset($_GET['edit']) && $_GET['edit']!='' && $_GET['edit']!='0')
      {
       $db->query('UPDATE plugin_gallery_pictures SET plugin_gallery_picture_new = 0');
       
-      $feed_content = count($new_pictures)." neue Bilder in '".$_POST['gallery_title']."'<br />";
+      $feed_content = count($new_pictures).' neue Bilder in &bdquo;'.$_POST['gallery_title'].'&ldquo;<br />';
      
       $max_width = '60px'; //150px
       $max_height = '50px';

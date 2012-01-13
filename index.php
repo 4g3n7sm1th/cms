@@ -14,7 +14,7 @@ if($_GET['action'] == 'logout')
 
 $page = $db->get_row('SELECT * FROM pages 
                           LEFT JOIN plugin2page ON plugin2page.page_id = pages.page_id
-                              WHERE pages.page_id = '.mysql_real_escape_string($pages).'
+                              WHERE pages.page_id = '.$db->escape($pages).'
                               ;');
 if(!$page) message("Diese Seite konnte leider nicht gefunden werden.", 'error');
 

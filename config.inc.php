@@ -10,7 +10,9 @@ $dbprefix = ""; // Prefix for Table-Name
 // ################ Database-Configuration ################ 
 
 // ################ General-Configuration ################# 
-$app_mainpath = "http://localhost:8080/cms/"; // Main path
+$app_server   = "http://localhost:8080";
+$app_folder   = "/cms/";
+$app_mainpath = $app_server.$app_folder; // Main path
 $app_mainpage = "index.php"; // Main-Page
 $app_pagename = 'MCMS Demo';
 $startpage = '1'; // Home-Page ID

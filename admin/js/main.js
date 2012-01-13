@@ -28,24 +28,7 @@ $(document).ready(function() {
 		});
 		
 
-    $('textarea#editor_small').wysiwyg({
-      autoSave: true,
-      i18n: { lang: "de" },
-      controls: {
-        "pageBreak": {
-            visible: true,
-            exec: function() 
-            { 
-              $(this).wysiwyg('insertImage', 'http://localhost:8080/cms/admin/js/jwysiwyg/pagebreak.gif');
-              $(this).wysiwyg("insertHtml", "<!-- pagebreak -->");
-              
-            },
-            className: 'pagebreak',
-            tooltip: "insert Page-Break"
-        }
-      }
-    });
-
+    $('textarea#texteditor').markItUp(mySettings)
 		
 		$('textarea.editor-small').tinymce({
 			// Location of TinyMCE script

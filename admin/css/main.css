@@ -359,3 +359,29 @@ color:#aaaaaa;
   border:1px dashed black;
   background-color:#FDFFCC;
 }
+
+.markItUpEditor {
+  width:766px !important;
+  height:150px !important;
+  font-family:Helvetica, Verdana, Arial;
+}
+
+#titletext
+{
+  width:774px;
+}
+
+.markItUpPreviewFrame	{
+	overflow:auto;
+	background-color:#FFF;
+	width:99.9%;
+	height:320px;
+	width:776px;
+	margin:5px 0;
+	border:1px solid black;
+}
+
+.pagedropdown
+{
+  width:100px;
+}

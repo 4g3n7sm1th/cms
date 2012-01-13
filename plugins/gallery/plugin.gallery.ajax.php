@@ -2,7 +2,7 @@
 require_once('./../globals.plugins.php');
 
 $max_width = 'auto'; //150px
-$max_height = '120px';
+$max_height = '70px';
 
 switch($_POST['req']) {
 

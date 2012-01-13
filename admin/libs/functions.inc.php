@@ -218,7 +218,7 @@ function genPageDropdown($mainPages = false, $selected = '', $i='')
 	$name = ($mainPages == true)? 'page_parent':'page_id';
 	$name.= ($i != '')? '_'.$i:'';
 	
-	$return = '<select name="'.$name.'" id="'.$name.'"><option value="0">';
+	$return = '<select class="pagedropdown" name="'.$name.'" id="'.$name.'"><option value="0">';
 	if($mainPages == true)
 	{ $return.= '- '.l('Hauptseite').' -'; } else
 	{ $return.= l('Bitte wählen...'); }

@@ -1,7 +1,7 @@
 <?php
     
     $max_width = 'auto'; //150px
-    $max_height = '120px';
+    $max_height = '70px';
 
     if(isset($_GET['p']) && $_GET['p'] != '')
     { $page_id = $_GET['p']; } else
@@ -23,7 +23,7 @@
       //$content.="Fotos vorhanden";
       //print_r($pictures);
       $content.='
-      <h1>'.$gallery->plugin_gallery_name.'</h1>
+      <!--<h1>'.$gallery->plugin_gallery_name.'</h1>-->
       '.$gallery->plugin_gallery_description.'<br /><br />
       <div class="gallery-thumbnails" style="margin-left:-10px;">';
       foreach($pictures as $pic)

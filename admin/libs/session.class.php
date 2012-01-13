@@ -280,7 +280,7 @@ class flexibleAccess{
   */  
   function escape($str) {
     $str = get_magic_quotes_gpc()?stripslashes($str):$str;
-    $str = mysql_real_escape_string($str);
+    $str = $this->db->escape($str);
     return $str;
   }
   

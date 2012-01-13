@@ -26,12 +26,12 @@ $page['pages']['title'].= " - ".l("neue Seite");
 																							 page_comments, 
 																							 page_loginrequired,
 																							 page_parent) 
-																			 VALUES ("'.mysql_real_escape_string($_POST['page_title']).'",
-																			 				 "'.mysql_real_escape_string($_POST['page_content']).'",
+																			 VALUES ("'.utf8_decode($db->escape($_POST['page_title'])).'",
+																			 				 "'.utf8_decode($db->escape($_POST['page_content'])).'",
 																			 				 NOW(),
 																			 				 "'.$_SESSION['user_id'].'",
-																			 				 '.mysql_real_escape_string($page_comments).',
-																			 				 '.mysql_real_escape_string($page_loginrequired).',
+																			 				 '.$page_comments.',
+																			 				 '.$page_loginrequired.',
 																			 				 "'.$_POST['page_parent'].'");');
 																			 				 
 			if($insert) { message("Die Seite wurde erfolgreich gespeichert", 'success'); }
@@ -58,14 +58,14 @@ $page_dropdown = genPageDropdown(true, $pages->page_parent);
 			if($_POST['page_comments'] == 'on') { $page_comments = '1'; } else { $page_comments = '0'; }
 			if($_POST['page_loginrequired'] == 'on') { $page_loginrequired = '1'; } else { $page_loginrequired = '0'; }
 			
-			$insert = $db->query('UPDATE pages SET page_title = "'.mysql_real_escape_string($_POST['page_title']).'", 
-																						 page_content = "'.$_POST['page_content'].'", 
+			$insert = $db->query('UPDATE pages SET page_title = "'.utf8_decode($db->escape($_POST['page_title'])).'", 
+																						 page_content = "'.utf8_decode($db->escape($_POST['page_content'])).'", 
 																						 page_ts_update = NOW(), 
 																						 page_id_update = '.$_SESSION['user_id'].', 
-																						 page_comments = '.mysql_real_escape_string($page_comments).', 
-																						 page_loginrequired = '.mysql_real_escape_string($page_loginrequired).',
+																						 page_comments = '.$page_comments.', 
+																						 page_loginrequired = '.$page_loginrequired.',
 																						 page_parent = "'.$_POST['page_parent'].'"
-																			 WHERE page_id = '.mysql_real_escape_string($_GET['edit']).';');
+																			 WHERE page_id = '.$_GET['edit'].';');
 																			 				 
 			if($insert) { message("Die Seite wurde erfolgreich gespeichert", 'success'); }
 			else { message('Die Seite konnte nicht gespeichert werden', 'error'); }

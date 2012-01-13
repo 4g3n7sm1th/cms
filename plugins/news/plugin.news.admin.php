@@ -1,8 +1,13 @@
 <?php
 
+$content.='<script type="text/javascript" src="'.$app_folder.'plugins/news/plugin.news.js.php"></script>';
+
 if(isset($_GET['edit']) && $_GET['edit']!='' && $_GET['edit']!='0')
 {
-
+  
+  if($_GET['msg'] == 'savesuccess') message('Speichern erfolgreich','success'); 
+  if($_GET['msg'] == 'saveerror') message('Speichern fehlgeschlagen','error');
+  
   if(isset($_POST['news_save']))
   {
     if($_POST['comments_allowed'] == 'on') { $comments_allowed = '1'; } else { $comments_allowed = '0'; }
@@ -10,20 +15,21 @@ if(isset($_GET['edit']) && $_GET['edit']!='' && $_GET['edit']!='0')
   
     $update = $db->query(
       "UPDATE plugin_news 
-          SET plugin_news_content = '".escape($_POST['news_content'])."', 
-              plugin_news_title = '".escape($_POST['news_title'])."',
+          SET plugin_news_content = '".$db->escape(utf8_decode($_POST['news_content']))."', 
+              plugin_news_title = '".$db->escape(utf8_decode($_POST['news_title']))."',
               plugin_news_comments_allowed = ".$comments_allowed.",
               plugin_news_display = ".$display." 
         WHERE plugin_news_id = ".$_GET['edit']."
       ;");
       
     if(!$update)
-    { message('Update fehlgeschlagen','error'); } else
+    { message('Update fehlgeschlagen','error');} else
     { message('Update erfolgreich','success'); }
   }
   $news = $db->get_row('SELECT * FROM plugin_news WHERE plugin_news_id = '.$_GET['edit'].';');
   
   $content.='zur&uuml;ck zur <a href="?action=plugins&plugin=news">News-&Uuml;bersicht</a><br /><br />';
+  
   
   $content.='
   <form action="index.php?action=plugins&plugin=news&edit='.$_GET['edit'].'" method="post">
@@ -35,7 +41,7 @@ if(isset($_GET['edit']) && $_GET['edit']!='' && $_GET['edit']!='0')
 		</div>
 		<div id="pages" style="float:left">
 			<input type="text" id="titletext" style="color:black" value="'.$news->plugin_news_title.'" name="news_title"><br />
-			<textarea id="editor_small" rows="25" cols="80" name="news_content">'.$news->plugin_news_content.'</textarea>
+			<textarea id="editor_small" name="news_content">'.$news->plugin_news_content.'</textarea>
 		</div>
 	</form>
   ';
@@ -64,6 +70,8 @@ elseif(isset($_GET['new']))
               '".$_SESSION['user_id']."')
       ;");
     
+    $news_id = $db->insert_id;
+    
     if($feedbar == '1')
     {  
       $feedbar_insert = $db->query(
@@ -73,13 +81,14 @@ elseif(isset($_GET['new']))
                    feed_ts, 
                    feed_content)
            VALUES ('news',
-                   '?p=1&news_id=".$db->insert_id."',
+                   '?p=1&news_id=".$news_id."',
                    NOW(),
-                   '".strip_tags(substr($_POST['news_content'], 0, 100))."');
+                   '".$db->escape(utf8_encode($_POST['news_content']))."');
       ");
       //$db->debug();
     }  
     
+    header('Location: index.php?action=plugins&plugin=news&msg=savesuccess&edit='.$news_id);
     
     if(!$news_insert)
     { message('Update fehlgeschlagen','error'); } else
@@ -96,7 +105,7 @@ elseif(isset($_GET['new']))
 		</div>
 		<div id="pages" style="float:left">
 			<input type="text" id="titletext" style="color:black" title="News-Titel" value="" name="news_title"><br />
-			<textarea id="editor_small" rows="25" cols="80" name="news_content"></textarea>
+			<textarea id="editor_small" name="news_content"></textarea>
 		</div>
 	</form>
   ';
