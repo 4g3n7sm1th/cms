@@ -21,6 +21,7 @@ require_once('./../../admin/libs/session.class.php');
 $user = new flexibleAccess();
 
 require_once('./../../admin/libs/functions.inc.php');
+require_once('./../../admin/libs/plugin_functions.inc.php');
 require_once('./../../libs/functions.inc.php');
 
 ?>

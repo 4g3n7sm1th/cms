@@ -8,32 +8,28 @@ $tpl_menues_form1 = "<form action='index.php?action=".$_GET['action']."&edit=".$
 			<td style='width:25px'>ID</td>
 			<td>Link-Name</td>
 			<td>
-			  <img src='".icon('plus')."' id='newlink' title='Neuen Link zum Men&uuml; hinzuf&uuml;gen' onclick='addMenuItem(".$new_item_id.")'>
+			  <!--<img src='".icon('plus')."' id='newlink' title='Neuen Link zum Men&uuml; hinzuf&uuml;gen' onclick='addMenuItem(".$new_item_id.")'>-->
 			  <img src='".icon('plus')."' id='newlink_disabled' title='Speichern Sie bitte erst den neuen Link' style='display:none'>
 			</td>
 		</tr><tbody class='content'>";
 		
 $tpl_menues_table = "
-		<tr id='id_".$menu_item->menu_item_id."'>
+		<tr id='id_".$menu_item->page_id."'>
 			<td style='width:50px'>
 			  <img src='".icon('move')."' class='handle' style='cursor:move' title='Sortierung &auml;ndern'>
-				&nbsp;<a onclick='deleteMenuItem(".$menu_item->menu_item_id.")'><img src='".icon('delete')."' title='L&ouml;schen'></a>
+				<!--&nbsp;<a onclick='deleteMenuItem(".$menu_item->page_id.")'><img src='".icon('delete')."' title='L&ouml;schen'></a>-->
 			</td>
-			<td>".$menu_item->menu_item_id."</td>
+			<td>".$menu_item->page_id."</td>
 			<td id='menu_name".$menu_item->menu_item_id."'>
 			  <span id='extend_option_".$menu_item->menu_item_id."' style='height:20px;float:left'>
-			    ".$menu_item->menu_item_title."
+			    ".$menu_item->page_title."
 			  </span>
 			  &nbsp;<img src='".icon('check')."' id='success_ico_".$menu_item->menu_item_id."' style='float:left;display:none'>
-			  <div id='extended_option_".$menu_item->menu_item_id."' style='height:175px;float:left;display:none'>
-			    <table id='extended_option' style='width:500px'>
+			  <div id='extended_option_".$menu_item->menu_item_id."' style='height:175px;float:left;display:none;'>
+			    <table id='extended_option' style='width:500px;border:0'>
 			    <tr>
 			      <td style='width:80px;'>Link-Name:</td><td><input type='text' style='width:200px' class='tip' title='Link-Name' value='".$menu_item->menu_item_title."' id='link_name_".$menu_item->menu_item_id."'></td>
 			      <td rowspan='7' style='width:50px;'>&nbsp;</td>
-			      <!--<td rowspan='7' style='width:200px;'>
-			        Untermen&uuml;-Seiten:<br />
-			        <input type='text' class='tags_pages'>
-			      </td>-->
 			    </tr>
 			    <tr>
 			      <td>Link-Typ:</td>
@@ -74,7 +70,7 @@ $tpl_menues_table = "
 			    </tr>
 			  </table>
 			  </div>
-			  <img src='".icon('edit')."' title='Link bearbeiten' id='maximize".$menu_item->menu_item_id."' style='float:right;margin-top:3px;' onclick='extendMenuOptions(".$menu_item->menu_item_id.")'>
+			  <!--<img src='".icon('edit')."' title='Link bearbeiten' id='maximize".$menu_item->menu_item_id."' style='float:right;margin-top:3px;' onclick='extendMenuOptions(".$menu_item->menu_item_id.")'>-->
 			  <img src='".icon('save')."' title='Link speichern' id='save".$menu_item->menu_item_id."' style='float:right;margin-top:3px;display:none' onclick='saveMenuOptions(".$menu_item->menu_item_id.")'>
 			  <img src='".icon('minus')."' title='Editor einklappen' id='minimize".$menu_item->menu_item_id."' style='float:right;margin-right:3px;margin-top:3px;display:none' onclick='hideMenuOptions(".$menu_item->menu_item_id.")'>
 			</td>

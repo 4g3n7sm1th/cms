@@ -31,7 +31,7 @@ if(isset($_GET['news_id']))
 	                                    plugin_news_comment_id_create, 
 	                                    plugin_news_comment_ts_create,
 	                                    plugin_news_comment_news_id) 
-	                            VALUES ('".escape($_POST['comment_content'])."',
+	                            VALUES ('".$db->escape($_POST['comment_content'])."',
 	                                    '".$_SESSION['user_id']."',
 	                                    NOW(),
 	                                    '".$_GET['news_id']."');");

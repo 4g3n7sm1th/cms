@@ -62,8 +62,8 @@ elseif(isset($_GET['new']))
               plugin_news_display,
               plugin_news_ts_create,
               plugin_news_id_create)
-      VALUES ('".escape($_POST['news_content'])."', 
-              '".escape($_POST['news_title'])."',
+      VALUES ('".$db->escape($_POST['news_content'])."', 
+              '".$db->escape($_POST['news_title'])."',
               ".$comments_allowed.",
               ".$display.",
               NOW(),

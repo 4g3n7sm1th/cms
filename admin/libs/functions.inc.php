@@ -83,11 +83,10 @@ function menu($menu_id)
 	global $user;
 	$menu_data = array();
 	$menus = $db->get_results("SELECT * 
-							 FROM menu_items
-							WHERE menu_id = '".$menu_id."' 
-							  AND menu_item_visible = '1'
-							  AND menu_item_ts_delete IS NULL
-						 ORDER BY menu_item_order_id");
+							 FROM pages
+							WHERE menu_id = '".$menu_id."'
+							  AND page_ts_delete IS NULL
+						 ORDER BY menu_order_id");
 	if(!$menus) { message(l('Menü nicht verfügbar.'), 'error');  return false;} else {
 		for($i=0; $i<count($menus); $i++)
 		{
@@ -95,26 +94,16 @@ function menu($menu_id)
 			{
 				continue;
 			}
-			$menu_data[$i]['title'] = $menus[$i]->menu_item_title;
-			$menu_data[$i]['id'] = $menus[$i]->menu_item_id;
+			$menu_data[$i]['title'] = $menus[$i]->page_title;
+			$menu_data[$i]['id'] = $menus[$i]->page_id;
 			
-			if(!$menus[$i]->menu_item_link)
-			{ 
-			  $menu_data[$i]['link'] = '?p='.$menus[$i]->menu_item_page;
-			  $menu_data[$i]['page_id'] = $menus[$i]->menu_item_page; 
-			}
-			else 
-			{ 
-			  $menu_data[$i]['link'] = $menus[$i]->menu_item_link; 
-			  $menu_data[$i]['page_id'] = '';
-			}
+			$menu_data[$i]['link'] = '?p='.$menus[$i]->page_id;
+		  $menu_data[$i]['page_id'] = $menus[$i]->page_id; 
 			
-			if(!$menus[$i]->menu_item_parent_page)
+			if(!$menus[$i]->page_parent || $menus[$i]->page_parent == 0)
 			{ $menu_data[$i]['parent_page'] = ''; }
-			else { $menu_data[$i]['parent_page'] = $menus[$i]->menu_item_parent_page; }
-			
-			if($menus[$i]->menu_item_target == '1')
-			{ $menu_data[$i]['target'] = ' target="_blank"'; }
+			else { $menu_data[$i]['parent_page'] = $menus[$i]->page_parent; }
+
 		}
 	$tpl->assign('pos_menu',$menu_id);
 	return $menu_data;
@@ -209,6 +198,95 @@ function escape($str, $html = 0)
 	return $str;
 }
 
+function getJSON($url)
+{
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_HEADER, false);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+  $response = curl_exec($curl);
+  $status = curl_getinfo($curl);
+  curl_close($curl);
+  
+  $return['response'] = $response;
+  $return['status'] = $status;
+  
+  return $return;
+}
+
+function getMasterserverData()
+{
+  global $config;
+  $response = getJSON($config['master_server']);
+  
+  return json_decode($response['response']);
+}
+
+function getDBData($table, $type, $id)
+{
+  global $db;
+  
+  $field = $table.'_'.$type;
+  $idfield = $table.'_id';
+  $table = $table.'s';
+
+  $sql = "SELECT ".$field." FROM ".$table." WHERE ".$idfield." = ".$id.";";
+  
+  $return = $db->get_var($sql);
+
+  return $return;
+}
+
+function getMainPage($page_id)
+{
+  global $db;
+  $is_top=false;
+
+  for($i=1;$is_top==false;$i++)
+  {
+    $check = $db->get_var("SELECT page_parent FROM pages WHERE page_id='".$page_id."'");
+    if($check == 0)
+    {
+      $is_top = true;
+      return $page_id;
+    }
+    else
+    {
+      $page_id = $check;
+      $is_top = false;
+    }
+  }
+}
+
+function genMenuDropdown($selected = '', $i='')
+{
+	global $db;
+	
+	$menus = genMenuArray();
+	
+	$name = 'menu_id';
+	$name.= ($i != '')? '_'.$i:'';
+	
+	$return = '<select class="menudropdown" name="'.$name.'" id="'.$name.'"><option value="0">';
+	$return.= l('Bitte wählen...'); 
+	$return.= '</option>';
+	
+	$select = '';
+	
+	foreach($menus as $menu)
+	{
+		if($selected != '' && $selected == $menu->menu_id) $select = ' selected';
+		$return.= '<option value="'.$menu->menu_id.'"'.$select.'>';
+		$return.= $menu->menu_name;
+		$return.= '</option>';
+		$select = '';
+	}
+	
+	$return.= '</select>';
+	return $return;
+}
+
 function genPageDropdown($mainPages = false, $selected = '', $i='')
 {
 	global $db;
@@ -252,6 +330,14 @@ function genPageArray($mainPages = false)
   global $db;
   if($mainPages == true) { $pages  = $db->get_results('SELECT * FROM pages WHERE page_parent = "0" AND page_ts_delete IS NULL'); }
 	else { $pages  = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL'); }
+	
+	return $pages;
+}
+
+function genMenuArray()
+{
+  global $db;
+  $pages  = $db->get_results('SELECT * FROM menus WHERE menu_ts_delete IS NULL');
 	
 	return $pages;
 }
@@ -484,6 +570,15 @@ function icon($icon, $mode='1', $ext='png')
 		break;
 		case 'check':
 			$icon_file = 'Checkmark';
+		break;
+		case 'cross':
+			$icon_file = 'X-Mark';
+		break;
+		case 'accept':
+			$icon_file = 'accept';
+		break;
+		case 'cancel':
+			$icon_file = 'cancel';
 		break;
 		case 'write':
 			$icon_file = 'Pencil';

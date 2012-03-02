@@ -26,7 +26,7 @@ if(conf) {
   }
 }
 
-google.setOnLoadCallback(function() {
+$().ready(function() {
 
 	var error = "bums";
 	

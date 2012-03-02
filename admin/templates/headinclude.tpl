@@ -15,7 +15,6 @@
   <script type="text/javascript" src="js/jquery.liveSearch.js"></script>
   <script type="text/javascript" src="js/jquery.autoGrowInput.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
-	<script type="text/javascript" src="js/tiny_mce/jquery.tinymce.js"></script>
 	<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 	<script type="text/javascript" src="js/fancybox/jquery.easing-1.3.pack.js"></script>
 	<script type="text/javascript" src="js/markitup/jquery.markitup.js"></script>

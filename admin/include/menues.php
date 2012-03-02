@@ -127,61 +127,64 @@ if(isset($_GET['edit']))
   }
   else
   {
-  $page['menues']['title'].= ' - '.l('Links bearbeiten');
+    $page['menues']['title'].= ' - '.l('Links bearbeiten');
 	
-	$menu_items = $db->get_results('SELECT * FROM menu_items WHERE menu_item_ts_delete IS NULL AND menu_id = '.escape($_GET['edit']).' ORDER BY menu_item_order_id ASC;');
-	$new_item_id = $db->get_var('SELECT MAX(menu_item_id) FROM menu_items');
-	$new_item_id = $new_item_id+1;
+	  $menu_items = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL AND menu_id = '.$db->escape($_GET['edit']).' ORDER BY menu_order_id ASC;');
 	
-	include('inc_tpls/menues.tpl.php');
-	$content.= $tpl_menues_form1;
+	  if(count($menu_items)>0)
+	  {
+	
+	    include('inc_tpls/menues.tpl.php');
+	    $content.= $tpl_menues_form1;
 		
-	$i=1;	
-	foreach($menu_items as $menu_item)
-	{
-		$creator = ' von '.getUsername($menu_item->menu_item_id_create);
-		$created = '<b>'.l('Erstellt').':</b> <br />'.date_mysql($menu_item->menu_item_ts_create, "d.m.y, H:i").' '.l('Uhr');
-		if($menu_item->menu_item_ts_update != '') { 
-			$change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($menu_item->menu_item_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
-			$changer = ' von '.getUsername($menu_item->menu_item_id_update);
-		} else { 
-			$change = ''; 
-			$changer = '';
-		}
+	    $i=1;	
+	    foreach($menu_items as $menu_item)
+	    {
+		  $creator = ' von '.getUsername($menu_item->page_id_create);
+		  $created = '<b>'.l('Erstellt').':</b> <br />'.date_mysql($menu_item->page_ts_create, "d.m.y, H:i").' '.l('Uhr');
+		  if($menu_item->page_ts_update != '') { 
+			  $change = '<br /><br /><b>'.l('Letzte Änderung').': </b><br />'.date_mysql($menu_item->page_ts_update, "d.m.y, H:i").' '.l('Uhr'); 
+			  $changer = ' von '.getUsername($menu_item->page_id_update);
+		  } else { 
+			  $change = ''; 
+			  $changer = '';
+		  }
 		
-		if($menu_item->menu_item_page != '0')
-		{ $menu_item_page = $menu_item->menu_item_page; } else
-		{ $menu_item_page = ''; }
 		
-		if($menu_item->menu_item_link != '0')
-		{ $menu_item_link = $menu_item->menu_item_link; } else
-		{ $menu_item_link = ''; }
+		  if($menu_item->menu_item_link != '0')
+		  { $menu_item_link = $menu_item->menu_item_link; } else
+		  { $menu_item_link = ''; }
 		
-		if($menu_item->menu_item_visible == '1')
-		{ $menu_item_visible0 = ''; $menu_item_visible1 = ' selected'; } 
-		elseif($menu_item->menu_item_visible == '0')
-		{ $menu_item_visible0 = ' selected'; $menu_item_visible1 = ''; }
+		  if($menu_item->menu_item_visible == '1')
+		  { $menu_item_visible0 = ''; $menu_item_visible1 = ' selected'; } 
+		  elseif($menu_item->menu_item_visible == '0')
+		  { $menu_item_visible0 = ' selected'; $menu_item_visible1 = ''; }
 		
-		if($menu_item->menu_item_target == '1')
-		{ $menu_item_target0 = ''; $menu_item_target1 = ' selected'; } 
-		elseif($menu_item->menu_item_target == '0')
-		{ $menu_item_target0 = ' selected'; $menu_item_target1 = ''; }
+		  if($menu_item->menu_item_target == '1')
+		  { $menu_item_target0 = ''; $menu_item_target1 = ' selected'; } 
+		  elseif($menu_item->menu_item_target == '0')
+		  { $menu_item_target0 = ' selected'; $menu_item_target1 = ''; }
 		
-		if($menu_item->menu_item_page == '0' && $menu_item->menu_item_link != '0')
-		{ $menu_islink = ' selected'; $menu_ispage = ''; } 
-		elseif($menu_item->menu_item_page != '0' && $menu_item->menu_item_link == '0')
-		{ $menu_islink = ''; $menu_ispage = ' selected="selected"'; }
-		else
-		{ $menu_islink = ''; $menu_ispage = ''; }
+		  if($menu_item->menu_item_page == '0' && $menu_item->menu_item_link != '0')
+		  { $menu_islink = ' selected'; $menu_ispage = ''; } 
+		  elseif($menu_item->menu_item_page != '0' && $menu_item->menu_item_link == '0')
+		  { $menu_islink = ''; $menu_ispage = ' selected="selected"'; }
+		  else
+		  { $menu_islink = ''; $menu_ispage = ''; }
 		
-		$menu_item->genPageDropdown = genPageDropdown(false, $menu_item_page, $menu_item->menu_item_id);
+		  $menu_item->genPageDropdown = genPageDropdown(false, $menu_items->page_id, $menu_item->page_id);
 		
-		include('inc_tpls/menues.tpl.php');
-		$content.= $tpl_menues_table;
-	$i++;
-	}
-	include('inc_tpls/menues.tpl.php');
-	$content.= $tpl_menues_tableend;
+		  include('inc_tpls/menues.tpl.php');
+		  $content.= $tpl_menues_table;
+	    $i++;
+	  }
+	    include('inc_tpls/menues.tpl.php');
+	    $content.= $tpl_menues_tableend;
+	  }
+	  else
+	  {
+	  $content.=l("Keine Menüpunkte vorhanden.");
+	  }
 	}
 }
 else

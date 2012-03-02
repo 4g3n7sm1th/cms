@@ -573,6 +573,14 @@
 			preview();
 			refreshPreview();
 			
+			text= $$.val();
+      newtext = text.replace(/<br>/gi, '<br />'+getLineSeparator());
+      newtext = text.replace(/<br \/>/gi, '<br />'+getLineSeparator());
+      newtext = newtext.replace(/\n\n/gi, getLineSeparator());
+      newtext = newtext.replace(/\n\n/gi, getLineSeparator());
+      newtext = newtext.replace(/\n\n/gi, getLineSeparator());
+      $$.val(newtext);
+			
 			$$.on('keyup', function() { refreshPreview(); });
 			$('#titletext').on('keyup', function() { refreshPreview(); });
 		});

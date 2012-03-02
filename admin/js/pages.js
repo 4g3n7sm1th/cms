@@ -26,3 +26,18 @@ if(conf) {
   });
   }
 }
+
+$().ready(function(){
+
+  $('.pagedropdown').change(function(){
+    if($(this).val() == 0)
+    {
+      $('#menu_id_select').show();
+    }
+    else
+    {
+      $('#menu_id_select').hide();
+    }
+  });
+  
+});

@@ -20,7 +20,12 @@
       </div>
       <div id="navigation">
         &nbsp;
-        {menue id=2}
+        <!--{menue id=2}-->
+        <ul>
+          <li class="menu-a" id="link_Home"><a href="?p=1">Home</a></li>
+          <li class="menu-b" id="link_Forum"><a href="./../forum" target="_blank">Forum</a></li>
+          <li class="menu-a" id="link_Admin"><a href="admin" target="_blank">Admin</a></li>
+        </ul>
         <div id="page_menu">
         {menue page=true nocache}
         </div>

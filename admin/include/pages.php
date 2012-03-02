@@ -1,7 +1,6 @@
 <?php
 include('inc_tpls/pages.tpl.php');
 
-
 $page['pages']['title'] = l("Seiten");
 
 $content = "";
@@ -25,14 +24,16 @@ $page['pages']['title'].= " - ".l("neue Seite");
 																							 page_author, 
 																							 page_comments, 
 																							 page_loginrequired,
-																							 page_parent) 
+																							 page_parent,
+																							 menu_id) 
 																			 VALUES ("'.utf8_decode($db->escape($_POST['page_title'])).'",
 																			 				 "'.utf8_decode($db->escape($_POST['page_content'])).'",
 																			 				 NOW(),
 																			 				 "'.$_SESSION['user_id'].'",
 																			 				 '.$page_comments.',
 																			 				 '.$page_loginrequired.',
-																			 				 "'.$_POST['page_parent'].'");');
+																			 				 "'.$_POST['page_parent'].'",
+																			 				 "'.$_POST['menu_id'].'");');
 																			 				 
 			if($insert) { message("Die Seite wurde erfolgreich gespeichert", 'success'); }
 			else { message('Die Seite konnte nicht gespeichert werden', 'error'); }
@@ -48,7 +49,7 @@ elseif(isset($_GET['edit']))
 $page['pages']['title'].= " - Seite bearbeiten";
 
 $pages = $db->get_row('SELECT * FROM pages WHERE page_ts_delete IS NULL AND page_id = '.mysql_real_escape_string($_GET['edit']).';');
-$page_dropdown = genPageDropdown(true, $pages->page_parent);
+$page_dropdown = genPageDropdown(false, $pages->page_parent);
 
 
 	if($_POST['page_save'])
@@ -58,13 +59,24 @@ $page_dropdown = genPageDropdown(true, $pages->page_parent);
 			if($_POST['page_comments'] == 'on') { $page_comments = '1'; } else { $page_comments = '0'; }
 			if($_POST['page_loginrequired'] == 'on') { $page_loginrequired = '1'; } else { $page_loginrequired = '0'; }
 			
+			if($_POST['page_id'] == 0)
+			{
+			  $menu_id = $_POST['menu_id'];
+			}
+			else
+			{
+			  $menu_id = $db->get_var("SELECT menu_id FROM pages WHERE page_id = '".getMainPage($_POST['page_id'])."';");
+			}
+			
+			
 			$insert = $db->query('UPDATE pages SET page_title = "'.utf8_decode($db->escape($_POST['page_title'])).'", 
 																						 page_content = "'.utf8_decode($db->escape($_POST['page_content'])).'", 
 																						 page_ts_update = NOW(), 
 																						 page_id_update = '.$_SESSION['user_id'].', 
 																						 page_comments = '.$page_comments.', 
 																						 page_loginrequired = '.$page_loginrequired.',
-																						 page_parent = "'.$_POST['page_parent'].'"
+																						 page_parent = "'.$_POST['page_id'].'",
+																						 menu_id = "'.$_POST['menu_id'].'"
 																			 WHERE page_id = '.$_GET['edit'].';');
 																			 				 
 			if($insert) { message("Die Seite wurde erfolgreich gespeichert", 'success'); }
@@ -74,17 +86,17 @@ $page_dropdown = genPageDropdown(true, $pages->page_parent);
 		{ message("Bitte geben sie einen Titel und Inhalt an", 'error'); }
 	}
 	
-	$pages = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL AND page_id = '.mysql_real_escape_string($_GET['edit']).';');
+	$pages = $db->get_row('SELECT * FROM pages WHERE page_ts_delete IS NULL AND page_id = '.mysql_real_escape_string($_GET['edit']).';');
 	
-	if($pages[0]->page_comments == '1') { $page_comments = ' checked'; } else { $page_comments = ''; }
-	if($pages[0]->page_loginrequired == '1') { $page_loginrequired = ' checked'; } else { $page_loginrequired = ''; }
+	if($pages->page_comments == '1') { $page_comments = ' checked'; } else { $page_comments = ''; }
+	if($pages->page_loginrequired == '1') { $page_loginrequired = ' checked'; } else { $page_loginrequired = ''; }
 	
 	include('inc_tpls/pages.tpl.php');
 	$content.= $tpl_page_form2;
 }
 else
 {
-	$pages = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL;');
+	$pages = $db->get_results('SELECT * FROM pages WHERE page_ts_delete IS NULL ORDER BY page_title;');
 	
 	include('inc_tpls/pages.tpl.php');
 	$content.= $tpl_page_tablehead;

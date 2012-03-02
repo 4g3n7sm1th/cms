@@ -27,6 +27,7 @@ news_edit_settings = {
 		{name:'Li', openWith:'<li>', closeWith:'</li>' },
 		{separator:'---------------' },
 		{name:'Link', key:'L', openWith:'<a href="[![Link:!:http://]!]"(!( title="[![Title]!]")!)>', closeWith:'</a>', placeHolder:'Your text to link...' },
+		{name:'Bild-Link', className: 'image', replaceWith: '<a href="[![Bild-URL:!:http://]!]" class="fancybox gallerylink"><img src="[![Bild-URL:!:http://]!]" style="max-width:150px;height:100px;margin:10px"></a>'},
 		{name:'Page-Break', className:'pagebreak', replaceWith:'<!-- pagebreak -->' },
 		{separator:'---------------' },
 		{name:'Clean', className:'clean', replaceWith:function(markitup) { return markitup.selection.replace(/<(.*?)>/g, "") } }		

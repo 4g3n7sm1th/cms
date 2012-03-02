@@ -256,34 +256,8 @@ a:hover
 {
   border:1px solid black;
   box-shadow: 0px 0px 5px #000000;
-}
-
-#page_menu
-{
-  margin: 40px 0px;
-}
-
-#page_menu ul
-{
-  border:0 !important;
-}
-
-#page_menu ul li
-{
-  border-top:1px solid black;
-  font-size:12px;
-  height:10px;
-  padding-top:4px;
-  padding-left:15px;
-}
-
-.page_menu_title
-{
-  font-family:Palatino;
-  margin-left:10px;
-  color:#76320a;
-  font-size:14px;
-  font-weight:bold;
+  -webkit-box-shadow: 0px 0px 5px #000000;
+  -moz-box-shadow: 0px 0px 5px #000000;
 }
 
 strong
@@ -450,6 +424,66 @@ strong
   overflow:hidden;
 }
 
+#page_menu
+{
+  margin: 40px 0px;
+}
+
+#page_menu>ul
+{
+  border:0 !important;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+#page_menu>ul>li
+{
+  border-bottom:1px solid black;
+  font-size:12px;
+  padding-top:4px;
+  padding-left:15px;
+  padding-bottom:3px;
+}
+
+#page_menu>ul>li:first-child
+{
+  border-top:1px solid black;
+}
+
+#page_menu>ul>li ul li
+{
+  border:0;
+  font-size:12px;
+  padding-top:4px;
+}
+
+
+#page_menu>ul>li ul li ul li>div#selected,
+#page_menu>ul>li ul li>div#selected,
+#page_menu>ul>li>div#selected
+{
+  margin-top:-12px;
+  position:absolute;
+  left:195px;
+}
+
+#page_menu>ul>li ul
+{
+  border:0;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.page_menu_title
+{
+  font-family:Palatino;
+  margin-left:10px;
+  color:#76320a;
+  font-size:14px;
+  font-weight:bold;
+}
 #navigation
 {
   position:relative;
@@ -462,7 +496,7 @@ strong
   padding-bottom:80px;
 }
 
-#navigation ul
+#navigation>ul
 {
   border-top:1px solid black;
   list-style-type: none;
@@ -470,7 +504,7 @@ strong
   margin: 0px;
 }
 
-#navigation li
+#navigation>ul>li
 {
   width:100%-5px;
   height:18px;
@@ -484,7 +518,7 @@ strong
   padding-top:6px;
 }
 
-#navigation li:hover
+#navigation>ul>li:hover
 {
   color:#a34c16;
 }
@@ -619,8 +653,8 @@ padding: 0;
 
 #topmenu li {
 display:inline;
-margin-left:50px;
-margin-right:50px;
+margin-left:45px;
+margin-right:45px;
 }
 
 #feed
@@ -806,6 +840,14 @@ text-align:left;
 #content .thumb { height: 20px; width: 8px; cursor: pointer; opacity:0.8; overflow: hidden; position: absolute; top: 0; border-radius:15px; -moz-border-radius:15px; }
 #content .thumb .end { overflow: hidden; height: 5px; width: 13px; border-radius:15px; -moz-border-radius:15px; }
 #content .disable{ display: none; }
+
+.ui-dialog
+{
+  padding:0;
+  box-shadow: 0px 0px 10px #000000;
+  -webkit-box-shadow: 0px 0px 10px #000000;
+  -moz-box-shadow: 0px 0px 10px #000000;
+}
 
 
 /* ==|== non-semantic helper classes ========================================

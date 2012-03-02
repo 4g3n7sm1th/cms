@@ -61,3 +61,13 @@
 .markItUp .preview a {
 	background-image:url(images/preview.png);
 }
+
+.songtext {
+	background-image:url(images/music.png);
+	background-repeat:no-repeat;
+}
+
+.image {
+	background-image:url(images/image.png);
+	background-repeat:no-repeat;
+}

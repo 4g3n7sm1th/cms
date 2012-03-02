@@ -9,8 +9,23 @@
 // ----------------------------------------------------------------------------
 // Basic set. Feel free to add more tags
 // ----------------------------------------------------------------------------
+var id = '';
+var linktext = '';
+var songtext = '';
+function insertSongtext(text)
+{
+		    var id = timestamp();
+		    newtext = text.replace(/popup_X/gi, 'popup_'+id);
+		    newtext = newtext.replace(/<br>/gi, '<br />'+getLineSeparator());
+		    newtext = newtext.replace(/<br \/>/gi, '<br />'+getLineSeparator());
+		    newtext = newtext.replace(/\n\n/gi, getLineSeparator());
+		    newtext = newtext.replace(/\n\n/gi, getLineSeparator());
+		    newtext = newtext.replace(/\n\n/gi, getLineSeparator());
+		    return newtext;
+}
+
 mySettings = {
-	onShiftEnter:	{keepDefault:false, replaceWith:'<br />\n'},
+	onEnter:	{keepDefault:false, replaceWith:'<br />\n'},
 	onCtrlEnter:	{keepDefault:false, openWith:'\n<p>', closeWith:'</p>\n'},
 	onTab:			{keepDefault:false, openWith:'	 '},
 	previewAutoRefresh: true,
@@ -32,8 +47,18 @@ mySettings = {
 		{name:'Li', openWith:'<li>', closeWith:'</li>' },
 		{separator:'---------------' },
 		{name:'Link', key:'L', openWith:'<a href="[![Link:!:http://]!]"(!( title="[![Title]!]")!)>', closeWith:'</a>', placeHolder:'Your text to link...' },
+		{name:'Bild-Link', className: 'image', replaceWith: '<a href="[![Bild-URL:!:http://]!]" class="fancybox gallerylink"><img src="[![Bild-URL:!:http://]!]" style="max-width:150px;height:100px;margin:10px"></a>'},
 		{name:'Page-Break', className:'pagebreak', openWith:'<!-- pagebreak -->' },
 		{separator:'---------------' },
-		{name:'Clean', className:'clean', replaceWith:function(markitup) { return markitup.selection.replace(/<(.*?)>/g, "") } }		
+		{name:'Clean', className:'clean', replaceWith:function(markitup) { return markitup.selection.replace(/<(.*?)>/g, "") } },	
+		{name:'Songtext Pop-Up', 
+		 className:'songtext', 
+		 replaceWith: '<a href="#" onclick="$(\'#popup_X\').dialog({ height:400, width:750 })">[![Song-Name]!]</a>\n\n<div id="popup_X" style="display:none">[![Songtext]!]</div>',
+		 afterInsert:function(h) {
+        text= $(h.textarea).val();
+        newtext = insertSongtext(text);
+        $(h.textarea).val(newtext);
+     }
+		}		
 	]
 }

@@ -78,12 +78,12 @@ switch($_POST['req']) {
 	
 	$i=0;
 	$save = false;
-	
+	//print_r($_POST);
 	foreach($orders as $order)
 	{
 	  $order_number = $i+1;
 	  
-	  $sql = 'UPDATE menu_items SET menu_item_order_id = '.$order_number.', menu_item_ts_update = NOW(), menu_item_id_update = "'.$_SESSION['user_id'].'" WHERE menu_item_id = '.$_POST['dummy_link'][$i].' AND menu_id = '.$_POST['menu_id'].';';
+	  $sql = 'UPDATE pages SET menu_order_id = '.$order_number.', page_ts_update = NOW(), page_id_update = "'.$_SESSION['user_id'].'" WHERE page_id = '.$_POST['id'][$i].' AND menu_id = '.$_POST['menu_id'].';';
 	  //echo $sql;
 	  $update = $db->query($sql);
 	  
@@ -102,15 +102,15 @@ switch($_POST['req']) {
 	break;
 	
 	case 'saveMenuOptions':
-    $link_name =   escape($_POST['link_name']);
-    $change_type = escape($_POST['change_type']);
-    $page_id =     escape($_POST['page_id']);
-    $extern_link = escape($_POST['extern_link']);
-    $isvisible =   escape($_POST['isvisible']);
-    $link_target = escape($_POST['link_target']);
-		$item_id =     escape($_POST['item_id']);
-		$new_menu =    escape($_POST['new_menu']);
-		$menu_id =     escape($_POST['menu_id']);
+    $link_name    = $db->escape($_POST['link_name']);
+    $change_type  = $db->escape($_POST['change_type']);
+    $page_id      = $db->escape($_POST['page_id']);
+    $extern_link  = $db->escape($_POST['extern_link']);
+    $isvisible    = $db->escape($_POST['isvisible']);
+    $link_target  = $db->escape($_POST['link_target']);
+		$item_id      = $db->escape($_POST['item_id']);
+		$new_menu     = $db->escape($_POST['new_menu']);
+		$menu_id      = $db->escape($_POST['menu_id']);
 		
 		$max_order_id = $db->get_var('SELECT MAX(menu_item_order_id) FROM menu_items WHERE menu_id = "'.$menu_id.'"');
 		
@@ -254,7 +254,7 @@ switch($_POST['req']) {
 		$menu_id = $_POST['menu_id'];
 		
 		
-		$save = $db->query('UPDATE menus SET menu_name = "'.escape($menu_name).'", menu_ts_update = NOW(), menu_id_update = "'.$_SESSION['user_id'].'" WHERE menu_id = '.$menu_id.';');
+		$save = $db->query('UPDATE menus SET menu_name = "'.$db->escape($menu_name).'", menu_ts_update = NOW(), menu_id_update = "'.$_SESSION['user_id'].'" WHERE menu_id = '.$menu_id.';');
 		
 		if(!$save)
 		{ echo '0'; }

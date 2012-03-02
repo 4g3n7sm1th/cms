@@ -13,8 +13,8 @@ if(isset($_GET['edit']) && $_GET['edit']!='' && $_GET['edit']!='0')
     
     $update = $db->query(
       "UPDATE plugin_gallerys 
-          SET plugin_gallery_name = '".escape($_POST['gallery_title'])."', 
-              plugin_gallery_description = '".escape($_POST['gallery_description'])."',
+          SET plugin_gallery_name = '".$db->escape($_POST['gallery_title'])."', 
+              plugin_gallery_description = '".$db->escape($_POST['gallery_description'])."',
               plugin_gallery_ts_update = NOW(),
               plugin_gallery_id_update = ".$_SESSION['user_id']."
         WHERE plugin_gallery_id = ".$_GET['edit']."
@@ -31,7 +31,7 @@ if(isset($_GET['edit']) && $_GET['edit']!='' && $_GET['edit']!='0')
       
       //$db->debug();
       
-     $new_pictures = $db->get_results('SELECT * FROM plugin_gallery_pictures WHERE plugin_gallery_picture_new = 1 AND plugin_gallery_id = '.$_GET['edit'].'; '); 
+     $new_pictures = $db->get_results('SELECT * FROM plugin_gallery_pictures WHERE plugin_gallery_picture_new = 1 AND plugin_gallery_id = '.$_GET['edit'].' AND plugin_gallery_picture_ts_delete IS NULL; '); 
       
      if(count($new_pictures)>0)
      {

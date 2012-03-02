@@ -19,18 +19,23 @@ $tpl_page_form1 = '	<form action="index.php?action=pages&new=1" method="post">
 							</form>';
 
 $tpl_page_form2 = '	<form action="index.php?action=pages&edit='.$_GET['edit'].'" method="post">
-								<div style="float:right;margin-right:10px;" id="submitbox">
+								<div style="float:right;margin-right:10px;height:150px;" id="submitbox">
 									<span><input id="loginrequired" type="checkbox" name="page_loginrequired"'.$page_loginrequired.'><label for="loginrequired">Login ben&ouml;tigt</label></span><br />
 									<span><input id="comments" type="checkbox" name="page_comments"'.$page_comments.'><label for="comments">Kommentare erlaubt</label></span>
-									<span style="float:left;margin-left:10px;">
+									<span style="float:left;margin-left:10px;" id="page_parent_select">
 									  '.$page_dropdown.'
 									  <label for="page_parent">&Uuml;ber-Seite</label></span>
 									</span>
+									<span style="float:left;margin-left:10px;" id="menu_id_select">
+									  '.genMenuDropdown($pages->menu_id).'
+									  <label for="menu_id">Men&uuml</label>
+									</span>
+									
 									<input type="submit" value="Speichern" name="page_save">
 								</div>
 								<div id="pages" style="float:left">
-									<input type="text" id="titletext" style="color:black" value="'.$pages[0]->page_title.'" name="page_title"><br />
-									<textarea id="texteditor" rows="25" cols="80" name="page_content">'.$pages[0]->page_content.'</textarea>
+									<input type="text" id="titletext" style="color:black" value="'.$pages->page_title.'" name="page_title"><br />
+									<textarea id="texteditor" rows="25" cols="80" name="page_content">'.$pages->page_content.'</textarea>
 								</div>
 							</form>';
 							

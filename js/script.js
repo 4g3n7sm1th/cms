@@ -64,6 +64,14 @@ function loadGallerys()
 		'speedOut'		:	400, 
 		'overlayShow'	:	true
 	});
+	
+	$(".fancybox").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	500, 
+		'speedOut'		:	400, 
+		'overlayShow'	:	true
+	});
 		    
 	$('.gallery').each(function() {
 		      var id = $(this).attr('rel');

@@ -149,20 +149,16 @@ switch($_POST['req']) {
 	  $feedcontent = $feed->feed_content;
 	  //$feedcontent = html_entity_decode($feedcontent);
 	  
+	  if($feed->feed_type == 'news')
+	  { continue; }
+	  
 	  if($feed->feed_type == 'gallery')
 	  {
 	    $feedtitle = utf8_encode(strip_tags(trim($feedcontent)));
 	  }
 	  else
 	  {
-	    
-	    
-	    /*
-	    $feedcontent = str_replace('&lt;a href=&quot;', '', $feedcontent);
-	    $feedcontent = str_replace('&quot;', '', $feedcontent);
-	    $feedcontent = str_replace(array('id=', 'title=', 'target=', 'onclick=', 'style=', 'onmousedown='), '', $feedcontent);
-	    $feedcontent = str_replace('&quot; target=&quot;_blank&quot; rel=&quot;nofollow nofollow&quot; onmousedown=&quot;UntrustedLink.bootstrap($(this), &quot;vAQFOglW4&quot;, event, bagof({}));&quot;&gt;', '', $feedcontent);
-	    */
+
 	  
 	    preg_match('/<a\s[^>]*href=\"([^\"]*)\"[^>]*>(.*)<\/a>/siU', $feedcontent, $feedcontent_link);
 	    //$feedcontent = preg_replace('/<a\s[^>]*href=\"([^\"]*)\"[^>]*>(.*)<\/a>/siU', '', $feedcontent);
